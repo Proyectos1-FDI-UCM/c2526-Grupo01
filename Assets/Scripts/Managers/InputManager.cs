@@ -17,6 +17,7 @@ using UnityEngine.InputSystem;
 /// 
 /// A modo de ejemplo, este InputManager tiene métodos para consultar
 /// el estado de dos acciones:
+/// 
 /// - Move: Permite acceder a un Vector2D llamado MovementVector que representa
 /// el estado de la acción Move (que se puede realizar con el joystick izquierdo
 /// del gamepad, con los cursores...)
@@ -66,6 +67,12 @@ public class InputManager : MonoBehaviour
     /// conocer el estado del botón)
     /// </summary>
     private InputAction _fire;
+
+
+
+    //acción para saltar.
+    private InputAction _jump;
+
 
     #endregion
 
@@ -186,6 +193,29 @@ public class InputManager : MonoBehaviour
         return _fire.WasReleasedThisFrame();
     }
 
+
+
+    //METODOS de la ACCIÓN de SALTO
+
+    //método que devuelve si fue pulsada en este frame
+    public bool JumpWasPressedThisFrame()
+    {
+        return _jump.WasPressedThisFrame();
+    }
+
+    //método que devuelve si esta presionada
+    public bool JumpIsPressed()
+    {
+        return _jump.IsPressed();
+    }
+
+    //método que devuelve si ha sido soltada
+    public bool JumpWasReleasedThisFrame()
+    {
+        return _jump.WasReleasedThisFrame();
+    }
+
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -213,6 +243,9 @@ public class InputManager : MonoBehaviour
         // tenemos (FireIsPressed, FireWasPressedThisFrame 
         // y FireWasReleasedThisFrame)
         _fire = _theController.Player.Fire;
+
+        //init de saltar
+        _jump = _theController.Player.Jump;
     }
 
     /// <summary>
