@@ -9,8 +9,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private float speed = 5f; //velocidad configurable en el editor
+
+    private float currentSpeed = 0f;    //Velocidad actual del player.
+
+    [SerializeField]
+    private float walkAcceler = 15f;    //Grado de aceleración inicial.
+    [SerializeField]
+    private float walkDeceler = 15f;    //Grado de frenado final.
 
     [SerializeField]
     private float jumpSpeed = 7f; //velocidad del salto
@@ -35,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         //MOVIMIENTO HORIZONTAL
 
         //hay q confirmar que existe el InputManager
-        if (!InputManager.HasInstance()) 
+        if (!InputManager.HasInstance())
         {
             Debug.LogWarning("no hay InputManager en escena");
             return;
@@ -44,17 +51,44 @@ public class PlayerMovement : MonoBehaviour
         //leeemos input del eje x
         float moveX = InputManager.Instance.MovementVector.x;
 
+
+        //MECANISMO DE CAMBIO DE ORIENTACIÓN       
+        if (moveX < 0)
+
+        {
+            transform.rotation = Quaternion.Euler(0, -180, 0);
+
+        }
+        else if (moveX > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+
+        
+        if (moveX != 0)
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, moveX * speed, walkAcceler * Time.deltaTime);
+        }
+        else
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, walkDeceler * Time.deltaTime);
+        }
+
+        
+
         //nos movemos el función del input
-        transform.position += new Vector3(moveX * speed * Time.deltaTime, 0f, 0f);
+        transform.position += new Vector3(currentSpeed * Time.deltaTime, 0f, 0f);
+
 
 
         //SALTO
 
-        if(grounded && InputManager.Instance.JumpWasPressedThisFrame()) //si el jugador ha pulsado el botón d salto y esta en el suelo
+        if (grounded && InputManager.Instance.JumpWasPressedThisFrame()) //si el jugador ha pulsado el botón d salto y esta en el suelo
         {
             verticalSpeed = jumpSpeed;
             grounded = false; //ya no está en el suelo
-        
+
         }
 
         verticalSpeed = verticalSpeed - (gravity * Time.deltaTime);//afecta la gravedad
