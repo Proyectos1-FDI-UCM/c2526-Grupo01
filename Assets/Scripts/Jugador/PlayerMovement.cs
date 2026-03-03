@@ -9,36 +9,45 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //velocidad configurable en el editor
     [SerializeField]
-    private float speed = 5f; //velocidad configurable en el editor
+    private float speed = 5f;
 
-    private float currentSpeed = 0f;    //Velocidad actual del player.
+    //Velocidad actual del player.
+    private float currentSpeed = 0f;
+
+    //Grado de aceleración inicial.
+    [SerializeField]
+    private float walkAcceler = 15f;
+
+    //Grado de frenado final.
+    [SerializeField]
+    private float walkDeceler = 15f;
+
+    //velocidad del salto
+    [SerializeField]
+    private float jumpSpeed = 7f; 
 
     [SerializeField]
-    private float walkAcceler = 15f;    //Grado de aceleración inicial.
-    [SerializeField]
-    private float walkDeceler = 15f;    //Grado de frenado final.
+    private float gravity = 20f; 
 
-    [SerializeField]
-    private float jumpSpeed = 7f; //velocidad del salto
-
-    [SerializeField]
-    private float gravity = 20f; //como no estamos usando rigidbody ni las fisicas de unity nos creamos la gravedad
-
-    [SerializeField]
-    private float groundY = -2.4f; //la altura del suelo
 
 
     private float verticalSpeed = 0f;
-    private bool grounded = true; //variable para saber si esta el jugador en el suelo o no
 
-    void Start()
-    {
-        groundY = transform.position.y; //para que pille bien la altura del suelo, tiene q estar bien colocado el player en la escena claro
-    }
+    //referencia al trigger del los pies del jugador
+    [SerializeField]
+    private GroundCheck groundCheck;
+    //groundCheck.grouended variable para saber si esta el jugador en el suelo o no
+
+
+
 
     void Update()
     {
+
+        Debug.Log("El jugador esta en el suelo?: " + groundCheck.grounded);
+
         //MOVIMIENTO HORIZONTAL
 
         //hay q confirmar que existe el InputManager
@@ -52,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         float moveX = InputManager.Instance.MovementVector.x;
 
 
-        //MECANISMO DE CAMBIO DE ORIENTACIÓN       
+        //CAMBIO DE ORIENTACIÓN       
         if (moveX < 0)
 
         {
@@ -65,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        
+
         if (moveX != 0)
         {
             currentSpeed = Mathf.MoveTowards(currentSpeed, moveX * speed, walkAcceler * Time.deltaTime);
@@ -75,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = Mathf.MoveTowards(currentSpeed, 0, walkDeceler * Time.deltaTime);
         }
 
-        
+
 
         //nos movemos el función del input
         transform.position += new Vector3(currentSpeed * Time.deltaTime, 0f, 0f);
@@ -84,29 +93,35 @@ public class PlayerMovement : MonoBehaviour
 
         //SALTO
 
-        if (grounded && InputManager.Instance.JumpWasPressedThisFrame()) //si el jugador ha pulsado el botón d salto y esta en el suelo
+        //si el jugador ha pulsado el botón d salto y esta en el suelo
+        if (InputManager.Instance.JumpWasPressedThisFrame() && groundCheck.grounded == true)
         {
             verticalSpeed = jumpSpeed;
-            grounded = false; //ya no está en el suelo
-
         }
 
-        verticalSpeed = verticalSpeed - (gravity * Time.deltaTime);//afecta la gravedad
+        //afecta la gravedad
+        verticalSpeed = verticalSpeed - (gravity * Time.deltaTime);
 
+        //si esta tocando suelo y sigue cayendo, cortamos la caida
+         if (groundCheck.grounded == true && verticalSpeed < 0f)
+         {
+             verticalSpeed = 0f;
+         } 
+
+        //aplicamos movimiento vertical manual
         Vector3 pos = transform.position;
         pos.y += verticalSpeed * Time.deltaTime;
 
-        //“Suelo” como si fuera
-        if (pos.y <= groundY)
-        {
-            pos.y = groundY;
-            verticalSpeed = 0f;
-            grounded = true;
-        }
-
         transform.position = pos;
+
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("estoy tocando: " + collision.gameObject.name);
+    }
+
+    
 
 }
 
