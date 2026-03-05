@@ -23,9 +23,7 @@ public class GroundCheck : MonoBehaviour
 
    
     private void OnTriggerEnter2D(Collider2D other)
-    {
-        //para evitar triggers como x ejemplo el de la vision del robot
-        if (other.isTrigger) return; 
+    {  
         grounded = true;
     }
 

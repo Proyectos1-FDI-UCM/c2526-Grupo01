@@ -21,6 +21,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float cooldown = 1.0f;
 
+    [SerializeField]
+    private float healDelay = 2.0f;
+    [SerializeField]
+    private float healRate = 20f;
+
     private float lastHitTime = -Mathf.Infinity;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,5 +41,16 @@ public class Enemy : MonoBehaviour
         else noise.takeNoise(noiseEffect);
 
     }
+
+     void Update()
+    {
+        
+    }
+
+
+   
+
+
+
 
 }
