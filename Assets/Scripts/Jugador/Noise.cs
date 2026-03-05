@@ -6,7 +6,9 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -59,6 +61,11 @@ public class Noise : MonoBehaviour
     {
         //Se llama al Regenerate() en cada frame
         Regenerate();
+
+        if (noiseLevel >= 100) 
+        { 
+            DeadbyNoise();
+        }
     }
 
 
@@ -68,7 +75,6 @@ public class Noise : MonoBehaviour
     /// </summary>
     public void takeNoise(int noiseDamage)
     {
-        if (noiseLevel <= 0);
         noiseLevel += noiseDamage;
         noiseLevel = Mathf.Clamp(noiseLevel, 0, 100);
         UpdateBar();
@@ -119,7 +125,14 @@ public class Noise : MonoBehaviour
     {
         noiseBar.fillAmount = noiseLevel / 100;
     }
-    
+
+    private void DeadbyNoise()
+    {
+        System.GC.Collect();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        System.GC.Collect();
+    }
+
     //public void PotentialNoise(){}
 }
 

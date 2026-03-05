@@ -40,11 +40,16 @@ public class PlayerMovement : MonoBehaviour
     private GroundCheck groundCheck;
     //groundCheck.grouended variable para saber si esta el jugador en el suelo o no
 
+    private bool isDead = false;
 
     //sprint
     [SerializeField]
     private float sprintMultiplier = 1.8f;
-    private bool IsSprinting;
+
+    void Start()
+    {
+        transform.position = new Vector3(-115f, 0.5f, transform.position.z);
+    }
 
     void Update()
     {
@@ -142,6 +147,35 @@ public class PlayerMovement : MonoBehaviour
     {
         currentSpeed = forceX;
         verticalSpeed = forceY;
+    }
+
+    private void DeadZone()
+    {
+        System.GC.Collect();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MUERTE");
+        System.GC.Collect();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("DeadZone")) 
+        {
+            //muere, sabemos que no se pueden/deben usar tags y hay que hacerlo con ducktyping
+            //pero era esto o hacer que cuando pase de x posicion del eje Y pues se muera
+            if (!isDead) 
+            {
+                //esto es para q no lo llame 500 veces a deadzone
+                isDead = true;
+                DeadZone();
+            }
+            
+        }
+
+        if (collision.gameObject.CompareTag("Final"))
+        {
+            //lo mismo con esto
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Salida");
+        }
     }
 
 }

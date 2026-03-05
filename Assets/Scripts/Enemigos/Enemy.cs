@@ -23,9 +23,10 @@ public class Enemy : MonoBehaviour
 
     private float lastHitTime = -Mathf.Infinity;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Noise noise = other.GetComponent<Noise>();
+        Noise noise = collision.gameObject.GetComponent<Noise>();
+            //.GetComponent<Noise>();
 
         if (noise == null || Time.time < lastHitTime + cooldown)
         {
@@ -36,5 +37,6 @@ public class Enemy : MonoBehaviour
         else noise.takeNoise(noiseEffect);
 
     }
+
 
 }

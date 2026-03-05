@@ -59,8 +59,23 @@ public class ChangeScene : MonoBehaviour
         GameManager.Instance.ChangeScene(nextScene);
     }
 
+    public void MenuPrincipal()
+    {
+        System.GC.Collect();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuPrincipal");
+        System.GC.Collect();
+    }
+
+    public void NivelPrueba()
+    {
+        System.GC.Collect();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("EscenaFinal");
+        System.GC.Collect();
+    }
+
+
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
     // Documentar cada método que aparece aquí
@@ -68,7 +83,7 @@ public class ChangeScene : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
 
-    #endregion   
+    #endregion
 
 } // class ChangeScene 
 // namespace
