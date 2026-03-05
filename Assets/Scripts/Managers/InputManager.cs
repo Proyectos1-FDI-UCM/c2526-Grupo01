@@ -74,6 +74,11 @@ public class InputManager : MonoBehaviour
     private InputAction _jump;
 
 
+    //acción para esprintar.
+    private InputAction _sprint;
+    
+
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -216,6 +221,27 @@ public class InputManager : MonoBehaviour
     }
 
 
+
+
+    //método que devuelve si fue pulsada en este frame
+    public bool SprintWasPressedThisFrame()
+    {
+        return _sprint.WasPressedThisFrame();
+    }
+
+    //método que devuelve si esta presionada
+    public bool SprintIsPressed()
+    {
+        return _sprint.IsPressed();
+    }
+
+    //método que devuelve si ha sido soltada
+    public bool SprintWasReleasedThisFrame()
+    {
+        return _sprint.WasReleasedThisFrame();
+    }
+
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -246,6 +272,9 @@ public class InputManager : MonoBehaviour
 
         //init de saltar
         _jump = _theController.Player.Jump;
+
+        //init de sprint
+        _sprint = _theController.Player.Sprint;
     }
 
     /// <summary>
