@@ -87,7 +87,7 @@ public class Noise : MonoBehaviour
 
         if (Time.time >= lastHitTime + healDelay && noiseLevel > 0)
         {
-            Debug.Log("Regenerando");
+            //Debug.Log("Regenerando");
 
             //Se inicia el crono
             healTimer += Time.deltaTime;
@@ -101,7 +101,7 @@ public class Noise : MonoBehaviour
                 //Cuando se llega a 0, se apaga el temporizador
                 if (noiseLevel <= 0)
                 {
-                    Debug.Log("Se ha regenerado todo el ruido. Volvemo");
+                    //Debug.Log("Se ha regenerado todo el ruido. Volvemo");
                     //Reiniciamos el timer a 0 para resetear el cooldown de 5 seg para el próximo hit
                     healTimer = 0f;
                 }

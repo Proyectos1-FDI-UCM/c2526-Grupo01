@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Script para controlar el movimiento del jugador
-// Daniel García Andrés
+// Daniel García Andrés y Samuel McDermott
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -41,7 +41,10 @@ public class PlayerMovement : MonoBehaviour
     //groundCheck.grouended variable para saber si esta el jugador en el suelo o no
 
 
-
+    //sprint
+    [SerializeField]
+    private float sprintMultiplier = 1.8f;
+    private bool IsSprinting;
 
     void Update()
     {
@@ -114,14 +117,32 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = pos;
 
+        //SPRINT
+        //el jugador ha pulsado el botón d sprint
+        if (InputManager.Instance.SprintWasPressedThisFrame())
+        {
+            speed = speed * sprintMultiplier;
+        }
+
+        if(InputManager.Instance.SprintWasReleasedThisFrame()) 
+        {
+            speed = 5f;
+        }
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("estoy tocando: " + collision.gameObject.name);
+        //Debug.Log("estoy tocando: " + collision.gameObject.name);
     }
 
-    
+    //funcion para aplicar el retroceso causado x los enemigos
+    public void ApplyKnockback(float forceX, float forceY)
+    {
+        currentSpeed = forceX;
+        verticalSpeed = forceY;
+    }
 
 }
 
