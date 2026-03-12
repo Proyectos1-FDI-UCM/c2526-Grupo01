@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //velocidad configurable en el editor
     [SerializeField]
-    private float speed = 5f;
+    private float speed = 10f;
 
     //Velocidad actual del player.
     private float currentSpeed = 0f;
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = pos;
 
         //SPRINT
-        //el jugador ha pulsado el botón d sprint
+        //el jugador ha pulsado el botón de sprint
         if (InputManager.Instance.SprintWasPressedThisFrame())
         {
             speed = speed * sprintMultiplier;
@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(InputManager.Instance.SprintWasReleasedThisFrame()) 
         {
-            speed = 5f;
+            speed = 10f;
         }
 
 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6ad07e8e565153b4983a4c3b208cf19f
+guid: 6e5bfaa47c2277a439c118c2d25a4b9b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6969123494601001747
-    second: barra fondo_0
+      213: -2961148205135263263
+    second: BarraRuidoFondo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: barra fondo_0
+      name: BarraRuidoFondo_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1434
-        height: 980
+        width: 990
+        height: 509
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31b8583f4ec47b060800000000000000
-      internalID: 6969123494601001747
+      spriteID: 1e980a17563e7e6d0800000000000000
+      internalID: -2961148205135263263
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      barra fondo_0: 6969123494601001747
+      BarraRuidoFondo_0: -2961148205135263263
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

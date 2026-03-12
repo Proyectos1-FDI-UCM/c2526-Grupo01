@@ -6,22 +6,18 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-/// <summary>
+
 ///Lógica básica de recepción de nivel de ruido y regeneración del mismo. 
 ///Tras recibir daño de ruido y permanecer 5 segundos sin subidas,
 /// se inicia un proceso de regeneración del nivel de ruido hasta el 0. 
-/// </summary>
 public class Noise : MonoBehaviour
 {
 
-    /// <summary>
+
     /// DECLARACIÓN DE VARIABLES
-    /// </summary>
     [SerializeField]
     private float noiseLevel = 0f;   //Nivel de ruido
 
@@ -33,99 +29,100 @@ public class Noise : MonoBehaviour
     [SerializeField]
     private float healDelay = 5f;
 
-    //Temporizador de regeneración
-    private float healTimer;
+    //Velocidad con la que se regenera el player
+    [SerializeField]
+    private float healRate = 0.08f;
 
 
 
 
-
+    //Variables para el HUD de la barra de ruido.
     [SerializeField]
     private Image noiseBar;
 
+   
     [SerializeField]
-    private Image noiseBarBG;
+    private CanvasGroup noiseHUD;
+
+    private float noiseHUDApha;
+    private float targetNoiseHUDAlpha;
+
+
 
     [SerializeField]
-    private float fadeSpeed = 1.5f;
-
-    private bool fadingIn= false;
-    private bool fadingOut = false;
-
-    private void Start()
-    {
-        noiseLevel = 0f;
-    }
+    private float fadeRate;
 
     private void Update()
     {
         //Se llama al Regenerate() en cada frame
         Regenerate();
 
-        if (noiseLevel >= 100) 
-        { 
+        //Llamamos al cambio de alpha en cada frame.
+        //Si se cambia el target de alpha, se inicia un fade.
+        HUDPresence();
+
+
+        //Código provisional de muerte [CAMBIAR]
+        if (noiseLevel >= 100)
+        {
             DeadbyNoise();
         }
     }
 
 
-    /// <summary>
+
     /// MÉTODO DE ADICIÓN DE RUIDO: Éste método toma como medida del ruido a sumar 
     /// la cantidad de ruido que supone cada enemigo individualmente
-    /// </summary>
     public void takeNoise(int noiseDamage)
     {
+        //Establecemos visibilidad a la barra de ruido
+        targetNoiseHUDAlpha = 1;
+
+
         noiseLevel += noiseDamage;
         noiseLevel = Mathf.Clamp(noiseLevel, 0, 100);
-        UpdateBar();
-        //Se guarda en una variable el momento exacto del hit
-        lastHitTime = Time.time;
-        healTimer = 0f;
-        Debug.Log("Ruido hecho. Tienes este ruido: " + noiseLevel);
 
+        //Se llama al método para actualizar en la barra el nivel de ruido provocado
+        UpdateBar();
+
+        //Se guarda el último frame en el que se ha recibido daño para Regenerate()
+        lastHitTime = Time.time;
     }
 
-    /// <summary>
-    /// Método que salta cuando hay niveles de ruido después del momento de hit,
-    /// </summary>
+
+
+    
+    /// Método que salta cuando hay niveles de ruido después del momento de hit,    
     private void Regenerate()
     {
-
+        //Salta cuando el tiempo actual supera al momento del último impacto más el delay decidido
+        //y siempre que el nivel de ruido sea > 0
         if (Time.time >= lastHitTime + healDelay && noiseLevel > 0)
         {
-            //Debug.Log("Regenerando");
 
-            //Se inicia el crono
-            healTimer += Time.deltaTime;
-            if (healTimer >= 1f)
+            //Reducción progresiva del nivel de ruido hasta 0 usando como incremento el healRate definido
+            noiseLevel = Mathf.MoveTowards(noiseLevel, 0, healRate);
+            UpdateBar();
+          
+            
+            //Cuando se vacíe la barra de ruido, iniciamos el fade out
+            if (noiseLevel <= 0)
             {
-                //Se reduce el nivel de ruido por 20 cada segundo
-                noiseLevel -= 20;
-                UpdateBar();
-                healTimer = 0f;
-
-                //Cuando se llega a 0, se apaga el temporizador
-                if (noiseLevel <= 0)
-                {
-                    //Debug.Log("Se ha regenerado todo el ruido. Volvemo");
-                    //Reiniciamos el timer a 0 para resetear el cooldown de 5 seg para el próximo hit
-                    healTimer = 0f;
-                }
+                targetNoiseHUDAlpha = 0;
             }
         }
-        //Evitamos valores negativos de ruido
-        if (noiseLevel < 0)
-        {
-            noiseLevel = 0;
-            
-        }
-    }
 
+    }
+   
+    /// Método para actualizar la barra de ruido tras cada acción de cambio. 
+    /// Se divide entre 100 para ajustar el tamaño de la imagen.   
     private void UpdateBar()
     {
         noiseBar.fillAmount = noiseLevel / 100;
     }
 
+    
+    /// Método provisional de muerte por ruido
     private void DeadbyNoise()
     {
         System.GC.Collect();
@@ -133,6 +130,27 @@ public class Noise : MonoBehaviour
         System.GC.Collect();
     }
 
-    //public void PotentialNoise(){}
+
+    /// <summary>
+    /// Método que controla la visibilidad de la barra de ruido.
+    /// </summary>
+    private void HUDPresence()
+    {
+        if (targetNoiseHUDAlpha == 0)
+        {
+            fadeRate = 3.5f;
+            noiseHUD.alpha = Mathf.MoveTowards(noiseHUD.alpha, targetNoiseHUDAlpha, fadeRate * Time.deltaTime);
+        }
+        else
+        {
+            fadeRate = 2;
+            noiseHUD.alpha = Mathf.MoveTowards(noiseHUD.alpha, targetNoiseHUDAlpha, fadeRate * Time.deltaTime);
+
+        }
+
+
+    }
+
+   
 }
 
