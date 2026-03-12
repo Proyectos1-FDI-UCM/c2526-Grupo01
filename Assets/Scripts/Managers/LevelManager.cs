@@ -42,6 +42,8 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private static LevelManager _instance;
 
+
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -100,8 +102,12 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void Init()
     {
-        // De momento no hay nada que inicializar
+        
     }
+
+
+
+
 
     #endregion
 } // class LevelManager 

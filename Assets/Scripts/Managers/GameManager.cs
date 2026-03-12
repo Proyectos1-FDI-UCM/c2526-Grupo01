@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private static GameManager _instance;
 
+    //posicion incial
+    public Vector3 respawnPoint = new Vector3(-115f, 0.5f, 0f);
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -151,6 +154,12 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(index);
         System.GC.Collect();
     } // ChangeScene
+
+    //le pasamos x referencia la posicion del checkpoint 
+    public void SetRespawnPoint(Vector3 checkPoint)
+    {
+        respawnPoint = checkPoint;
+    }
 
 
 

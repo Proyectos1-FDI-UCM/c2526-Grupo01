@@ -29,7 +29,10 @@ public class PlayerMovement : MonoBehaviour
     private float jumpSpeed = 7f; 
 
     [SerializeField]
-    private float gravity = 20f; 
+    private float gravity = 20f;
+
+
+    private Vector3 respawnPoint;
 
 
 
@@ -48,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        transform.position = new Vector3(-115f, 0.5f, transform.position.z);
+        transform.position = GameManager.Instance.respawnPoint;
     }
 
     void Update()
@@ -149,34 +152,27 @@ public class PlayerMovement : MonoBehaviour
         verticalSpeed = forceY;
     }
 
-    private void DeadZone()
-    {
-        System.GC.Collect();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MUERTE");
-        System.GC.Collect();
-    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("DeadZone")) 
-        {
-            //muere, sabemos que no se pueden/deben usar tags y hay que hacerlo con ducktyping
-            //pero era esto o hacer que cuando pase de x posicion del eje Y pues se muera
-            if (!isDead) 
-            {
-                //esto es para q no lo llame 500 veces a deadzone
-                isDead = true;
-                DeadZone();
-            }
-            
-        }
-
+       
         if (collision.gameObject.CompareTag("Final"))
         {
             //lo mismo con esto
             UnityEngine.SceneManagement.SceneManager.LoadScene("Salida");
         }
     }
+
+    //igual es mejor ponerlo como privado en Deadzone.cs pero no lo se
+    //***DUDA***
+    public void DeadZone()
+    {
+        System.GC.Collect();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MUERTE");
+        System.GC.Collect();
+    }
+
 
 }
 
