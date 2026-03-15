@@ -38,10 +38,15 @@ public class DuckEnemy : MonoBehaviour
     [SerializeField] 
     private float squashY = 0.5f;
 
+    [SerializeField] //ANIMATOR DE ADRIÁN
+    private Animator _animator;
+
     private void Start()
     {
         //nos guardamos la escala original del sprite
-        originalScale = spriteTransform.localScale; 
+        originalScale = spriteTransform.localScale;
+
+        _animator = GetComponent<Animator>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -64,7 +69,8 @@ public class DuckEnemy : MonoBehaviour
             //reproducimos el sonido del pato cuando choca el jugador
             quackAudio.Play();
             //animacion como de estruje para el pato
-            Squash();
+            //Squash();
+            _animator.SetTrigger("choque");
         }
     }
 
