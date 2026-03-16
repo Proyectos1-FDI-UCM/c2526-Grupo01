@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Script para controlar el movimiento del jugador
-// Daniel García Andrés y Samuel McDermott
+// Daniel García Andrés, Samuel McDermott y Hector Prous Arroyo
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -13,8 +13,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 10f;
 
+    //velocidad normal del jugador sin sprint
+    private float baseSpeed = 10f;
+
     //Velocidad actual del player.
     private float currentSpeed = 0f;
+
+    [SerializeField]
+    private float sprintAcceler = 5f;
 
     //Grado de aceleración inicial.
     [SerializeField]
@@ -24,13 +30,35 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float walkDeceler = 15f;
 
+    //gravedad al presionar
+    [SerializeField] 
+    private float gravityUp = 20f;
+
+    //gravedad al no presionar
+    [SerializeField] 
+    private float gravityDown = 40f;
+
     //velocidad del salto
     [SerializeField]
     private float jumpSpeed = 7f; 
 
+    //velocidad maxima de caida
     [SerializeField]
-    private float gravity = 20f;
+    private float maxFallSpeed = 15f;
 
+    //coyotetime (salto despues de tocar el suelo)
+    [SerializeField]
+    private float coyoteTime = 0.15f;
+
+    //jumpbuffer (salto antes de tocar el suelo)
+    [SerializeField]
+    private float jumpBufferTime = 0.2f;
+
+    private float coyoteTimeCounter;
+
+    private float jumpBufferCounter;
+
+    private bool isSprinting = false;
 
     private Vector3 respawnPoint;
 
@@ -60,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //Debug.Log("El jugador esta en el suelo?: " + groundCheck.grounded);
-
+        
         //MOVIMIENTO HORIZONTAL
 
         //hay q confirmar que existe el InputManager
@@ -102,10 +130,32 @@ public class PlayerMovement : MonoBehaviour
 
         //SALTO
 
+        //CoyoteTime
+        if (groundCheck.grounded == true)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        // JumpBuffer 
+        if (InputManager.Instance.JumpWasPressedThisFrame())
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
         //si el jugador ha pulsado el botón d salto y esta en el suelo
-        if (InputManager.Instance.JumpWasPressedThisFrame() && groundCheck.grounded == true)
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
         {
             verticalSpeed = jumpSpeed;
+            jumpBufferCounter = 0;
+            coyoteTimeCounter = 0;
         }
 
         // PARED
@@ -121,7 +171,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //afecta la gravedad
+        
+        bool jumpHeld = InputManager.Instance.JumpIsPressed();
+        float gravity;
+
+        if (verticalSpeed > 0 && jumpHeld)
+        {
+            gravity = gravityUp;
+        }
+        else
+        {
+            gravity = gravityDown;
+        }
+
         verticalSpeed = verticalSpeed - (gravity * Time.deltaTime);
+
+        //maxima velocidad de caida
+        if (verticalSpeed < -maxFallSpeed)
+        {
+            verticalSpeed = -maxFallSpeed;
+        }
 
         //si esta tocando suelo y sigue cayendo, cortamos la caida
          if (groundCheck.grounded == true && verticalSpeed < 0f)
@@ -136,18 +205,29 @@ public class PlayerMovement : MonoBehaviour
         transform.position = pos;
 
         //SPRINT
-        //el jugador ha pulsado el botón de sprint
-        if (InputManager.Instance.SprintWasPressedThisFrame())
+
+        //desactivacion y limitacion del sprint en el aire
+
+        if (InputManager.Instance.SprintWasPressedThisFrame() && groundCheck.grounded)
         {
-            speed = speed * sprintMultiplier;
+            isSprinting = true;
+        }
+        if (InputManager.Instance.SprintWasReleasedThisFrame())
+        {
+            isSprinting = false;
         }
 
-        if(InputManager.Instance.SprintWasReleasedThisFrame()) 
+        //aceleracion del sprint
+        float targetSpeed;
+        if (isSprinting)
         {
-            speed = 10f;
+            targetSpeed = baseSpeed * sprintMultiplier;
         }
-
-
+        else
+        {
+            targetSpeed = baseSpeed;
+        }
+        speed = Mathf.MoveTowards(speed, targetSpeed, sprintAcceler * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
