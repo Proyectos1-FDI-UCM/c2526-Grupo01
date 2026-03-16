@@ -43,7 +43,9 @@ public class PlayerMovement : MonoBehaviour
     private GroundCheck groundCheck;
     //groundCheck.grouended variable para saber si esta el jugador en el suelo o no
 
-    private bool isDead = false;
+    [SerializeField]
+    private WallChecker wallChecker;
+
 
     //sprint
     [SerializeField]
@@ -95,12 +97,8 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = Mathf.MoveTowards(currentSpeed, 0, walkDeceler * Time.deltaTime);
         }
 
-
-
-        //nos movemos el función del input
+        // nos movemos el función del input
         transform.position += new Vector3(currentSpeed * Time.deltaTime, 0f, 0f);
-
-
 
         //SALTO
 
@@ -108,6 +106,18 @@ public class PlayerMovement : MonoBehaviour
         if (InputManager.Instance.JumpWasPressedThisFrame() && groundCheck.grounded == true)
         {
             verticalSpeed = jumpSpeed;
+        }
+
+        // PARED
+
+        if (wallChecker.isTouchingWall == true)
+        {
+
+            if ((transform.eulerAngles.y == 0 && currentSpeed > 0) ||
+                (transform.eulerAngles.y != 0 && currentSpeed < 0))
+            {
+                currentSpeed = 0f;
+            }
         }
 
         //afecta la gravedad
