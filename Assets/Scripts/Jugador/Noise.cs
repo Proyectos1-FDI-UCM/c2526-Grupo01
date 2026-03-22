@@ -101,7 +101,7 @@ public class Noise : MonoBehaviour
         {
 
             //Reducción progresiva del nivel de ruido hasta 0 usando como incremento el healRate definido
-            noiseLevel = Mathf.MoveTowards(noiseLevel, 0, healRate);
+            noiseLevel = Mathf.MoveTowards(noiseLevel, 0, healRate * Time.deltaTime);
             UpdateBar();
           
             

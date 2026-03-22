@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 9341b589d8e5bc64cbe606221c99bbca
   - enabled: 1
-    path: Assets/Scenes/EscenaFinal.unity
+    path: Assets/Scenes/EscenaAdrianAnima.unity
     guid: 721d30b10d460c64cb120c3fef01aa3b
   - enabled: 1
     path: Assets/Scenes/MUERTE.unity
