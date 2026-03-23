@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        transform.position = GameManager.Instance.respawnPoint;
+        //transform.position = GameManager.Instance.respawnPoint;
     }
 
     void Update()

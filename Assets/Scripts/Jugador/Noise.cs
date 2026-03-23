@@ -31,7 +31,7 @@ public class Noise : MonoBehaviour
 
     //Velocidad con la que se regenera el player
     [SerializeField]
-    private float healRate = 0.08f;
+    private float healRate = 8f;
 
 
 
