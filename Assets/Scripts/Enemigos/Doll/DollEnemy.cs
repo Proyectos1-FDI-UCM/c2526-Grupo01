@@ -18,7 +18,6 @@ public class DollEnemy : MonoBehaviour
 {
     [SerializeField]
     private float knockbackForceX = 6f;
-
     [SerializeField]
     private float knockbackForceY = 4f;
 

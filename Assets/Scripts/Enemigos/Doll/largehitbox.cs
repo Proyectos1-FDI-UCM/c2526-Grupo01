@@ -5,6 +5,7 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
+using Unity.Mathematics;
 using UnityEngine;
 
 public class largehitbox : MonoBehaviour
@@ -17,6 +18,9 @@ public class largehitbox : MonoBehaviour
 
     [SerializeField]
     private float attackduration = 2f;
+
+    [SerializeField]
+    private int noisedamage = 3;
 
     public void Start()
     {
@@ -40,6 +44,9 @@ public class largehitbox : MonoBehaviour
 
             //aplicamos el retroceso al jugador
             player.ApplyKnockback(pushX * knockbackForceX, knockbackForceY);
+
+            Noise noise = collision.gameObject.GetComponent<Noise>();
+            noise.takeNoise(noisedamage);
         }
     }
     private void destroySelf()
