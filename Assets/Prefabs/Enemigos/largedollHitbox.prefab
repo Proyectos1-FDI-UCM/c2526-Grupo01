@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9077049388581325347}
   - component: {fileID: 4694664919032891083}
   - component: {fileID: -645424517011985590}
+  - component: {fileID: 7453737482381927438}
   m_Layer: 0
   m_Name: largedollHitbox
   m_TagString: Untagged
@@ -47,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForceX: 30
   knockbackForceY: 4
+  attackduration: 2
+  noisedamage: 3
 --- !u!58 &-645424517011985590
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -83,3 +86,17 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 7
+--- !u!114 &7453737482381927438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990316828569338437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4660f93647872e0419f5b905023b5eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseEffect: 5
+  cooldown: 1
