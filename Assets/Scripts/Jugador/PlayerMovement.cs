@@ -5,10 +5,15 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    private Rigidbody2D rb;
+
+
     //velocidad configurable en el editor
     [SerializeField]
     private float speed = 10f;
@@ -38,9 +43,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] 
     private float gravityDown = 40f;
 
-    //velocidad del salto
+    //Fuerza (velocidad) del salto
     [SerializeField]
-    private float jumpSpeed = 7f; 
+    private float jumpForce = 7f; 
 
     //velocidad maxima de caida
     [SerializeField]
@@ -60,9 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isSprinting = false;
 
-    private Vector3 respawnPoint;
-
-
 
     private float verticalSpeed = 0f;
 
@@ -81,6 +83,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        //asignamos el rigidbody del jugador
+        rb = GetComponent<Rigidbody2D>();
+
         //transform.position = GameManager.Instance.respawnPoint;
     }
 
@@ -98,8 +103,13 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        //leeemos input del eje x
+        //leeemos input del eje x e y
         float moveX = InputManager.Instance.MovementVector.x;
+        float moveY = InputManager.Instance.MovementVector.y;
+
+        Vector2 dir = new Vector2(moveX, moveY);
+
+        Walk(dir);
 
 
         //CAMBIO DE ORIENTACIÓN       
@@ -116,46 +126,10 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (moveX != 0)
-        {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, moveX * speed, walkAcceler * Time.deltaTime);
-        }
-        else
-        {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, walkDeceler * Time.deltaTime);
-        }
-
-        // nos movemos el función del input
-        transform.position += new Vector3(currentSpeed * Time.deltaTime, 0f, 0f);
-
         //SALTO
-
-        //CoyoteTime
-        if (groundCheck.grounded == true)
+        if (groundCheck.grounded == true && InputManager.Instance.JumpWasPressedThisFrame())
         {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
-        // JumpBuffer 
-        if (InputManager.Instance.JumpWasPressedThisFrame())
-        {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
-
-        //si el jugador ha pulsado el botón d salto y esta en el suelo
-        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
-        {
-            verticalSpeed = jumpSpeed;
-            jumpBufferCounter = 0;
-            coyoteTimeCounter = 0;
+            Jump();
         }
 
         // PARED
@@ -170,65 +144,37 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //afecta la gravedad
-        
-        bool jumpHeld = InputManager.Instance.JumpIsPressed();
-        float gravity;
-
-        if (verticalSpeed > 0 && jumpHeld)
-        {
-            gravity = gravityUp;
-        }
-        else
-        {
-            gravity = gravityDown;
-        }
-
-        verticalSpeed = verticalSpeed - (gravity * Time.deltaTime);
-
-        //maxima velocidad de caida
-        if (verticalSpeed < -maxFallSpeed)
-        {
-            verticalSpeed = -maxFallSpeed;
-        }
-
-        //si esta tocando suelo y sigue cayendo, cortamos la caida
-         if (groundCheck.grounded == true && verticalSpeed < 0f)
-         {
-             verticalSpeed = 0f;
-         } 
-
-        //aplicamos movimiento vertical manual
-        Vector3 pos = transform.position;
-        pos.y += verticalSpeed * Time.deltaTime;
-
-        transform.position = pos;
-
-        //SPRINT
-
-        //desactivacion y limitacion del sprint en el aire
-
-        if (InputManager.Instance.SprintWasPressedThisFrame() && groundCheck.grounded)
-        {
-            isSprinting = true;
-        }
-        if (InputManager.Instance.SprintWasReleasedThisFrame())
-        {
-            isSprinting = false;
-        }
-
-        //aceleracion del sprint
-        float targetSpeed;
-        if (isSprinting)
-        {
-            targetSpeed = baseSpeed * sprintMultiplier;
-        }
-        else
-        {
-            targetSpeed = baseSpeed;
-        }
-        speed = Mathf.MoveTowards(speed, targetSpeed, sprintAcceler * Time.deltaTime);
     }
+
+
+    //método para que el personaje ande, le pasamos la dirección x parámetro
+    private void Walk(Vector2 dir)
+    {
+        rb.linearVelocity = (new Vector2(dir.x * speed, rb.linearVelocity.y));
+    }
+
+
+
+    private void Jump()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
+        rb.linearVelocity += Vector2.up * jumpForce;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -243,19 +189,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-       
-        if (collision.gameObject.CompareTag("Final"))
-        {
-            //lo mismo con esto
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Salida");
-        }
-    }
-
-    //igual es mejor ponerlo como privado en Deadzone.cs pero no lo se
-    //***DUDA***
     public void DeadZone()
     {
         System.GC.Collect();
