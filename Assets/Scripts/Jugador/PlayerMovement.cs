@@ -17,8 +17,17 @@ public class PlayerMovement : MonoBehaviour
 
     private animacionprov anim;
 
+
+    //Partículas
+    [Space]
+    [Header("Partículas")]
+
+
     [SerializeField]
     private ParticleSystem sprintParticles;
+
+    [SerializeField]
+    private ParticleSystem dashParticles;
 
     //Estadísitcas
     [Space]
@@ -54,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Knockback")]
     private float knockbackLockTimer = 0f;
-    [SerializeField] 
+    [SerializeField]
     private float knockbackLockTime = 0.15f;
 
 
@@ -73,6 +82,24 @@ public class PlayerMovement : MonoBehaviour
     private bool hasDashed;  //para detectar si ya ha dasheado
 
     private float moveInput;
+
+
+    //Dash
+    [Space]
+    [Header("Dash")]
+    [SerializeField] 
+    private float dashSpeed = 25f;
+    [SerializeField] 
+    private float dashTime = 0.15f;
+    [SerializeField]
+    private DashHUD dashUI;
+    [SerializeField]
+    private AudioSource dashSound;
+
+
+    //para no tocar la serializble d arriba
+    private float dashTimer;
+    private Vector2 dashDirection;
 
 
 
@@ -98,9 +125,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("Estoy tocando la pared?:  " + coll.onWall);
-
-
         //MOVIMIENTO HORIZONTAL
 
         //hay q confirmar que existe el InputManager
@@ -117,7 +141,35 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = new Vector2(moveX, moveY);
         moveInput = moveX;
 
-        
+        //si no esta dasheando y no ha dasheado puede hacerlo
+        if (InputManager.Instance.DashtWasPressedThisFrame() && !isDashing && !hasDashed)
+        {
+            //activamos q está dasheando y que ha dasheado (ha pulsado el botón)
+            isDashing = true;
+            hasDashed = true;
+
+            dashParticles.Play();
+
+            //lo igualo para trabajar con timer y no con la del campo serializable (para q no haya conflictos)
+            dashTimer = dashTime;
+
+            //dirección del dash en función de donde esta moviendo el joystick o las teclas (el 0.1 es para q no pille dashes fantasmas en la dirección q no es)
+            if (Mathf.Abs(moveX) > 0.1f)
+            {
+                //nos guardamos la dirección
+                dashDirection = new Vector2(moveX, 0).normalized;
+            }
+            else
+            {
+                //si no hay input hace el dash hacia donde mira el personaje
+                dashDirection = new Vector2(Mathf.Sign(transform.localScale.x), 0);
+            }
+        }
+
+        if (coll.onGround && !isDashing)
+        {
+            hasDashed = false;
+        }
 
 
         isSprinting = InputManager.Instance.SprintIsPressed();
@@ -134,39 +186,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-
-
         if (coll.onGround && !isDashing)
         {
-           GetComponent<BetterJumping>().enabled = true;
+            GetComponent<BetterJumping>().enabled = true;
         }
 
 
-        if (InputManager.Instance.JumpWasPressedThisFrame()) 
+        if (InputManager.Instance.JumpWasPressedThisFrame())
         {
-            //Debug.Log("SALTOOOOOOOOOOOO");
             //si esta en el suelo puede saltar
-            if (coll.onGround) 
+            if (coll.onGround && rb.linearVelocityY <= 0)
             {
                 Jump(Vector2.up);
             }
         }
 
-        //si esta en el suelo, verificamos que todas las booleanas esten bien
-        if (coll.onGround && !groundTouch)
-        {
-            GroundTouch();
-            groundTouch = true;
-        }
-
-        if (!coll.onGround && groundTouch)
-        {
-            groundTouch = false;
-        }
 
 
         //Sprint
-        if(coll.onGround && InputManager.Instance.SprintIsPressed()) 
+        if (coll.onGround && InputManager.Instance.SprintIsPressed())
         {
             //Debug.Log("sprintttt");
             Sprint();
@@ -180,10 +218,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //si suelta el botón de sprintar volvemos a la velociad normal
-        if (!isSprinting) 
+        if (!isSprinting)
         {
             //currentSpeed = speed;
-            currentSpeed = Mathf.MoveTowards(currentSpeed,speed, timeDeceleration * Time.deltaTime);
+            currentSpeed = Mathf.MoveTowards(currentSpeed, speed, timeDeceleration * Time.deltaTime);
             sprintParticles.Stop();
         }
 
@@ -194,33 +232,29 @@ public class PlayerMovement : MonoBehaviour
                 sprintParticles.Play();
         }
 
-        //Para que giren las particulas
-        var shape = sprintParticles.shape;
-
-        if (InputManager.Instance.MovementVector.x > 0)
-        {
-            shape.rotation = new Vector3(0, 180, 0);
-        }
-        else if (InputManager.Instance.MovementVector.x < 0)
-        {
-            shape.rotation = new Vector3(0, 0, 0);
-        }
-
+        flipParticles();
 
     }
 
     private void FixedUpdate()
     {
- 
+        //si ha pulsado el dash, dashea
+        if (isDashing)
+        {
+            Dash();
+        }
+        else
+        {
             Walk(moveInput);
-    
+        }
+
     }
 
     //método para que el personaje ande, le pasamos la dirección x parámetro
     private void Walk(float moveX)
     {
         // rb.linearVelocity = (new Vector2(moveX * currentSpeed, rb.linearVelocity.y));
-       
+
         if (knockbackLockTimer > 0)
         {
             knockbackLockTimer -= Time.deltaTime;
@@ -251,23 +285,8 @@ public class PlayerMovement : MonoBehaviour
         float targetSpeed = sprintSpeed;
 
         //aceleración progresiva antes del sprint
-        currentSpeed = Mathf.MoveTowards(currentSpeed,targetSpeed, timeAceleration * Time.deltaTime);
+        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, timeAceleration * Time.deltaTime);
     }
-
-
-    //método para saber que el jugador a tocado el suelo, (para el dash)
-    void GroundTouch()
-    {
-        hasDashed = false;
-        isDashing = false;
-    }
-
-
-
-
-
-
-
 
 
     //funcion para aplicar el retroceso causado x los enemigos
@@ -282,16 +301,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
     public void DeadZone()
     {
         System.GC.Collect();
@@ -299,6 +308,68 @@ public class PlayerMovement : MonoBehaviour
         System.GC.Collect();
     }
 
+    void Dash()
+    {
+        //esto es para que no se repita muchas veces y no distor
+        if (!dashSound.isPlaying)
+        {
+            dashSound.Play();
+        }
+
+        dashTimer = dashTimer - Time.deltaTime;
+
+        //velocidad de dash
+        rb.linearVelocity = dashDirection * dashSpeed;
+
+        //quito la gravedad durante dash para que vaya recto
+        rb.gravityScale = 0f;
+
+        if (dashTimer <= 0)
+        {
+            isDashing = false;
+
+            //restauro la gravedad
+            rb.gravityScale = 1f;
+
+        }
+
+
+    }
+
+
+    //esto es para la interfaz del dsash
+    public bool canDashUI() 
+    { 
+        if(!isDashing && !hasDashed && dashTimer <= 0) 
+        {
+            return true; 
+        }
+        else
+        {
+            return false;
+        }
+    
+    
+    }
+
+
+    private void flipParticles() 
+    {
+        //Para que giren las particulas
+        var shape = sprintParticles.shape;
+        var shapeDash = dashParticles.shape;
+
+        if (InputManager.Instance.MovementVector.x > 0)
+        {
+            shape.rotation = new Vector3(0, 180, 0);
+            shapeDash.rotation = new Vector3(0, 180, 0);
+        }
+        else if (InputManager.Instance.MovementVector.x < 0)
+        {
+            shape.rotation = new Vector3(0, 0, 0);
+            shapeDash.rotation = new Vector3(0, 0, 0);
+        }
+    }
 
 }
 

@@ -76,6 +76,9 @@ public class InputManager : MonoBehaviour
 
     //acción para esprintar.
     private InputAction _sprint;
+
+    //acción para el dash
+    private InputAction _dash;
     
 
 
@@ -242,6 +245,25 @@ public class InputManager : MonoBehaviour
     }
 
 
+    //método que devuelve si fue pulsada en este frame
+    public bool DashtWasPressedThisFrame()
+    {
+        return _dash.WasPressedThisFrame();
+    }
+
+    //método que devuelve si esta presionada
+    public bool DashIsPressed()
+    {
+        return _dash.IsPressed();
+    }
+
+    //método que devuelve si ha sido soltada
+    public bool DashWasReleasedThisFrame()
+    {
+        return _dash.WasReleasedThisFrame();
+    }
+
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -275,6 +297,9 @@ public class InputManager : MonoBehaviour
 
         //init de sprint
         _sprint = _theController.Player.Sprint;
+
+        //init de dash
+        _dash = _theController.Player.Dash;
     }
 
     /// <summary>
