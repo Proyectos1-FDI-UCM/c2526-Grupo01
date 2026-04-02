@@ -1,261 +1,322 @@
 //---------------------------------------------------------
 // Script para controlar el movimiento del jugador
-// Daniel García Andrés, Samuel McDermott y Hector Prous Arroyo
+// Daniel García Andrés, Samuel McDermott y Hector Prous Arroyo con créditos a André Cardoso del canal "Mix and Jam"
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //velocidad configurable en el editor
+    private Collision coll;
+
+    private Rigidbody2D rb;
+
+    private animacionprov anim;
+
+
+    //Partículas
+    [Space]
+    [Header("Partículas")]
+
+
+    [SerializeField]
+    private ParticleSystem sprintParticles;
+
+    [SerializeField]
+    private ParticleSystem dashParticles;
+
+    //Estadísitcas
+    [Space]
+    [Header("Stats")]
+
+    //velocidad
     [SerializeField]
     private float speed = 10f;
 
-    //velocidad normal del jugador sin sprint
-    private float baseSpeed = 10f;
+    //Fuerza (velocidad) del salto
+    [SerializeField]
+    private float jumpForce = 7f;
+
+    [Space]
+    [Header("Sprint")]
+
+    [SerializeField]
+    private float sprintSpeed = 17f;
 
     //Velocidad actual del player.
-    private float currentSpeed = 0f;
-
     [SerializeField]
-    private float sprintAcceler = 5f;
-
-    //Grado de aceleración inicial.
+    private float currentSpeed = 10f;
     [SerializeField]
-    private float walkAcceler = 15f;
-
-    //Grado de frenado final.
-    [SerializeField]
-    private float walkDeceler = 15f;
-
-    //gravedad al presionar
-    [SerializeField] 
-    private float gravityUp = 20f;
-
-    //gravedad al no presionar
-    [SerializeField] 
-    private float gravityDown = 40f;
-
-    //velocidad del salto
-    [SerializeField]
-    private float jumpSpeed = 7f; 
-
-    //velocidad maxima de caida
-    [SerializeField]
-    private float maxFallSpeed = 15f;
-
-    //coyotetime (salto despues de tocar el suelo)
-    [SerializeField]
-    private float coyoteTime = 0.15f;
-
-    //jumpbuffer (salto antes de tocar el suelo)
-    [SerializeField]
-    private float jumpBufferTime = 0.2f;
-
-    private float coyoteTimeCounter;
-
-    private float jumpBufferCounter;
-
-    private bool isSprinting = false;
-
-    private Vector3 respawnPoint;
-
-
-
     private float verticalSpeed = 0f;
 
-    //referencia al trigger del los pies del jugador
+    //el tiempo que tarda en llegar a la velocidad máxima del sprint (a más alto mas rápido)
     [SerializeField]
-    private GroundCheck groundCheck;
-    //groundCheck.grouended variable para saber si esta el jugador en el suelo o no
+    private float timeAceleration = 60f;
 
+    //el tiempo que tarda en llegar a la velocidad normal
     [SerializeField]
-    private WallChecker wallChecker;
+    private float timeDeceleration = 30f;
+
+    [Header("Knockback")]
+    private float knockbackLockTimer = 0f;
+    [SerializeField]
+    private float knockbackLockTime = 0.15f;
+
+
+    [Space]
+    [Header("Booleanos")]
+
+    public bool canMove = true;
+    public bool isDashing = false;
+    public bool isSprinting = false;
+    public bool wasSprinting = false;
+
+
+    [Space]
+
+    private bool groundTouch; //para detectar si esta en el suelo
+    private bool hasDashed;  //para detectar si ya ha dasheado
+
+    private float moveInput;
+
+
+    //Dash
+    [Space]
+    [Header("Dash")]
+    [SerializeField] 
+    private float dashSpeed = 25f;
+    [SerializeField] 
+    private float dashTime = 0.15f;
+    [SerializeField]
+    private DashHUD dashUI;
+    [SerializeField]
+    private AudioSource dashSound;
+
+
+    //para no tocar la serializble d arriba
+    private float dashTimer;
+    private Vector2 dashDirection;
+
 
 
     //sprint
     [SerializeField]
     private float sprintMultiplier = 1.8f;
 
+    [Header("Push")]
+    [SerializeField] private float grabSpeedMultiplier = 0.5f;
+
+    private bool isGrabbing = false;
+
     void Start()
     {
+        //asignamos el rigidbody del jugador
+        rb = GetComponent<Rigidbody2D>();
+
+        //asignamos el script encargado de las colisiones del jugador
+        coll = GetComponent<Collision>();
+
+        //asignamos la animacion para voltear el sprite
+        anim = GetComponentInChildren<animacionprov>();
+
+        //para los checkpoints (comentad esta línea para comodidad en el testing)
         //transform.position = GameManager.Instance.respawnPoint;
+
     }
 
     void Update()
     {
-
-        //Debug.Log("El jugador esta en el suelo?: " + groundCheck.grounded);
-        
         //MOVIMIENTO HORIZONTAL
 
         //hay q confirmar que existe el InputManager
         if (!InputManager.HasInstance())
         {
             Debug.LogWarning("no hay InputManager en escena");
-            return;
         }
 
-        //leeemos input del eje x
+        //leeemos input del eje x e y
         float moveX = InputManager.Instance.MovementVector.x;
+        float moveY = InputManager.Instance.MovementVector.y;
 
 
-        //CAMBIO DE ORIENTACIÓN       
-        if (moveX < 0)
+        Vector2 dir = new Vector2(moveX, moveY);
+        moveInput = moveX;
 
+        //si no esta dasheando y no ha dasheado puede hacerlo
+        if (InputManager.Instance.DashtWasPressedThisFrame() && !isDashing && !hasDashed)
         {
-            transform.rotation = Quaternion.Euler(0, -180, 0);
+            //activamos q está dasheando y que ha dasheado (ha pulsado el botón)
+            isDashing = true;
+            hasDashed = true;
 
-        }
-        else if (moveX > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+            dashParticles.Play();
 
+            //lo igualo para trabajar con timer y no con la del campo serializable (para q no haya conflictos)
+            dashTimer = dashTime;
 
-
-        if (moveX != 0)
-        {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, moveX * speed, walkAcceler * Time.deltaTime);
-        }
-        else
-        {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, walkDeceler * Time.deltaTime);
-        }
-
-        // nos movemos el función del input
-        transform.position += new Vector3(currentSpeed * Time.deltaTime, 0f, 0f);
-
-        //SALTO
-
-        //CoyoteTime
-        if (groundCheck.grounded == true)
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
-        // JumpBuffer 
-        if (InputManager.Instance.JumpWasPressedThisFrame())
-        {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
-
-        //si el jugador ha pulsado el botón d salto y esta en el suelo
-        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
-        {
-            verticalSpeed = jumpSpeed;
-            jumpBufferCounter = 0;
-            coyoteTimeCounter = 0;
-        }
-
-        // PARED
-
-        if (wallChecker.isTouchingWall == true)
-        {
-
-            if ((transform.eulerAngles.y == 0 && currentSpeed > 0) ||
-                (transform.eulerAngles.y != 0 && currentSpeed < 0))
+            //dirección del dash en función de donde esta moviendo el joystick o las teclas (el 0.1 es para q no pille dashes fantasmas en la dirección q no es)
+            if (Mathf.Abs(moveX) > 0.1f)
             {
-                currentSpeed = 0f;
+                //nos guardamos la dirección
+                dashDirection = new Vector2(moveX, 0).normalized;
+            }
+            else
+            {
+                //si no hay input hace el dash hacia donde mira el personaje
+                dashDirection = new Vector2(Mathf.Sign(transform.localScale.x), 0);
             }
         }
 
-        //afecta la gravedad
-        
-        bool jumpHeld = InputManager.Instance.JumpIsPressed();
-        float gravity;
-
-        if (verticalSpeed > 0 && jumpHeld)
+        if (coll.onGround && !isDashing)
         {
-            gravity = gravityUp;
-        }
-        else
-        {
-            gravity = gravityDown;
+            hasDashed = false;
         }
 
-        verticalSpeed = verticalSpeed - (gravity * Time.deltaTime);
 
-        //maxima velocidad de caida
-        if (verticalSpeed < -maxFallSpeed)
+        isSprinting = InputManager.Instance.SprintIsPressed();
+
+
+        //CAMBIO DE ORIENTACIÓN       
+        if (moveX < 0 && !isGrabbing)
         {
-            verticalSpeed = -maxFallSpeed;
+            anim.Flip(-1);
+        }
+        else if (moveX > 0 && !isGrabbing)
+        {
+            anim.Flip(1);
         }
 
-        //si esta tocando suelo y sigue cayendo, cortamos la caida
-         if (groundCheck.grounded == true && verticalSpeed < 0f)
-         {
-             verticalSpeed = 0f;
-         } 
 
-        //aplicamos movimiento vertical manual
-        Vector3 pos = transform.position;
-        pos.y += verticalSpeed * Time.deltaTime;
-
-        transform.position = pos;
-
-        //SPRINT
-
-        //desactivacion y limitacion del sprint en el aire
-
-        if (InputManager.Instance.SprintWasPressedThisFrame() && groundCheck.grounded)
+        if (coll.onGround && !isDashing)
         {
-            isSprinting = true;
-        }
-        if (InputManager.Instance.SprintWasReleasedThisFrame())
-        {
-            isSprinting = false;
+            GetComponent<BetterJumping>().enabled = true;
         }
 
-        //aceleracion del sprint
-        float targetSpeed;
-        if (isSprinting)
+
+        if (InputManager.Instance.JumpWasPressedThisFrame())
         {
-            targetSpeed = baseSpeed * sprintMultiplier;
+            //si esta en el suelo puede saltar
+            if (coll.onGround && rb.linearVelocityY <= 0)
+            {
+                Jump(Vector2.up);
+            }
         }
-        else
+
+
+
+        //Sprint
+        if (coll.onGround && InputManager.Instance.SprintIsPressed())
         {
-            targetSpeed = baseSpeed;
+            //Debug.Log("sprintttt");
+            Sprint();
+
+            if (isSprinting && !wasSprinting)
+            {
+                sprintParticles.Play();
+            }
+
+            wasSprinting = isSprinting;
         }
-        speed = Mathf.MoveTowards(speed, targetSpeed, sprintAcceler * Time.deltaTime);
+
+        //si suelta el botón de sprintar volvemos a la velociad normal
+        if (!isSprinting)
+        {
+            //currentSpeed = speed;
+            currentSpeed = Mathf.MoveTowards(currentSpeed, speed, timeDeceleration * Time.deltaTime);
+            sprintParticles.Stop();
+        }
+
+        //x si no estan las particulas
+        if (isSprinting && coll.onGround)
+        {
+            if (!sprintParticles.isPlaying)
+                sprintParticles.Play();
+        }
+
+        flipParticles();
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        //Debug.Log("estoy tocando: " + collision.gameObject.name);
+        //si ha pulsado el dash, dashea
+        if (isDashing)
+        {
+            Dash();
+        }
+        else
+        {
+            Walk(moveInput);
+        }
+
     }
+
+    //método para que el personaje ande, le pasamos la dirección x parámetro
+    private void Walk(float moveX)
+    {
+        // rb.linearVelocity = (new Vector2(moveX * currentSpeed, rb.linearVelocity.y));
+
+        if (knockbackLockTimer > 0)
+        {
+            knockbackLockTimer -= Time.deltaTime;
+
+            // NO tocamos la X mientras dura el knockback
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y);
+        }
+        else
+        {
+            float speedThisFrame;
+
+            if (isGrabbing)
+            {
+                speedThisFrame = currentSpeed * grabSpeedMultiplier;
+            }
+            else
+            {
+                speedThisFrame = currentSpeed;
+            }
+
+            rb.linearVelocity = new Vector2(moveX * speedThisFrame, rb.linearVelocity.y);
+        }
+
+    }
+
+
+    //método para saltar
+    private void Jump(Vector2 dir)
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
+        rb.linearVelocity += dir * jumpForce;
+    }
+
+
+    private void Sprint()
+    {
+        // currentSpeed = sprintSpeed;
+
+        float targetSpeed = sprintSpeed;
+
+        //aceleración progresiva antes del sprint
+        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, timeAceleration * Time.deltaTime);
+    }
+
 
     //funcion para aplicar el retroceso causado x los enemigos
     public void ApplyKnockback(float forceX, float forceY)
     {
-        currentSpeed = forceX;
-        verticalSpeed = forceY;
+        float dir = Mathf.Sign(transform.localScale.x);
+
+        rb.linearVelocity = new Vector2(forceX * dir, forceY);
+
+        knockbackLockTimer = knockbackLockTime;
     }
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-       
-        if (collision.gameObject.CompareTag("Final"))
-        {
-            //lo mismo con esto
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Salida");
-        }
-    }
-
-    //igual es mejor ponerlo como privado en Deadzone.cs pero no lo se
-    //***DUDA***
     public void DeadZone()
     {
         System.GC.Collect();
@@ -263,6 +324,78 @@ public class PlayerMovement : MonoBehaviour
         System.GC.Collect();
     }
 
+    void Dash()
+    {
+        //esto es para que no se repita muchas veces y no distor
+        if (!dashSound.isPlaying)
+        {
+            dashSound.Play();
+        }
 
+        dashTimer = dashTimer - Time.deltaTime;
+
+        //velocidad de dash
+        rb.linearVelocity = dashDirection * dashSpeed;
+
+        //quito la gravedad durante dash para que vaya recto
+        rb.gravityScale = 0f;
+
+        if (dashTimer <= 0)
+        {
+            isDashing = false;
+
+            //restauro la gravedad
+            rb.gravityScale = 1f;
+
+        }
+
+
+    }
+
+
+    //esto es para la interfaz del dsash
+    public bool canDashUI() 
+    { 
+        if(!isDashing && !hasDashed && dashTimer <= 0) 
+        {
+            return true; 
+        }
+        else
+        {
+            return false;
+        }
+    
+    
+    }
+
+
+    private void flipParticles() 
+    {
+        //Para que giren las particulas
+        var shape = sprintParticles.shape;
+        var shapeDash = dashParticles.shape;
+
+        if (InputManager.Instance.MovementVector.x > 0)
+        {
+            shape.rotation = new Vector3(0, 180, 0);
+            shapeDash.rotation = new Vector3(0, 180, 0);
+        }
+        else if (InputManager.Instance.MovementVector.x < 0)
+        {
+            shape.rotation = new Vector3(0, 0, 0);
+            shapeDash.rotation = new Vector3(0, 0, 0);
+        }
+    }
+
+    // METODOS DE PUSHABLE
+    public void SetGrabbing(bool value)
+    {
+        isGrabbing = value;
+    }
+
+    public float GetCurrentVelX()
+    {
+        return rb.linearVelocity.x;
+    }
 }
 

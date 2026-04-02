@@ -76,7 +76,13 @@ public class InputManager : MonoBehaviour
 
     //acción para esprintar.
     private InputAction _sprint;
-    
+
+    //acción para el dash
+    private InputAction _dash;
+
+    //acción para el dash
+    private InputAction _interact;
+
 
 
     #endregion
@@ -220,8 +226,7 @@ public class InputManager : MonoBehaviour
         return _jump.WasReleasedThisFrame();
     }
 
-
-
+    // METODOS de la ACCION de SPRINT
 
     //método que devuelve si fue pulsada en este frame
     public bool SprintWasPressedThisFrame()
@@ -239,6 +244,46 @@ public class InputManager : MonoBehaviour
     public bool SprintWasReleasedThisFrame()
     {
         return _sprint.WasReleasedThisFrame();
+    }
+
+    // METODOS de la ACCION de DASH
+
+    //método que devuelve si fue pulsada en este frame
+    public bool DashtWasPressedThisFrame()
+    {
+        return _dash.WasPressedThisFrame();
+    }
+
+    //método que devuelve si esta presionada
+    public bool DashIsPressed()
+    {
+        return _dash.IsPressed();
+    }
+
+    //método que devuelve si ha sido soltada
+    public bool DashWasReleasedThisFrame()
+    {
+        return _dash.WasReleasedThisFrame();
+    }
+
+    // METODOS de la INTERACCION
+
+    //método que devuelve si fue pulsada en este frame
+    public bool InteractWasPressedThisFrame()
+    {
+        return _interact.WasPressedThisFrame();
+    }
+
+    //método que devuelve si esta presionada
+    public bool InteractIsPressed()
+    {
+        return _interact.IsPressed();
+    }
+
+    //método que devuelve si ha sido soltada
+    public bool InteractWasReleasedThisFrame()
+    {
+        return _interact.WasReleasedThisFrame();
     }
 
 
@@ -275,6 +320,12 @@ public class InputManager : MonoBehaviour
 
         //init de sprint
         _sprint = _theController.Player.Sprint;
+
+        //init de dash
+        _dash = _theController.Player.Dash;
+
+        //init de interact
+        _interact = _theController.Player.Interact;
     }
 
     /// <summary>
