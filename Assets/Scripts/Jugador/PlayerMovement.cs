@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float sprintAceleration = 60f;
 
+    //el tiempo que tarda en llegar a la velocidad normal
     [SerializeField]
     private float rozamiento = 30f;
 
