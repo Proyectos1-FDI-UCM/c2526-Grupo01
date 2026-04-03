@@ -19,24 +19,34 @@ using UnityEngine;
 public class Pushable : MonoBehaviour
 {
     [Header("Detección")]
+
+    //distancia del raycast que detecta al jugador
     [SerializeField] private float raycastDistance = 3f;
+    //distancia del raycast cuando se interactua (para que no se escape facilmente)
     [SerializeField] private float raycastCage = 5f;
+    //layer que detecta el raycast como jugador (el resto las ignora)
     [SerializeField] private LayerMask playerLayer;
 
     [Header("Referencias")]
+    //Imagen de boton de interaccion
     [SerializeField] private GameObject interactIcon;
 
+    //referencias 
     private Rigidbody2D rb;
-    private PlayerMovement playerInRange;
-    private bool isBeingPushed;
-    public float trueRaycast;
+    private PlayerMovement player;
 
-    private void Awake()
+    //booleano que se activa al interactuar con el pushable
+    private bool isBeingPushed;
+    //creaccion de raycast
+    private float trueRaycast;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         trueRaycast = raycastDistance;
     }
 
+    //Update solo se encarga de detectar al jugador cada frame 
     private void Update()
     {   
         DetectPlayer();
@@ -44,11 +54,12 @@ public class Pushable : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isBeingPushed && playerInRange != null)
+        //si el jugador interactua con el objeto (pulsa E):
+        if (isBeingPushed && player != null)
         {
             //Descongela X para poder moverla
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            rb.linearVelocity = new Vector2(playerInRange.GetCurrentVelX(), rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(player.GetCurrentVelX(), rb.linearVelocity.y);
 
 
             //hacemos raycast mas grande para que el jugador no salga
@@ -69,11 +80,12 @@ public class Pushable : MonoBehaviour
     {
        
 
-        //creacion de raycast
+        //deteccion de la posicion del jugador respecto a la caja (izq o drch)
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, trueRaycast, playerLayer);
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, trueRaycast, playerLayer);
 
-        //asignamos el hit al rayo que haya detectado al jugador
+        //asignamos el hit al rayo que haya detectado al jugador (esto puede ayudar en un futuro si queremos saber
+        //en que lado el jugador cogio la caja, de momento es irrelevante)
         RaycastHit2D hit;
         if (hitRight.collider != null)
         {
@@ -84,7 +96,7 @@ public class Pushable : MonoBehaviour
             hit = hitLeft;
         }
         
-        //detectamos al jugador perse
+        //detectamos al jugador perse y obtenemos su componente de playerMovement
         if (hit.collider != null)
         {
             PlayerMovement deteccion = hit.collider.GetComponentInParent<PlayerMovement>();
@@ -92,7 +104,7 @@ public class Pushable : MonoBehaviour
             //cambiamos variable y activamos el icono interactuable
             if (deteccion != null)
             {
-                playerInRange = deteccion;
+                player = deteccion;
                 interactIcon.SetActive(true);
 
                 // Pulsar E agarra, volver a pulsar suelta
@@ -101,7 +113,7 @@ public class Pushable : MonoBehaviour
                     if (!isBeingPushed)
                     {
                         isBeingPushed = true;
-                        playerInRange.SetGrabbing(true);
+                        player.SetGrabbing(true);
                     }
                     else
                     {
@@ -117,8 +129,9 @@ public class Pushable : MonoBehaviour
             {
                 PararPush();
             }
-
-            playerInRange = null;
+            //se "olvida" la referencia del jugador
+            player = null;
+            //desactivamos el icono
             interactIcon.SetActive(false);
         }
     }
@@ -128,15 +141,15 @@ public class Pushable : MonoBehaviour
     {
         isBeingPushed = false;
 
-        if (playerInRange != null)
+        if (player != null)
         {
-            playerInRange.SetGrabbing(false);
+            player.SetGrabbing(false);
         }
     }
 
+    //vista del rayo en el editor, para facil modificación
     private void OnDrawGizmosSelected()
     {
-        //vista del rayo en el editor, para facil modificación
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.right * trueRaycast);
         Gizmos.DrawLine(transform.position, transform.position + Vector3.left * trueRaycast);

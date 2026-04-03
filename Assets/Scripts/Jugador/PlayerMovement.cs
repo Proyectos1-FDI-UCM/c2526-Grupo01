@@ -33,11 +33,10 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [Header("Stats")]
 
-    //velocidad maxima andando
+    //velocidad
     [SerializeField]
     private float maxWalkSpeed = 10f;
 
-    //ratio de aumento de velocidad al andar
     [SerializeField]
     private float walkAceleration = 40f;
 
@@ -54,19 +53,17 @@ public class PlayerMovement : MonoBehaviour
     //Velocidad actual del player.
     private float currentSpeed = 10f;
 
-    //ratio de aumento de velocidad al sprintar (mayor = llega antes al límite)
     [SerializeField]
     private float sprintAceleration = 60f;
 
-    //rozamiento al soltar el input o al volver de sprint
     [SerializeField]
     private float rozamiento = 30f;
 
     [SerializeField]
-    private float sprintBrakeBoost = 3f;
+    private float sprintLockBoost = 3f;
 
     [SerializeField]
-    private float walkBrakeBoost = 2f;
+    private float walkLockBoost = 2f;
 
     [Header("Knockback")]
     private float knockbackLockTimer = 0f;
@@ -150,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         moveInput = moveX;
 
         //si no esta dasheando y no ha dasheado puede hacerlo
-        if (InputManager.Instance.DashtWasPressedThisFrame() && !isDashing && !hasDashed)
+        if (InputManager.Instance.DashtWasPressedThisFrame() && !isDashing && !hasDashed && !isGrabbing)
         {
             //activamos q está dasheando y que ha dasheado (ha pulsado el botón)
             isDashing = true;
@@ -270,22 +267,57 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float maxSpeed = isGrabbing ? currentSpeed * grabSpeedMultiplier : currentSpeed;
+        float maxSpeed;
+        if (isGrabbing)
+        {
+            maxSpeed = currentSpeed * grabSpeedMultiplier;
+        }
+        else
+        {
+            maxSpeed = currentSpeed;
+        }
+
         float velX = rb.linearVelocity.x;
-        float accel = isSprinting ? sprintAceleration : walkAceleration;
+
+        float accel;
+        if (isSprinting)
+        {
+            accel = sprintAceleration;
+        }
+        else
+        {
+            accel = walkAceleration;
+        }
+
         bool hasInput = Mathf.Abs(moveX) > 0.01f;
         bool changingDir = hasInput && Mathf.Sign(moveX) != Mathf.Sign(velX) && Mathf.Abs(velX) > 0.1f;
 
         float newVelX;
         if (!hasInput)
+        {
             newVelX = Mathf.MoveTowards(velX, 0f, rozamiento * Time.fixedDeltaTime);
+        }
         else if (changingDir)
         {
-            float boost = isSprinting && Mathf.Abs(velX) < maxWalkSpeed ? sprintBrakeBoost : !isSprinting ? walkBrakeBoost : 1f;
-            newVelX = Mathf.MoveTowards(velX, 0f, accel * boost * Time.fixedDeltaTime);
+            float Lockboost;
+            if (isSprinting && Mathf.Abs(velX) < maxWalkSpeed)
+            {
+                Lockboost = sprintLockBoost;
+            }
+            else if (!isSprinting)
+            {
+                Lockboost = walkLockBoost;
+            }
+            else
+            {
+                Lockboost = 1f;
+            }
+            newVelX = Mathf.MoveTowards(velX, 0f, accel * Lockboost * Time.fixedDeltaTime);
         }
         else
+        {
             newVelX = Mathf.MoveTowards(velX, moveX * maxSpeed, accel * Time.fixedDeltaTime);
+        }
 
         rb.linearVelocity = new Vector2(newVelX, rb.linearVelocity.y);
 

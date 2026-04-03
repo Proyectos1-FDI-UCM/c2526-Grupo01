@@ -1,7 +1,7 @@
 
 //---------------------------------------------------------
 // Funcionamiento de la mecánica de ruido
-// Leopoldo Gutiérrez Cobo
+// Leopoldo Gutiérrez Cobo y Hector Prous arroyo 
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -53,6 +53,14 @@ public class Noise : MonoBehaviour
 
     [SerializeField]
     private float fadeRate;
+
+    //inicializamos las dos barras, ya que anteriormente se generaba un bug en el que hasta el primer hit de jugador estas
+    //se autoevaluaban como valor 1 (aparecen completas)
+    private void Start()
+    {
+        noiseBar.fillAmount = 0f;
+        potentialBar.fillAmount = 0f;
+    }
 
     private void Update()
     {
@@ -155,6 +163,7 @@ public class Noise : MonoBehaviour
 
     /// METODOS DE IMPACT
     
+    //metodo encargado de actualizar la barra de velocidad potencial con Mathf.clamp
     public void UpdatePotentialBar(float potentialDamage)
     {
         float potentialFill = (noiseLevel + potentialDamage) / 100f;
@@ -162,16 +171,26 @@ public class Noise : MonoBehaviour
         potentialBar.fillAmount = potentialFill;
     }
 
-    // Oculta la barra potencial cuando el jugador va lento
+    // metodo que oculta la barra potencial cuando el jugador va lento
     public void HidePotentialBar()
     {
         potentialBar.fillAmount = noiseBar.fillAmount;
+        //cuando no hay ruido potencial el Hud desaparece
+        if (noiseLevel <= 0)
+        {
+            targetNoiseHUDAlpha = 0;
+        }
     }
 
     // Devuelve el nivel de ruido actual para que ImpactNoise pueda calcular
     public float GetNoiseLevel()
     {
         return noiseLevel;
+    }
+    //muestra el Hud de ruido (la logica de desaparicion no se implementa aqui)
+    public void ShowHUD()
+    {
+        targetNoiseHUDAlpha = 1;
     }
 }
 

@@ -11,77 +11,76 @@ using UnityEngine;
 public class ImpactNoise : MonoBehaviour
 {
     [Header("Configuración de impacto")]
-    [SerializeField] private float velocidadMinimaImpacto = 12f;  // velocidad X mínima para hacer daño
-    [SerializeField] private float multiplicadorDanyo = 3f;        // cuánto ruido por unidad de velocidad
-    [SerializeField] private LayerMask layerEnemigos;              // layer de enemigos para ignorarlos
+
+    //velocidad minima de impacto para mostrar velocidad potencial
+    [SerializeField] private float velMinImpact = 12f;
+    //multiplicador de daño de impacto, para balancear el daño recibido
+    [SerializeField] private float multDamage = 3f;
+    //layer que ignora la colision de daño (enemigos)
+    [SerializeField] private LayerMask layerEnemigos;
 
     [Header("Referencias")]
+    //referencias
     [SerializeField] private Noise noise;
+    [SerializeField] private BoxCollider2D hitboxIzq;
+    [SerializeField] private BoxCollider2D hitboxDrch;
     private Rigidbody2D rb;
 
-    private void Awake()
+    //variables privadas
+    private float velAnterior;
+    private bool acabaDeImpactar;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        ActualizarBarraPotencial();
-    }
-
-    // Actualiza la barra potencial en tiempo real según la velocidad X actual
-    private void ActualizarBarraPotencial()
-    {
-        float velocidadX = Mathf.Abs(rb.linearVelocity.x);
-
-        if (velocidadX >= velocidadMinimaImpacto)
+        //cada frame almacena cual fue la ultima velocidad del jugador
+        velAnterior = Mathf.Abs(rb.linearVelocity.x);
+        acabaDeImpactar = false;
+        
+        //si esa velocidad fue mayor a la minima de impacto, calcula el daño potencial, lo actualiza con el metodo y lo muestra
+        if (velAnterior >= velMinImpact)
         {
-            float danyoPotencial = CalcularDaño(velocidadX);
-            noise.UpdatePotentialBar(danyoPotencial);
+            float potencialDamage = CalcDamage(velAnterior);
+            noise.UpdatePotentialBar(potencialDamage);
+            noise.ShowHUD();
         }
+        //si deja de serlo oculta la barra y actualiza el impacto
         else
         {
             noise.HidePotentialBar();
+            acabaDeImpactar = false;
         }
     }
 
-    // Se llama automáticamente cuando el jugador colisiona con algo
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // Ignoramos enemigos
-        if (EsEnemigo(collision.gameObject))
+        //convertimos la layer del objeto en formato bitmask para poder compararla (formato complicado que no entiendo del todo)
+        int layerObjeto = 1 << other.gameObject.layer;
+        //comparamos, en caso de que los dos bitmask sean iguales (igual al de enemigo) no cuenta trigger 
+        if ((layerObjeto & layerEnemigos.value) != 0)
         {
             return;
         }
 
-        float velocidadX = Mathf.Abs(rb.linearVelocity.x);
-
-        if (velocidadX >= velocidadMinimaImpacto)
+        // en caso que se supere la velocidad minima de impacto
+        if (velAnterior >= velMinImpact)
         {
-            int danyo = Mathf.RoundToInt(CalcularDaño(velocidadX));
-            noise.takeNoise(danyo);
+            //calculamos el incremento de daño 
+            float realDamage = CalcDamage(velAnterior);
+            noise.HidePotentialBar();
+            noise.takeNoise(Mathf.RoundToInt(realDamage));
+            acabaDeImpactar = true;
         }
     }
 
-    // Calcula el daño proporcional a la velocidad X
-    private float CalcularDaño(float velocidadX)
+    //metodo para calcular el daño real que se aplica al HUD, con el multiplicador del inspector integrado
+    private float CalcDamage(float velocidadX)
     {
-        float exceso = velocidadX - velocidadMinimaImpacto;
-        return exceso * multiplicadorDanyo;
-    }
-
-    // Comprueba si el objeto es un enemigo por su layer
-    private bool EsEnemigo(GameObject obj)
-    {
-        int layerObjeto = 1 << obj.layer;
-
-        if ((layerObjeto & layerEnemigos.value) != 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        float Damage = velocidadX - velMinImpact;
+        return Damage * multDamage;
     }
 }

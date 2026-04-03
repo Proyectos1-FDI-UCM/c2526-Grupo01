@@ -203,7 +203,7 @@ MonoBehaviour:
   dashIcon: {fileID: 4667454334066986171}
   fadeSpeed: 8
   jugador: {fileID: 0}
-  audiosource: {fileID: 303795081682161216}
+  readySound: {fileID: 303795081682161216}
 --- !u!82 &303795081682161216
 AudioSource:
   m_ObjectHideFlags: 0
@@ -217,13 +217,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: dedfd9b55b4e2f24dbeba81ac4a66d64, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.128
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

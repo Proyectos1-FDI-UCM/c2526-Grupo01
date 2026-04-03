@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!82 &136116464 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 303795081682161216, guid: 9ca7e9cf7ea6dea4db62ad413b2bc648, type: 3}
-  m_PrefabInstance: {fileID: 2052875383}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &136116465 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 228672896435944754, guid: 9ca7e9cf7ea6dea4db62ad413b2bc648, type: 3}
@@ -937,18 +932,6 @@ PrefabInstance:
       propertyPath: dashUI
       value: 
       objectReference: {fileID: 136116465}
-    - target: {fileID: 4320656709459814811, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
-      propertyPath: jumpForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4320656709459814811, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
-      propertyPath: maxSprintSpeed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4320656709459814811, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
-      propertyPath: sprintAceleration
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 5776579055632883208, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
       propertyPath: m_Name
       value: Jugador
@@ -1525,18 +1508,6 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 1950731878}
-    - target: {fileID: 228672896435944754, guid: 9ca7e9cf7ea6dea4db62ad413b2bc648, type: 3}
-      propertyPath: readySound
-      value: 
-      objectReference: {fileID: 136116464}
-    - target: {fileID: 303795081682161216, guid: 9ca7e9cf7ea6dea4db62ad413b2bc648, type: 3}
-      propertyPath: Priority
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 303795081682161216, guid: 9ca7e9cf7ea6dea4db62ad413b2bc648, type: 3}
-      propertyPath: m_Volume
-      value: 0.128
-      objectReference: {fileID: 0}
     - target: {fileID: 1418872536078034134, guid: 9ca7e9cf7ea6dea4db62ad413b2bc648, type: 3}
       propertyPath: m_Name
       value: DashHUD
