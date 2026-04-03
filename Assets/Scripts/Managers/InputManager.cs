@@ -286,26 +286,6 @@ public class InputManager : MonoBehaviour
         return _interact.WasReleasedThisFrame();
     }
 
-
-    //método que devuelve si fue pulsada en este frame
-    public bool DashtWasPressedThisFrame()
-    {
-        return _dash.WasPressedThisFrame();
-    }
-
-    //método que devuelve si esta presionada
-    public bool DashIsPressed()
-    {
-        return _dash.IsPressed();
-    }
-
-    //método que devuelve si ha sido soltada
-    public bool DashWasReleasedThisFrame()
-    {
-        return _dash.WasReleasedThisFrame();
-    }
-
-
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
