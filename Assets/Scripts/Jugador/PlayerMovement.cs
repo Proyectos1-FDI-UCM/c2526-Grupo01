@@ -33,9 +33,13 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [Header("Stats")]
 
-    //velocidad
+    //velocidad maxima andando
     [SerializeField]
-    private float speed = 10f;
+    private float maxWalkSpeed = 10f;
+
+    //ratio de aumento de velocidad al andar
+    [SerializeField]
+    private float walkAceleration = 40f;
 
     //Fuerza (velocidad) del salto
     [SerializeField]
@@ -45,21 +49,24 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sprint")]
 
     [SerializeField]
-    private float sprintSpeed = 17f;
+    private float maxSprintSpeed = 17f;
 
     //Velocidad actual del player.
-    [SerializeField]
     private float currentSpeed = 10f;
-    [SerializeField]
-    private float verticalSpeed = 0f;
 
-    //el tiempo que tarda en llegar a la velocidad máxima del sprint (a más alto mas rápido)
+    //ratio de aumento de velocidad al sprintar (mayor = llega antes al límite)
     [SerializeField]
-    private float timeAceleration = 60f;
+    private float sprintAceleration = 60f;
 
-    //el tiempo que tarda en llegar a la velocidad normal
+    //rozamiento al soltar el input o al volver de sprint
     [SerializeField]
-    private float timeDeceleration = 30f;
+    private float rozamiento = 30f;
+
+    [SerializeField]
+    private float sprintBrakeBoost = 3f;
+
+    [SerializeField]
+    private float walkBrakeBoost = 2f;
 
     [Header("Knockback")]
     private float knockbackLockTimer = 0f;
@@ -87,9 +94,9 @@ public class PlayerMovement : MonoBehaviour
     //Dash
     [Space]
     [Header("Dash")]
-    [SerializeField] 
+    [SerializeField]
     private float dashSpeed = 25f;
-    [SerializeField] 
+    [SerializeField]
     private float dashTime = 0.15f;
     [SerializeField]
     private DashHUD dashUI;
@@ -102,10 +109,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 dashDirection;
 
 
-
-    //sprint
-    [SerializeField]
-    private float sprintMultiplier = 1.8f;
 
     [Header("Push")]
     [SerializeField] private float grabSpeedMultiplier = 0.5f;
@@ -226,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isSprinting)
         {
             //currentSpeed = speed;
-            currentSpeed = Mathf.MoveTowards(currentSpeed, speed, timeDeceleration * Time.deltaTime);
+            currentSpeed = Mathf.MoveTowards(currentSpeed, maxWalkSpeed, rozamiento * Time.deltaTime);
             sprintParticles.Stop();
         }
 
@@ -263,25 +266,28 @@ public class PlayerMovement : MonoBehaviour
         if (knockbackLockTimer > 0)
         {
             knockbackLockTimer -= Time.deltaTime;
-
             // NO tocamos la X mientras dura el knockback
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y);
+            return;
+        }
+
+        float maxSpeed = isGrabbing ? currentSpeed * grabSpeedMultiplier : currentSpeed;
+        float velX = rb.linearVelocity.x;
+        float accel = isSprinting ? sprintAceleration : walkAceleration;
+        bool hasInput = Mathf.Abs(moveX) > 0.01f;
+        bool changingDir = hasInput && Mathf.Sign(moveX) != Mathf.Sign(velX) && Mathf.Abs(velX) > 0.1f;
+
+        float newVelX;
+        if (!hasInput)
+            newVelX = Mathf.MoveTowards(velX, 0f, rozamiento * Time.fixedDeltaTime);
+        else if (changingDir)
+        {
+            float boost = isSprinting && Mathf.Abs(velX) < maxWalkSpeed ? sprintBrakeBoost : !isSprinting ? walkBrakeBoost : 1f;
+            newVelX = Mathf.MoveTowards(velX, 0f, accel * boost * Time.fixedDeltaTime);
         }
         else
-        {
-            float speedThisFrame;
+            newVelX = Mathf.MoveTowards(velX, moveX * maxSpeed, accel * Time.fixedDeltaTime);
 
-            if (isGrabbing)
-            {
-                speedThisFrame = currentSpeed * grabSpeedMultiplier;
-            }
-            else
-            {
-                speedThisFrame = currentSpeed;
-            }
-
-            rb.linearVelocity = new Vector2(moveX * speedThisFrame, rb.linearVelocity.y);
-        }
+        rb.linearVelocity = new Vector2(newVelX, rb.linearVelocity.y);
 
     }
 
@@ -298,10 +304,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // currentSpeed = sprintSpeed;
 
-        float targetSpeed = sprintSpeed;
+        float targetSpeed = maxSprintSpeed;
 
         //aceleración progresiva antes del sprint
-        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, timeAceleration * Time.deltaTime);
+        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, sprintAceleration * Time.deltaTime);
     }
 
 
@@ -353,23 +359,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //esto es para la interfaz del dsash
-    public bool canDashUI() 
-    { 
-        if(!isDashing && !hasDashed && dashTimer <= 0) 
+    //esto es para la interfaz del dash
+    public bool canDashUI()
+    {
+        if (!isDashing && !hasDashed && dashTimer <= 0)
         {
-            return true; 
+            return true;
         }
         else
         {
             return false;
         }
-    
-    
+
+
     }
 
 
-    private void flipParticles() 
+    private void flipParticles()
     {
         //Para que giren las particulas
         var shape = sprintParticles.shape;
@@ -387,7 +393,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // METODOS DE PUSHABLE
+    // <<METODOS DE PUSHABLE>>
     public void SetGrabbing(bool value)
     {
         isGrabbing = value;
@@ -398,4 +404,3 @@ public class PlayerMovement : MonoBehaviour
         return rb.linearVelocity.x;
     }
 }
-

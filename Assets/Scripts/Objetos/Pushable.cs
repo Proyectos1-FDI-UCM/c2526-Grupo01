@@ -23,7 +23,7 @@ public class Pushable : MonoBehaviour
     [SerializeField] private float raycastCage = 5f;
     [SerializeField] private LayerMask playerLayer;
 
-    [Header("UI")]
+    [Header("Referencias")]
     [SerializeField] private GameObject interactIcon;
 
     private Rigidbody2D rb;

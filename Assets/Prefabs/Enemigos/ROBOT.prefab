@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4650799186258388406}
   - component: {fileID: 732229284807211292}
   - component: {fileID: 4082085300275322500}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ROBOT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 2233950674760273431}
   - component: {fileID: 3749386196506653500}
   - component: {fileID: 7755604957564239563}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: rangoVision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1709707266629665833}
   - component: {fileID: 2629005060605675594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -39,8 +39,10 @@ public class Noise : MonoBehaviour
     //Variables para el HUD de la barra de ruido.
     [SerializeField]
     private Image noiseBar;
+    [SerializeField]
+    private Image potentialBar;
 
-   
+
     [SerializeField]
     private CanvasGroup noiseHUD;
 
@@ -151,6 +153,25 @@ public class Noise : MonoBehaviour
 
     }
 
-   
+    /// METODOS DE IMPACT
+    
+    public void UpdatePotentialBar(float potentialDamage)
+    {
+        float potentialFill = (noiseLevel + potentialDamage) / 100f;
+        potentialFill = Mathf.Clamp(potentialFill, 0f, 1f);
+        potentialBar.fillAmount = potentialFill;
+    }
+
+    // Oculta la barra potencial cuando el jugador va lento
+    public void HidePotentialBar()
+    {
+        potentialBar.fillAmount = noiseBar.fillAmount;
+    }
+
+    // Devuelve el nivel de ruido actual para que ImpactNoise pueda calcular
+    public float GetNoiseLevel()
+    {
+        return noiseLevel;
+    }
 }
 

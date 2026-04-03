@@ -715,6 +715,17 @@ Transform:
   - {fileID: 1490561245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &476141541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2861916674731707380, guid: 2f928d4f60be3ff43805f757a21878cb, type: 3}
+  m_PrefabInstance: {fileID: 1606030187}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &481225867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -765,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907639577248877234, guid: 850d2538c0032494cb9cee1057227e86, type: 3}
       propertyPath: noiseEffect
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5657175159496032580, guid: 850d2538c0032494cb9cee1057227e86, type: 3}
       propertyPath: knockbackForceX
@@ -792,14 +803,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 314101846118609767, guid: e9581743cef777c44b0596797207b6d9, type: 3}
-      propertyPath: raycastDistance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 314101846118609767, guid: e9581743cef777c44b0596797207b6d9, type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 417361410287316437, guid: e9581743cef777c44b0596797207b6d9, type: 3}
       propertyPath: m_Name
       value: Caja Pushable
@@ -854,6 +857,51 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 2942205387395507042, guid: 2f928d4f60be3ff43805f757a21878cb, type: 3}
   m_PrefabInstance: {fileID: 1606030187}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &857095587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 857095589}
+  - component: {fileID: 857095588}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &857095588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857095587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f59f329bc0b4a36bc8d02c6710a226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {x: -115, y: 0.5, z: 0}
+--- !u!4 &857095589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857095587}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 248.98994, y: -32.379257, z: -0.008445585}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1149960894 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1847492848886152191, guid: 2f928d4f60be3ff43805f757a21878cb, type: 3}
@@ -881,10 +929,26 @@ PrefabInstance:
       propertyPath: noiseHUD
       value: 
       objectReference: {fileID: 791307284}
+    - target: {fileID: 3095624359927825909, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
+      propertyPath: potentialBar
+      value: 
+      objectReference: {fileID: 476141541}
     - target: {fileID: 4320656709459814811, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
       propertyPath: dashUI
       value: 
       objectReference: {fileID: 136116465}
+    - target: {fileID: 4320656709459814811, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320656709459814811, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
+      propertyPath: maxSprintSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320656709459814811, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
+      propertyPath: sprintAceleration
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5776579055632883208, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
       propertyPath: m_Name
       value: Jugador
@@ -1611,3 +1675,4 @@ SceneRoots:
   - {fileID: 1606030187}
   - {fileID: 252519220}
   - {fileID: 684015839}
+  - {fileID: 857095589}

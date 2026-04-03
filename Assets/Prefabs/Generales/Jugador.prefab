@@ -9681,6 +9681,7 @@ GameObject:
   - component: {fileID: 5247343625389120173}
   - component: {fileID: 5635156961504067402}
   - component: {fileID: 3095624359927825909}
+  - component: {fileID: 3046924775223452162}
   - component: {fileID: 1267995206995801504}
   m_Layer: 7
   m_Name: Jugador
@@ -9785,13 +9786,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprintParticles: {fileID: 8075938607524013706}
   dashParticles: {fileID: 8197465411080101050}
-  speed: 10
+  maxWalkSpeed: 10
+  walkAceleration: 20
   jumpForce: 18
-  sprintSpeed: 20
-  currentSpeed: 10
-  verticalSpeed: 0
-  timeAceleration: 85
-  timeDeceleration: 110
+  maxSprintSpeed: 20
+  sprintAceleration: 14
+  rozamiento: 15
+  sprintBrakeBoost: 3
   knockbackLockTime: 0.4
   canMove: 1
   isDashing: 0
@@ -9801,7 +9802,6 @@ MonoBehaviour:
   dashTime: 0.15
   dashUI: {fileID: 0}
   dashSound: {fileID: 1267995206995801504}
-  sprintMultiplier: 1.8
   grabSpeedMultiplier: 0.5
 --- !u!114 &5247343625389120173
 MonoBehaviour:
@@ -9852,12 +9852,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552c4d97402865a4da47acace5b719d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseLevel: 0
-  healDelay: 1
-  healRate: 14
+  noiseLevel: 5
+  healDelay: 30000
+  healRate: 7
   noiseBar: {fileID: 0}
+  potentialBar: {fileID: 0}
   noiseHUD: {fileID: 0}
-  fadeRate: 1
+  fadeRate: 2
+--- !u!114 &3046924775223452162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5776579055632883208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0f3e4aed6d61c46a35d1eeb6ae2af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadMinimaImpacto: 12
+  multiplicadorDanyo: 3
+  layerEnemigos:
+    serializedVersion: 2
+    m_Bits: 0
+  noise: {fileID: 3095624359927825909}
 --- !u!82 &1267995206995801504
 AudioSource:
   m_ObjectHideFlags: 0

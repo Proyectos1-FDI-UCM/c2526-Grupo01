@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7927506441065197740}
   - component: {fileID: 3524217415733866723}
   - component: {fileID: 507855660319710933}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bujarana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
