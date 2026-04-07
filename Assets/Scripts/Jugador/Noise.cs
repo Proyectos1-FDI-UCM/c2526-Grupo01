@@ -6,6 +6,7 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
+using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,6 +44,14 @@ public class Noise : MonoBehaviour
     //ruido potencial
     [SerializeField]
     private Image noiseBarPotential;
+
+    //Overlay de daño recibido
+    [SerializeField]
+    private Image damageOverlay;
+
+    //Porcentaje donde se comienza a aplicar la transparencia del Overlay daño
+    [SerializeField]
+    private float toleranciaAlDaño = 50f;
 
 
     [SerializeField]
@@ -128,6 +137,7 @@ public class Noise : MonoBehaviour
     private void UpdateBar()
     {
         noiseBar.fillAmount = noiseLevel / 100;
+        UpdateDamageOverlay();
     }
 
     
@@ -180,7 +190,7 @@ public class Noise : MonoBehaviour
         targetNoiseHUDAlpha = 1;
     }
 
-    //oultar barra potencial (vuelve al valor real)
+    //ocultar barra potencial (vuelve al valor real)
     public void HidePotentialBar()
     {
         noiseBarPotential.fillAmount = 0f;
@@ -192,6 +202,28 @@ public class Noise : MonoBehaviour
             Color c = noiseBarPotential.color;
             c.a = Mathf.MoveTowards(c.a, 0f, 0.2f * Time.deltaTime);
             noiseBarPotential.color = c;
+        }
+    }
+
+    //Overlay progresivo de daño del jugador
+    private void UpdateDamageOverlay()
+    {
+        if (damageOverlay != null)
+        {
+            Color color = damageOverlay.color;
+            // si el nivel de ruido es menor a la toleranciaAlDaño, el Overlay se queda transparente
+            if (noiseLevel <= toleranciaAlDaño)
+            {
+                color.a = 0f; 
+            }
+            // si supera la toleranciaAlDaño aumenta la opacidad acorde al porcentaje de barra de ruido restante (a la tolerancia)
+            else
+            {
+                
+                color.a = (noiseLevel - toleranciaAlDaño) / (100f - toleranciaAlDaño);
+            }
+            //aplica cambios
+            damageOverlay.color = color;
         }
     }
 }
