@@ -80,7 +80,7 @@ public class InputManager : MonoBehaviour
     //acción para el dash
     private InputAction _dash;
 
-    //acción para el dash
+    //acción para interactuar
     private InputAction _interact;
 
 
@@ -226,7 +226,8 @@ public class InputManager : MonoBehaviour
         return _jump.WasReleasedThisFrame();
     }
 
-    // METODOS de la ACCION de SPRINT
+
+
 
     //método que devuelve si fue pulsada en este frame
     public bool SprintWasPressedThisFrame()
@@ -246,7 +247,6 @@ public class InputManager : MonoBehaviour
         return _sprint.WasReleasedThisFrame();
     }
 
-    // METODOS de la ACCION de DASH
 
     //método que devuelve si fue pulsada en este frame
     public bool DashtWasPressedThisFrame()
@@ -266,7 +266,7 @@ public class InputManager : MonoBehaviour
         return _dash.WasReleasedThisFrame();
     }
 
-    // METODOS de la INTERACCION
+
 
     //método que devuelve si fue pulsada en este frame
     public bool InteractWasPressedThisFrame()
@@ -323,7 +323,7 @@ public class InputManager : MonoBehaviour
         //init de dash
         _dash = _theController.Player.Dash;
 
-        //init de interact
+        //init de interactuar
         _interact = _theController.Player.Interact;
     }
 

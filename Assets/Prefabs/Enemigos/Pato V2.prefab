@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8477234733873284303}
   - component: {fileID: 2474205881323169484}
   - component: {fileID: 4434558379020137627}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Pato V2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

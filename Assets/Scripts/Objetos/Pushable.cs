@@ -78,11 +78,9 @@ public class Pushable : MonoBehaviour
 
     private void DetectPlayer()
     {
-       
-
         //deteccion de la posicion del jugador respecto a la caja (izq o drch)
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, trueRaycast, playerLayer);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, trueRaycast, playerLayer);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, trueRaycast, ~LayerMask.GetMask("Suelo"));
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, trueRaycast, ~LayerMask.GetMask("Suelo"));
 
         //asignamos el hit al rayo que haya detectado al jugador (esto puede ayudar en un futuro si queremos saber
         //en que lado el jugador cogio la caja, de momento es irrelevante)
@@ -134,6 +132,16 @@ public class Pushable : MonoBehaviour
             //desactivamos el icono
             interactIcon.SetActive(false);
         }
+
+     /*   if (hit.collider != null)
+        {
+            Debug.Log("golpeando a: " + hit.collider.name);
+        }
+        else
+        {
+            Debug.Log("no golpea nadaaa");
+        }*/
+
     }
 
     //metodo responsable de detener la accion de empuje a traves de doble E o de alejarse

@@ -1,7 +1,7 @@
 
 //---------------------------------------------------------
 // Funcionamiento de la mecánica de ruido
-// Leopoldo Gutiérrez Cobo y Hector Prous arroyo 
+// Leopoldo Gutiérrez Cobo
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -18,8 +18,8 @@ public class Noise : MonoBehaviour
 
 
     /// DECLARACIÓN DE VARIABLES
-    [SerializeField]
-    private float noiseLevel = 0f;   //Nivel de ruido
+   // [SerializeField]
+    public float noiseLevel = 0f;   //Nivel de ruido
 
 
     //Variable que guarda el último momento de impacto en el tiempo
@@ -39,8 +39,10 @@ public class Noise : MonoBehaviour
     //Variables para el HUD de la barra de ruido.
     [SerializeField]
     private Image noiseBar;
+
+    //ruido potencial
     [SerializeField]
-    private Image potentialBar;
+    private Image noiseBarPotential;
 
 
     [SerializeField]
@@ -54,12 +56,9 @@ public class Noise : MonoBehaviour
     [SerializeField]
     private float fadeRate;
 
-    //inicializamos las dos barras, ya que anteriormente se generaba un bug en el que hasta el primer hit de jugador estas
-    //se autoevaluaban como valor 1 (aparecen completas)
     private void Start()
     {
-        noiseBar.fillAmount = 0f;
-        potentialBar.fillAmount = 0f;
+        UpdateBar();
     }
 
     private void Update()
@@ -161,36 +160,39 @@ public class Noise : MonoBehaviour
 
     }
 
-    /// METODOS DE IMPACT
-    
-    //metodo encargado de actualizar la barra de velocidad potencial con Mathf.clamp
-    public void UpdatePotentialBar(float potentialDamage)
+
+    //sistemaa de ruido potencial (ImpactNoise)
+  
+    //barra potencial (usa la misma barra por ahora)
+    public void UpdatePotentialBar(float potencial)
     {
-        float potentialFill = (noiseLevel + potentialDamage) / 100f;
-        potentialFill = Mathf.Clamp(potentialFill, 0f, 1f);
-        potentialBar.fillAmount = potentialFill;
+        float valor = Mathf.Clamp(potencial, 0, 100);
+        noiseBarPotential.fillAmount = valor / 100f;
+
+        //restauramos el canal alpha al aparecer
+        Color c = noiseBarPotential.color;
+        c.a = 1f;
+        noiseBarPotential.color = c;
     }
 
-    // metodo que oculta la barra potencial cuando el jugador va lento
-    public void HidePotentialBar()
-    {
-        potentialBar.fillAmount = noiseBar.fillAmount;
-        //cuando no hay ruido potencial el Hud desaparece
-        if (noiseLevel <= 0)
-        {
-            targetNoiseHUDAlpha = 0;
-        }
-    }
-
-    // Devuelve el nivel de ruido actual para que ImpactNoise pueda calcular
-    public float GetNoiseLevel()
-    {
-        return noiseLevel;
-    }
-    //muestra el Hud de ruido (la logica de desaparicion no se implementa aqui)
     public void ShowHUD()
     {
         targetNoiseHUDAlpha = 1;
+    }
+
+    //oultar barra potencial (vuelve al valor real)
+    public void HidePotentialBar()
+    {
+        noiseBarPotential.fillAmount = 0f;
+
+        //si no hay ruido real ocultamos el HUD
+        if (noiseLevel <= 0)
+        {
+            targetNoiseHUDAlpha = 0;
+            Color c = noiseBarPotential.color;
+            c.a = Mathf.MoveTowards(c.a, 0f, 0.2f * Time.deltaTime);
+            noiseBarPotential.color = c;
+        }
     }
 }
 

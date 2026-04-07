@@ -1,7 +1,6 @@
 //---------------------------------------------------------
-// Script que controla el daño por velocidad potencial del jugador, mecanica que consiste en un "daño potencial" 
-// que se muestra en la barra de ruido el cual se aplica solo si el jugador se choca con algo a alta velocidad
-// Hector Prous Arroyo
+// Script que gestiona el ruido potencial
+// Daniel García Andrés
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -10,77 +9,104 @@ using UnityEngine;
 
 public class ImpactNoise : MonoBehaviour
 {
-    [Header("Configuración de impacto")]
+    [Header("POTENCIAL INICIAL (Si sprinta sin daño previo)")]
+    //porcentaje de daño potencial INICIAL(0–100)
+    [SerializeField] 
+    private float porcentajePotencialInicial = 50f;
 
-    //velocidad minima de impacto para mostrar velocidad potencial
-    [SerializeField] private float velMinImpact = 12f;
-    //multiplicador de daño de impacto, para balancear el daño recibido
-    [SerializeField] private float multDamage = 3f;
+
+    [Header("Porcentaje de daño añadido si llevaba ya ruido [Entre 0 - 1]")]
+    [SerializeField]
+    private float porcentajeConRuido = 0.4f;
+
     //layer que ignora la colision de daño (enemigos)
-    [SerializeField] private LayerMask layerEnemigos;
 
-    [Header("Referencias")]
-    //referencias
-    [SerializeField] private Noise noise;
-    [SerializeField] private BoxCollider2D hitboxIzq;
-    [SerializeField] private BoxCollider2D hitboxDrch;
-    private Rigidbody2D rb;
 
-    //variables privadas
-    private float velAnterior;
+    [Header("Referencia")]
+    [SerializeField] 
+    private Noise noise;
+
+    private float potencialGuardado = 0f;
     private bool acabaDeImpactar;
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    private bool esEnemigo = false;
+
+    [SerializeField] 
+    private float tiempoEntreImpactos = 0.3f;
+    private float ultimoImpacto = -999f;
+
+
+    private bool estabaSprintando = false;
 
     private void Update()
     {
-        //cada frame almacena cual fue la ultima velocidad del jugador
-        velAnterior = Mathf.Abs(rb.linearVelocity.x);
-        acabaDeImpactar = false;
-        
-        //si esa velocidad fue mayor a la minima de impacto, calcula el daño potencial, lo actualiza con el metodo y lo muestra
-        if (velAnterior >= velMinImpact)
+        bool sprint = InputManager.Instance.SprintIsPressed();
+
+
+        //si está sprintando mostramos daño potencial
+        if (sprint && !estabaSprintando)
         {
-            float potencialDamage = CalcDamage(velAnterior);
-            noise.UpdatePotentialBar(potencialDamage);
+            if (noise.noiseLevel == 0) 
+            {
+                potencialGuardado = porcentajePotencialInicial;
+            }
+            else if (noise.noiseLevel > 0) 
+            {
+                potencialGuardado = noise.noiseLevel + (noise.noiseLevel * porcentajeConRuido);
+            }
+
+            potencialGuardado = Mathf.Clamp(potencialGuardado, 0, 100);
+
+            noise.UpdatePotentialBar(potencialGuardado);
             noise.ShowHUD();
         }
-        //si deja de serlo oculta la barra y actualiza el impacto
-        else
+
+
+        //si deja d sprintar se oculta la barra
+        if (!sprint)
         {
             noise.HidePotentialBar();
-            acabaDeImpactar = false;
+            potencialGuardado = 0f;
         }
+
+        estabaSprintando = sprint;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //convertimos la layer del objeto en formato bitmask para poder compararla (formato complicado que no entiendo del todo)
-        int layerObjeto = 1 << other.gameObject.layer;
-        //comparamos, en caso de que los dos bitmask sean iguales (igual al de enemigo) no cuenta trigger 
-        if ((layerObjeto & layerEnemigos.value) != 0)
+        Enemy enemigo = other.GetComponent<Enemy>();
+
+        if(enemigo != null) 
         {
-            return;
+            esEnemigo = true;
+        }
+        else 
+        {
+            PotencialNoise();
         }
 
-        // en caso que se supere la velocidad minima de impacto
-        if (velAnterior >= velMinImpact)
-        {
-            //calculamos el incremento de daño 
-            float realDamage = CalcDamage(velAnterior);
-            noise.HidePotentialBar();
-            noise.takeNoise(Mathf.RoundToInt(realDamage));
-            acabaDeImpactar = true;
-        }
+       
     }
 
-    //metodo para calcular el daño real que se aplica al HUD, con el multiplicador del inspector integrado
-    private float CalcDamage(float velocidadX)
+    private void PotencialNoise() 
     {
-        float Damage = velocidadX - velMinImpact;
-        return Damage * multDamage;
+        if (Time.time >= ultimoImpacto + tiempoEntreImpactos)
+        {
+            //aplicar daño solo si había potencial
+            if (potencialGuardado > 0)
+            {
+                noise.HidePotentialBar();
+                noise.takeNoise(Mathf.RoundToInt(potencialGuardado));
+
+                ultimoImpacto = Time.time;
+            }
+
+            esEnemigo = false;
+        }
+        else
+        {
+            //no hace nada (xq el cooldown activo)
+        }
     }
 }
+

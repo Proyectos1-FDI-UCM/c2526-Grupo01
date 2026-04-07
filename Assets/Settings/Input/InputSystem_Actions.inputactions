@@ -54,7 +54,7 @@
                 {
                     "name": "Interact",
                     "type": "Button",
-                    "id": "b5c1c67d-1b38-4e8b-8529-da7796afa3f5",
+                    "id": "c6874527-3295-4468-8e75-961bfa3c1af2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -306,22 +306,22 @@
                 },
                 {
                     "name": "",
-                    "id": "4547e2ef-5160-4af2-b61f-5a91c1069f0d",
-                    "path": "<Keyboard>/e",
+                    "id": "5ce95a3a-e1fd-4343-8c0d-09205c79d7c6",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": ";Gamepad",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "df8b79f1-a45a-46a7-8ee6-b37767ae2886",
-                    "path": "<Gamepad>/buttonNorth",
+                    "id": "e81474db-7c8f-46c3-bae7-186629be1fbe",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
