@@ -524,7 +524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907639577248877234, guid: 850d2538c0032494cb9cee1057227e86, type: 3}
       propertyPath: noiseEffect
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5657175159496032580, guid: 850d2538c0032494cb9cee1057227e86, type: 3}
       propertyPath: knockbackForceX
