@@ -11,33 +11,44 @@ using UnityEngine;
 
 
 /// <summary>
-/// Comprotamiento del enemigo Robot
+/// Comprotamiento del enemigo Robot, este enimgo va patrullando de derecha
+/// a izquierda hasta que entra en visión el jugador ahí, lo persigue.
 /// </summary>
 public class RobotEnemy : MonoBehaviour
 {
+
+    [Space]
+    [Header("Configuración del Robot")]
+
+    //velocidad de patrullaa
+    [SerializeField]
+    private float patrolSpeed = 3.5f;
+    //velocidad de persecución
+    [SerializeField]
+    private float chaseSpeed = 8f;
+
+    //cada cuanto tiempo se gira patrullando
+    [SerializeField]
+    private float patrolTurnTime = 2.0f;
+
+    [SerializeField]
+    private VisionSensor vision;
+
+
+    [Header("Retroceso al jugador")]
+
     [SerializeField]
     private float knockbackForceX = 6f;
 
     [SerializeField]
     private float knockbackForceY = 4f;
 
+
+    [Space]
+    [Header("Retroceso al jugador")]
+
     [SerializeField]
-    private float cooldownAfterHit = 2f;
-
-
-    //velocidad de patrullaa
-    [SerializeField] 
-    private float patrolSpeed = 1.5f;
-    //velocidad de persecución
-    [SerializeField] 
-    private float chaseSpeed = 4.0f;
-
-    //cada cuanto tiempo se gira patrullando
-    [SerializeField] 
-    private float patrolTurnTime = 2.0f; 
-
-    [SerializeField] 
-    private VisionSensor vision;
+    private float cooldownAfterHit = 3f;
 
     private float dir = 1f;
     private float timer = 0f;
@@ -53,7 +64,8 @@ public class RobotEnemy : MonoBehaviour
     private void Start()
     {
         patrolSpeedDefault = patrolSpeed;
-        chaseSpeedDefault = patrolSpeed;
+        //aqui estaban las 2 inicializadas a patrolSpeed x eso perdía velocidad
+        chaseSpeedDefault = chaseSpeed;
         stunned = false;
     }
 
@@ -71,16 +83,20 @@ public class RobotEnemy : MonoBehaviour
             transform.position = transform.position + new Vector3(dir * chaseSpeed * Time.deltaTime, 0f, 0f);
 
             //giramos
-            if (dir < 0) transform.rotation = Quaternion.Euler(0, -180, 0);
-            else if (dir > 0) transform.rotation = Quaternion.Euler(0, 0, 0);
-
-            return;
+            if (dir < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, -180, 0);
+            }
+            else if (dir > 0) 
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            } 
         }
 
 
 
-    //si no ve al jugador sigue patrullando
-    timer = timer + Time.deltaTime;
+        //si no ve al jugador sigue patrullando
+        timer = timer + Time.deltaTime;
 
         //si el temporizador (timer) supera los segundos de patrolTurnTime 
         //(el tiempo que tarda en girar patrollando) le damos la vuelta y reinciamos el temporizador
@@ -94,8 +110,14 @@ public class RobotEnemy : MonoBehaviour
         transform.position = transform.position + new Vector3(dir * patrolSpeed * Time.deltaTime, 0f, 0f);
 
         //y giramos el sprite
-        if (dir < 0) transform.rotation = Quaternion.Euler(0, -180, 0);
-        else if (dir > 0) transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (dir < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -180, 0);
+        }
+        else if (dir > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
 
         //para que no gire el sprite si deberia estar quieto
         if (stunned)
@@ -135,7 +157,7 @@ public class RobotEnemy : MonoBehaviour
                 patrolSpeed = 0f;
                 chaseSpeed = 0f;
 
-                //lo desestuneamos tras el cooldown
+                //lo desestuneamos tras el cooldown, (el invoke es parea esperar a hacer algo)
                 Invoke(nameof(EndStun), cooldownAfterHit);
             }  
         }
