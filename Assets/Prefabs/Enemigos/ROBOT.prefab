@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.79, y: -5.26, z: 0}
-  m_LocalScale: {x: 1.8, y: 3.18, z: 1}
+  m_LocalScale: {x: 1.32, y: 2.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2233950674760273431}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660f93647872e0419f5b905023b5eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseEffect: 3
+  noiseEffect: 35
   cooldown: 1
 --- !u!114 &4082085300275322500
 MonoBehaviour:
@@ -110,9 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForceX: 6
   knockbackForceY: 4
-  cooldownAfterHit: 4.5
-  patrolSpeed: 1.5
-  chaseSpeed: 5
+  cooldownAfterHit: 3
+  patrolSpeed: 5
+  chaseSpeed: 8
   patrolTurnTime: 1
   vision: {fileID: 7755604957564239563}
 --- !u!1 &2926285624983558099
@@ -182,7 +182,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.21371937, y: 0.29998472}
+  m_Offset: {x: -0.21371937, y: 0.30844027}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -192,7 +192,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 10.727802, y: 0.23047382}
+  m_Size: {x: 10.727802, y: 1.0422224}
   m_EdgeRadius: 0
 --- !u!114 &7755604957564239563
 MonoBehaviour:

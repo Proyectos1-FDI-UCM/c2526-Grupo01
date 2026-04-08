@@ -86,6 +86,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveInput;
 
+    //esta booleana es para saber si el jugador esta mirando a la izquierda o a la derecha
+    private bool isRight;
+
 
     //Dash
     [Space]
@@ -128,9 +131,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //if(InputManager.Instance.InteractWasPressedThisFrame()) { Debug.Log("INTERAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"); }
-
-
         //MOVIMIENTO HORIZONTAL
 
         //hay q confirmar que existe el InputManager
@@ -159,16 +159,18 @@ public class PlayerMovement : MonoBehaviour
             //lo igualo para trabajar con timer y no con la del campo serializable (para q no haya conflictos)
             dashTimer = dashTime;
 
-            //dirección del dash en función de donde esta moviendo el joystick o las teclas (el 0.1 es para q no pille dashes fantasmas en la dirección q no es)
-            if (Mathf.Abs(moveX) > 0.1f)
+            //si el jugador mira a la derech
+            if (isRight)
             {
                 //nos guardamos la dirección
-                dashDirection = new Vector2(moveX, 0).normalized;
+                anim.Flip(1);
+                dashDirection = new Vector2(1, 0).normalized;
             }
-            else
+            else if(!isRight) //esta mirando a la izquierda
             {
                 //si no hay input hace el dash hacia donde mira el personaje
-                dashDirection = new Vector2(Mathf.Sign(transform.localScale.x), 0);
+                anim.Flip(-1);
+                dashDirection = new Vector2(-1, 0).normalized;
             }
         }
 
@@ -185,10 +187,12 @@ public class PlayerMovement : MonoBehaviour
         if (moveX < 0)
         {
             anim.Flip(-1);
+            isRight = false;
         }
         else if (moveX > 0)
         {
             anim.Flip(1);
+            isRight = true;
         }
 
 

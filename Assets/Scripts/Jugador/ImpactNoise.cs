@@ -72,9 +72,9 @@ public class ImpactNoise : MonoBehaviour
         estabaSprintando = sprint;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Enemy enemigo = other.GetComponent<Enemy>();
+        Enemy enemigo = collision.gameObject.GetComponent<Enemy>();
 
         if(enemigo != null) 
         {

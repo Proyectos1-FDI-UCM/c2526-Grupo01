@@ -69,8 +69,13 @@ public class ChangeScene : MonoBehaviour
     public void NivelPrueba()
     {
         System.GC.Collect();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("EscenaFinal");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ArreglosGeneralesDani");
         System.GC.Collect();
+    }
+
+    public void SalirDelJuego()
+    {
+        Application.Quit();
     }
 
 

@@ -83,6 +83,8 @@ public class InputManager : MonoBehaviour
     //acción para interactuar
     private InputAction _interact;
 
+    //acción para pausar
+    private InputAction _pause;
 
 
     #endregion
@@ -286,6 +288,28 @@ public class InputManager : MonoBehaviour
         return _interact.WasReleasedThisFrame();
     }
 
+
+
+
+
+    //método que devuelve si fue pulsada en este frame
+    public bool PauseWasPressedThisFrame()
+    {
+        return _pause.WasPressedThisFrame();
+    }
+
+    //método que devuelve si esta presionada
+    public bool PauseIsPressed()
+    {
+        return _pause.IsPressed();
+    }
+
+    //método que devuelve si ha sido soltada
+    public bool PauseWasReleasedThisFrame()
+    {
+        return _pause.WasReleasedThisFrame();
+    }
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -325,6 +349,9 @@ public class InputManager : MonoBehaviour
 
         //init de interactuar
         _interact = _theController.Player.Interact;
+
+        //init de pause
+        _pause = _theController.Player.Pause;
     }
 
     /// <summary>
