@@ -9700,7 +9700,7 @@ Transform:
   m_GameObject: {fileID: 5776579055632883208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.42, y: -2.4, z: 0}
+  m_LocalPosition: {x: -115.91, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9857,6 +9857,8 @@ MonoBehaviour:
   healRate: 14
   noiseBar: {fileID: 0}
   noiseBarPotential: {fileID: 0}
+  damageOverlay: {fileID: 0}
+  "toleranciaAlDa\xF1o": 50
   noiseHUD: {fileID: 0}
   fadeRate: 1
 --- !u!82 &1267995206995801504
@@ -10096,12 +10098,12 @@ SpriteRenderer:
   m_SortingLayerID: -442851455
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4913982344839117222, guid: 8f7a02f66b9725c4a97c202c074e4509, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f7a02f66b9725c4a97c202c074e4509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.15, y: 6.5}
+  m_Size: {x: 4.35, y: 7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

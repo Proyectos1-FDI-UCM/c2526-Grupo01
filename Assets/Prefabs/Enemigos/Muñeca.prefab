@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6041965610610499796}
   - component: {fileID: 2926959078242935507}
   - component: {fileID: 4322239387865005177}
-  - component: {fileID: 9209709187754677150}
+  - component: {fileID: 2585738106503065448}
   m_Layer: 0
   m_Name: "Mu\xF1eca"
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2727395518190987883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -103.7799, y: -2.73, z: 0}
+  m_LocalPosition: {x: -108.33, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: 1485252133
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4913982344839117222, guid: 00fb84d62176c3e4590203d1a8827597, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7582cff43cb9a044f8bb26585f313e94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.21, y: 8.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -128,8 +128,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.68, y: 9.65}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 7.21, y: 8.89}
+    newSize: {x: 7.21, y: 8.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -150,14 +150,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForceX: 6
   knockbackForceY: 4
-  fallDelay: 2
+  fallDelay: 0.5
   screamDelay: 2
   destroytime: 1
   smalldollHitbox: {fileID: 3189299129649048528, guid: 49115197cc5002a46857c0fc08b3950c, type: 3}
   largedollHitbox: {fileID: 5990316828569338437, guid: 20f6fd14932f331488037aba948db4e0, type: 3}
   SpawnPoint: {fileID: 2276384411493998742}
   _animator: {fileID: 0}
---- !u!95 &9209709187754677150
+--- !u!95 &2585738106503065448
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
