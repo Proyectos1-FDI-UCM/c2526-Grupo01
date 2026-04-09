@@ -6,7 +6,6 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,13 +44,8 @@ public class Noise : MonoBehaviour
     [SerializeField]
     private Image noiseBarPotential;
 
-    //Overlay de daño recibido
-    [SerializeField]
-    private Image damageOverlay;
 
-    //Porcentaje donde se comienza a aplicar la transparencia del Overlay daño
-    [SerializeField]
-    private float toleranciaAlDaño = 50f;
+    
 
 
     [SerializeField]
@@ -137,7 +131,7 @@ public class Noise : MonoBehaviour
     private void UpdateBar()
     {
         noiseBar.fillAmount = noiseLevel / 100;
-        UpdateDamageOverlay();
+        
     }
 
     
@@ -168,63 +162,15 @@ public class Noise : MonoBehaviour
         }
 
 
-    }
-
-
-    //sistemaa de ruido potencial (ImpactNoise)
-  
-    //barra potencial (usa la misma barra por ahora)
-    public void UpdatePotentialBar(float potencial)
-    {
-        float valor = Mathf.Clamp(potencial, 0, 100);
-        noiseBarPotential.fillAmount = valor / 100f;
-
-        //restauramos el canal alpha al aparecer
-        Color c = noiseBarPotential.color;
-        c.a = 1f;
-        noiseBarPotential.color = c;
-    }
-
+    }    
+    
     public void ShowHUD()
     {
         targetNoiseHUDAlpha = 1;
     }
 
-    //ocultar barra potencial (vuelve al valor real)
-    public void HidePotentialBar()
-    {
-        noiseBarPotential.fillAmount = 0f;
+   
 
-        //si no hay ruido real ocultamos el HUD
-        if (noiseLevel <= 0)
-        {
-            targetNoiseHUDAlpha = 0;
-            Color c = noiseBarPotential.color;
-            c.a = Mathf.MoveTowards(c.a, 0f, 0.2f * Time.deltaTime);
-            noiseBarPotential.color = c;
-        }
-    }
-
-    //Overlay progresivo de daño del jugador
-    private void UpdateDamageOverlay()
-    {
-        if (damageOverlay != null)
-        {
-            Color color = damageOverlay.color;
-            // si el nivel de ruido es menor a la toleranciaAlDaño, el Overlay se queda transparente
-            if (noiseLevel <= toleranciaAlDaño)
-            {
-                color.a = 0f; 
-            }
-            // si supera la toleranciaAlDaño aumenta la opacidad acorde al porcentaje de barra de ruido restante (a la tolerancia)
-            else
-            {
-                
-                color.a = (noiseLevel - toleranciaAlDaño) / (100f - toleranciaAlDaño);
-            }
-            //aplica cambios
-            damageOverlay.color = color;
-        }
-    }
+    
 }
 

@@ -69,7 +69,7 @@ public class ChangeScene : MonoBehaviour
     public void NivelPrueba()
     {
         System.GC.Collect();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("ArreglosGeneralesDani");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_1");
         System.GC.Collect();
     }
 
