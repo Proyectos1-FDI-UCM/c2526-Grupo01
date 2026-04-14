@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 9341b589d8e5bc64cbe606221c99bbca
   - enabled: 1
-    path: Assets/Scenes/ArreglosGeneralesDani.unity
-    guid: fe4966f4d23f05541b2fadc3f3e3557a
+    path: Assets/Scenes/Nivel_1.unity
+    guid: a3bc103322a7ea5418cc6374bc525aa9
   - enabled: 1
     path: Assets/Scenes/MUERTE.unity
     guid: 8cd2c7fad269d624fb33c0988e3e84cc
   - enabled: 1
-    path: Assets/Scripts/Salida.unity
+    path: Assets/Scenes/Salida.unity
     guid: e2f4e99e872748943aaf6a105245f8b9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

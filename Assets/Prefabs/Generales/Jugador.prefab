@@ -9683,7 +9683,6 @@ GameObject:
   - component: {fileID: 3095624359927825909}
   - component: {fileID: 1267995206995801504}
   - component: {fileID: 1482925078124726694}
-  - component: {fileID: 5977717509924567582}
   m_Layer: 0
   m_Name: Jugador
   m_TagString: Untagged
@@ -9853,12 +9852,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noiseLevel: 0
-  healDelay: 1
+  healDelay: 5
   healRate: 14
   noiseBar: {fileID: 0}
   noiseBarPotential: {fileID: 0}
-  damageOverlay: {fileID: 0}
-  "toleranciaAlDa\xF1o": 50
   noiseHUD: {fileID: 0}
   fadeRate: 1
 --- !u!82 &1267995206995801504
@@ -9882,7 +9879,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 7.4653788
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -10004,22 +10001,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.9602805, y: 2.4192677}
   m_EdgeRadius: 0
---- !u!114 &5977717509924567582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5776579055632883208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c0f3e4aed6d61c46a35d1eeb6ae2af7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  porcentajePotencialInicial: 50
-  porcentajeConRuido: 0.4
-  noise: {fileID: 3095624359927825909}
-  tiempoEntreImpactos: 0.3
 --- !u!1 &6132377442262962061
 GameObject:
   m_ObjectHideFlags: 0

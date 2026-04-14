@@ -9,128 +9,88 @@ using UnityEngine;
 // Añadir aquí el resto de directivas using
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Controla el comportamiento de un globo que actúa como ascensor.
+/// Sube cuando el jugador entra en el trigger, espera arriba,
+/// y baja tras un tiempo cuando el jugador se va.
 /// </summary>
 public class Globo : MonoBehaviour
 {
     [SerializeField]
-    private float alturaMaxima;
+    private float alturaMax = 5f;
     [SerializeField]
-    private float alturaInicial;
+    private float velocidadGlobo = 0.5f;
 
-    [SerializeField]
-    private float velocidadGlobo = 5f;
+    private Rigidbody2D rb;
 
-    [SerializeField]
-    private float tiempoEsperaArriba = 2f;
-    [SerializeField]
-    private float tiempoEsperaAbajo = 2f;
-
-    private bool jugadorEncima = false;
+    private Vector3 inicial;
+    private Vector3 final;
 
     private float tiempoEspera = 0f;
+    private float progreso = 0f;
 
-    // 0 = suelo, 1 = subiendo, 2 = esperando arriba, 3 = bajando, 4 = esperando abajo
-    private int estado = 0;
+    private bool activado;
+    private bool bajando;
 
-    /// <summary>
-    /// Método para ver si el jugador entra en contacto con el trigger del globo
-    /// </summary>
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        PlayerMovement jugador = other.GetComponent<PlayerMovement>();
+        rb = GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        inicial = transform.position;
+        final = inicial + new Vector3(0, alturaMax, 0);
+
+        activado = false;
+        bajando = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        PlayerMovement jugador = collision.GetComponent<PlayerMovement>();
         if (jugador != null)
         {
-            jugadorEncima = true;
-            // Para que el jugador no clipee con el globo
-            jugador.transform.SetParent(transform);
+            activado = true;
         }
+    }
 
-    }
-    /// <summary>
-    /// Método para ver si el jugador deja de estar en contacto con el trigger del globo
-    /// </summary>
-    private void OnTriggerExit2D(Collider2D other)
+    void FixedUpdate()
     {
-        PlayerMovement jugador = other.GetComponent<PlayerMovement>();
-        if (jugador != null)
+        if (activado)
         {
-            jugadorEncima = false;
-            // Para que el jugador no clipee con el globo
-            jugador.transform.SetParent(transform);
-        }
-    }
-    /// <summary>
-    /// Método para que el globo se mueva suavemente
-    /// </summary>    
-    private void MoverConstante(float alturaDestino)
-    {
-        Vector3 posicion = new Vector3(transform.position.x, alturaDestino, transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, posicion, velocidadGlobo * Time.deltaTime);
-    }
-    void Update()
-    {
-        switch (estado)
-        {
-            // Suelo
-            case 0:
-                if (jugadorEncima)
+            if (!bajando)
+            {
+                tiempoEspera += Time.deltaTime;
+                if (tiempoEspera >= 1f)
                 {
-                    // Empieza a subir
-                    estado = 1;
-                }
-                break;
-            // Subiendo
-            case 1:
-                MoverConstante(alturaMaxima);
-                // Calcular la distancia para ver si ha llegado a la altura máxima, dejando un margen (0.1)
-                if (Mathf.Abs(transform.position.y - alturaMaxima) <= 0.1f)
-                {
-                    tiempoEspera = tiempoEsperaArriba;
-                    // Llega arriba
-                    estado = 2;
-                }
-                break;
-            // Esperando arriba
-            case 2:
-                // Restar el tiempo de espera
-                tiempoEspera -= Time.deltaTime;
-                if (tiempoEspera <= 0)
-                {
-                    // Empieza a bajar
-                    estado = 3;
-                }
-                break;
-            // Bajando
-            case 3:
-                MoverConstante(alturaInicial);
-                // Calcular la distancia para ver si ha llegado a la altura inicial (suelo), dejando un margen (0.1)
-                if (Mathf.Abs(transform.position.y - alturaInicial) <= 0.1f)
-                {
-                    if (jugadorEncima)
+                    progreso += Time.fixedDeltaTime * velocidadGlobo;
+                    Vector3 nuevaPosicion = Vector3.Lerp(inicial, final, progreso);
+                    rb.MovePosition(nuevaPosicion);
+                    if (progreso >= 1f)
                     {
-                        tiempoEspera = tiempoEsperaAbajo;
-                        estado = 4;
-                    }
-                    else
-                    {
-                        // Llega al suelo
-                        estado = 0;
+                        progreso = 0f;
+                        tiempoEspera = 0f;
+                        bajando = true;
                     }
                 }
-                break;
-            // Esperando abajo
-            case 4:
-                tiempoEspera -= Time.deltaTime;
-                if (tiempoEspera <= 0)
+            }
+            else
+            {
+                tiempoEspera += Time.fixedDeltaTime;
+                if (tiempoEspera >= 3f)
                 {
-                    // Empieza a subir
-                    estado = 1;
+                    progreso += Time.fixedDeltaTime * velocidadGlobo;
+                    Vector3 nuevaPosicion = Vector3.Lerp(final, inicial, progreso);
+                    rb.MovePosition(nuevaPosicion);
+                    if (progreso >= 1f)
+                    {
+                        rb.MovePosition(inicial);
+                        activado = false;
+                        bajando = false;
+                        progreso = 0f;
+                        tiempoEspera = 0f;
+                    }
                 }
-                break;
+            }
         }
-    }
-} // class Globo 
-
+    } // class Globo 
+}
 // namespace

@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponentInChildren<animacionprov>();
 
         //para los checkpoints (comentad esta línea para comodidad en el testing)
-        //transform.position = GameManager.Instance.respawnPoint;
+        transform.position = GameManager.Instance.respawnPoint;
 
     }
 

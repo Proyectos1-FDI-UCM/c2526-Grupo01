@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f59f329bc0b4a36bc8d02c6710a226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPoint: {x: -115, y: 0.5, z: 0}
+  respawnPoint: {x: -5, y: -25, z: 0}
 --- !u!4 &729967851
 Transform:
   m_ObjectHideFlags: 0

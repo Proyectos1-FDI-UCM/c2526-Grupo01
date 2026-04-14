@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     //posicion incial
-    public Vector3 respawnPoint = new Vector3(-115f, 0.5f, 0f);
+    public Vector3 respawnPoint = new Vector3(-5f, -25f, 0f);
 
     #endregion
 
