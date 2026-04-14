@@ -14,9 +14,6 @@ A lo largo del nivel, el jugador encontrará distintos elementos interactivos, o
 - Pausa (Esc/START)
 - Interactuar/agarrar (E/Y)
 
-
-Una sección llamada Known Issues con aquellos bugs/problemas que sepáis que nos podemos encontrar a la hora de ejecutar vuestro juego.
-
 *KNOWN ISSUES*
 
 - El sistema de knockback no funciona correctamente en determinadas situaciones y puede generar comportamientos inconsistentes.
