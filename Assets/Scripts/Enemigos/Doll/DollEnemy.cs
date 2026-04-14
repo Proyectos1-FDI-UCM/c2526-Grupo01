@@ -29,8 +29,8 @@ public class DollEnemy : MonoBehaviour
     private float destroytime = 0;
 
 
-    [SerializeField]
-    private GameObject smalldollHitbox;
+    //[SerializeField]
+    //private GameObject smalldollHitbox;       //HITBOX SECUNDARIA 
     [SerializeField]
     private GameObject largedollHitbox;
     
@@ -66,7 +66,7 @@ public class DollEnemy : MonoBehaviour
 
     public void FallAttack()
     {
-        Instantiate(smalldollHitbox, SpawnPoint.position, Quaternion.identity);
+        //Instantiate(smalldollHitbox, SpawnPoint.position, Quaternion.identity);       //HITBOX SECUNDARIA 
         Instantiate(largedollHitbox, SpawnPoint.position, Quaternion.identity);
         Invoke(nameof(deleteself), destroytime);
     }
