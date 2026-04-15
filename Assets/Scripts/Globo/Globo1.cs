@@ -31,6 +31,9 @@ public class Globo : MonoBehaviour
     private bool activado;
     private bool bajando;
 
+    /// <summary>
+    /// Inizializa las posiciones del Rigidbody2D, las posiciones del globo, y si esta activado y bajando.
+    /// </summary>
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +46,9 @@ public class Globo : MonoBehaviour
         bajando = false;
     }
 
+    /// <summary>
+    /// Usando Duck Typing, detecta la colisión con el jugador. Si el jugador entra en el trigger el globo sube.
+    /// </summary>
     private void OnTriggerStay2D(Collider2D collision)
     {
         PlayerMovement jugador = collision.GetComponent<PlayerMovement>();
@@ -52,6 +58,9 @@ public class Globo : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Método para que se mueva el globo
+    /// </summary>
     void FixedUpdate()
     {
         if (activado)
@@ -61,9 +70,11 @@ public class Globo : MonoBehaviour
                 tiempoEspera += Time.deltaTime;
                 if (tiempoEspera >= 1f)
                 {
+                    // Esto hace que el globo se mueva hacia arriba, evitando clippeos
                     progreso += Time.fixedDeltaTime * velocidadGlobo;
                     Vector3 nuevaPosicion = Vector3.Lerp(inicial, final, progreso);
                     rb.MovePosition(nuevaPosicion);
+                    // Cuando llega arriba, resetea el progreso, el tiempo de espera y empieza a bajar
                     if (progreso >= 1f)
                     {
                         progreso = 0f;
@@ -75,11 +86,14 @@ public class Globo : MonoBehaviour
             else
             {
                 tiempoEspera += Time.fixedDeltaTime;
+                // Pongo el tiempoEspera a 3 para que el jugador tenga tiempo para pensar en lo que hacer, es más intuitivo (se puede cambair)
                 if (tiempoEspera >= 3f)
                 {
+                    // Lo mismo de antes pero para bajar, evitando clippeos
                     progreso += Time.fixedDeltaTime * velocidadGlobo;
                     Vector3 nuevaPosicion = Vector3.Lerp(final, inicial, progreso);
                     rb.MovePosition(nuevaPosicion);
+                    // Cuando llega abajo, resetea todo
                     if (progreso >= 1f)
                     {
                         rb.MovePosition(inicial);

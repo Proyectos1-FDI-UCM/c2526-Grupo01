@@ -65,7 +65,8 @@ public class MonkeyProyectile : MonoBehaviour
 
             //aplicamos el retroceso al jugador
             player.ApplyKnockback(pushX * knockbackForceX, knockbackForceY);
-
+            
+            Destroy(gameObject);
         }
     }
 } // class MonkeyProyectile 
