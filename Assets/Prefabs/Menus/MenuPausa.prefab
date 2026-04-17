@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7077184905106484663}
+      - m_Target: {fileID: 1334268742099306435, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: MenuPrincipal
         m_Mode: 1
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1002896328729814770}
+      - m_Target: {fileID: 1334268742099306435, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: SalirDelJuego
         m_Mode: 1

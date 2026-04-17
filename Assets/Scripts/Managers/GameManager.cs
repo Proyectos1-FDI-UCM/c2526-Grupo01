@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private static GameManager _instance;
 
+    [SerializeField]
+    private AudioSource levelMusicTrack;
+
     //posicion incial
     public Vector3 respawnPoint = new Vector3(-5f, -25f, 0f);
 
@@ -86,6 +89,10 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             Init();
         } // if-else somos instancia nueva o no.
+
+
+        //activo la musica del nivel
+        levelMusicTrack.Play();
     }
 
     /// <summary>

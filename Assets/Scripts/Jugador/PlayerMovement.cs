@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponentInChildren<animacionprov>();
 
         //para los checkpoints (comentad esta línea para comodidad en el testing)
-        transform.position = GameManager.Instance.respawnPoint;
+        //transform.position = GameManager.Instance.respawnPoint;
 
     }
 
@@ -216,11 +216,11 @@ public class PlayerMovement : MonoBehaviour
         //Sprint
         if (coll.onGround && InputManager.Instance.SprintIsPressed())
         {
-            //Debug.Log("sprintttt");
             Sprint();
 
             if (isSprinting && !wasSprinting)
             {
+                //esto es para activar las particulas
                 sprintParticles.Play();
             }
 
@@ -320,7 +320,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
-        //esto es para que no se repita muchas veces y no distor
+        //esto es para que no se repita muchas veces y no distorsione
         if (!dashSound.isPlaying)
         {
             dashSound.Play();

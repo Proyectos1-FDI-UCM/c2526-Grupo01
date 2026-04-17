@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 8367459987240929699, guid: bdaeee04a68fe4283b8789c48055f778, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 9149388496513041272, guid: bdaeee04a68fe4283b8789c48055f778, type: 3}
+      objectReference: {fileID: 1334268742099306435, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
     - target: {fileID: 8367459987240929699, guid: bdaeee04a68fe4283b8789c48055f778, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SalirDelJuego
@@ -420,6 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 729967851}
   - component: {fileID: 729967850}
+  - component: {fileID: 729967852}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -455,6 +456,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &729967852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729967849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e67665ea226d403ab8b32a4b067d8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: 1
 --- !u!1 &740311514
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +752,7 @@ PrefabInstance:
     - target: {fileID: 8367459987240929699, guid: bdaeee04a68fe4283b8789c48055f778, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 9149388496513041272, guid: bdaeee04a68fe4283b8789c48055f778, type: 3}
+      objectReference: {fileID: 1334268742099306435, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
     - target: {fileID: 8367459987240929699, guid: bdaeee04a68fe4283b8789c48055f778, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: NivelPrueba

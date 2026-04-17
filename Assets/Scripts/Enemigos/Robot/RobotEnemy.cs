@@ -45,7 +45,7 @@ public class RobotEnemy : MonoBehaviour
 
 
     [Space]
-    [Header("Retroceso al jugador")]
+    [Header("Tiempo del robot parado")]
 
     [SerializeField]
     private float cooldownAfterHit = 3f;
@@ -61,17 +61,29 @@ public class RobotEnemy : MonoBehaviour
     //esto es para q el sprite no gire cuando esta stunned
     private Quaternion lockedRotation;
 
+    private Rigidbody2D rb;
+
+    private float temporizador;
+
     private void Start()
     {
         patrolSpeedDefault = patrolSpeed;
         //aqui estaban las 2 inicializadas a patrolSpeed x eso perdía velocidad
         chaseSpeedDefault = chaseSpeed;
         stunned = false;
+        rb = GetComponent<Rigidbody2D>();
+        temporizador = 10000f;
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
+        //si ha pasado el tiempo del cooldown podemos quitarle el stun
+        if (temporizador <= Time.time) 
+        { 
+            EndStun();   
+        }
+
         //si ve al jugador lo persique
         if (vision != null && vision.target != null)
         {
@@ -80,50 +92,52 @@ public class RobotEnemy : MonoBehaviour
             dir = Mathf.Sign(dx);
 
             //se mueve el robot hacia el jugador (solo en el eje x claro)
-            transform.position = transform.position + new Vector3(dir * chaseSpeed * Time.deltaTime, 0f, 0f);
+            rb.linearVelocity = new Vector2(dir * chaseSpeed, rb.linearVelocity.y);
 
             //giramos
             if (dir < 0)
             {
                 transform.rotation = Quaternion.Euler(0, -180, 0);
             }
-            else if (dir > 0) 
+            else if (dir > 0)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
-            } 
+            }
         }
-
-
-
-        //si no ve al jugador sigue patrullando
-        timer = timer + Time.deltaTime;
-
-        //si el temporizador (timer) supera los segundos de patrolTurnTime 
-        //(el tiempo que tarda en girar patrollando) le damos la vuelta y reinciamos el temporizador
-        if (timer >= patrolTurnTime)
+        else //si no ve al jugador patrulla (anda d lado a lado)
         {
-            timer = 0f;
-            dir = dir * (-1f);
+            //si no ve al jugador sigue patrullando
+            timer = timer + Time.deltaTime;
+
+            //si el temporizador (timer) supera los segundos de patrolTurnTime 
+            //(el tiempo que tarda en girar patrollando) le damos la vuelta y reinciamos el temporizador
+            if (timer >= patrolTurnTime)
+            {
+                timer = 0f;
+                dir = dir * (-1f);
+            }
+
+            //movemos al robot
+            rb.linearVelocity = new Vector2(dir * patrolSpeed, rb.linearVelocity.y);
+
+            //y giramos el sprite
+            if (dir < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, -180, 0);
+            }
+            else if (dir > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            //para que no gire el sprite si deberia estar quieto
+            if (stunned)
+            {
+                transform.rotation = lockedRotation;
+            }
         }
 
-        //movemos al robot
-        transform.position = transform.position + new Vector3(dir * patrolSpeed * Time.deltaTime, 0f, 0f);
-
-        //y giramos el sprite
-        if (dir < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, -180, 0);
-        }
-        else if (dir > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-
-        //para que no gire el sprite si deberia estar quieto
-        if (stunned)
-        {
-            transform.rotation = lockedRotation;
-        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -154,11 +168,13 @@ public class RobotEnemy : MonoBehaviour
                 stunned = true;
                 //guardamos la direccion del sprite
                 lockedRotation = transform.rotation;
+                rb.linearVelocity = Vector2.zero;
                 patrolSpeed = 0f;
                 chaseSpeed = 0f;
 
-                //lo desestuneamos tras el cooldown, (el invoke es parea esperar a hacer algo)
-                Invoke(nameof(EndStun), cooldownAfterHit);
+                //me guardo el momento en que el jugador toco al robot en una variable para luego comprobarlo en el fixedUpdate
+                temporizador = Time.time + cooldownAfterHit;
+
             }  
         }
     }
