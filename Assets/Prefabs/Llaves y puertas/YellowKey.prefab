@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5285122005694687281}
   - component: {fileID: 5429982853389509728}
   m_Layer: 0
-  m_Name: BlueKey
+  m_Name: YellowKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5699320881675046877, guid: 6cacdf3dad34da24f969ea2ff9edd90b, type: 3}
+  m_Sprite: {fileID: -1068248663753355543, guid: efb57ae4fcad159439e9d7a15608d377, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425e23cf75365f440a8f0eb31b54398a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyColor: Blue
+  KeyColor: Red
