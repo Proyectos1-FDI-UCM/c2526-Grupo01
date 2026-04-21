@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
     private AudioSource levelMusicTrack;
 
     //posicion incial
-    public Vector3 respawnPoint = new Vector3(-5f, -25f, 0f);
+    [SerializeField]
+    private Vector3 respawnPoint;
 
     #endregion
 
@@ -88,11 +89,13 @@ public class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
             Init();
+
+            //activo la musica del nivel
+            levelMusicTrack.Play();
+
         } // if-else somos instancia nueva o no.
 
 
-        //activo la musica del nivel
-        levelMusicTrack.Play();
     }
 
     /// <summary>
@@ -162,13 +165,17 @@ public class GameManager : MonoBehaviour
         System.GC.Collect();
     } // ChangeScene
 
+
     //le pasamos x referencia la posicion del checkpoint 
     public void SetRespawnPoint(Vector3 checkPoint)
     {
         respawnPoint = checkPoint;
     }
 
-
+    public Vector3 GetRespawn()
+    {
+        return respawnPoint;
+    }
 
     #endregion
 

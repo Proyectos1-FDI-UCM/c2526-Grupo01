@@ -15,28 +15,32 @@ using UnityEngine;
 public class Collision : MonoBehaviour
 {
     [Header("Capas")]
-    public LayerMask groundLayer;
+    [SerializeField]
+    private LayerMask groundLayer;
 
     [Space]
     //Las posibles colisiones: suelo (enemigos entraría aquí también) o pared.
-    public bool onGround;
-    public bool onWall;
+    private bool onGround;
+    private bool onWall;
 
     [Space]
 
     [Header("Colisiones")]
-
-    public float collisionRadius = 0.3f; //el tamaño de los círculos (el radio)
-    public Vector2 bottomOffset, rightOffset, leftOffset;
+    [SerializeField]
+    private float collisionRadius = 0.3f; //el tamaño de los círculos (el radio)
+    [SerializeField]
+    private Vector2 bottomOffset, rightOffset, leftOffset;
 
     [Header("Dimensiones capsula suelo")]
-    public Vector2 sizeSuelo = new Vector2(2f, 1.5f); // ancho x alto
+    [SerializeField]
+    private Vector2 sizeSuelo = new Vector2(2f, 1.5f); // ancho x alto
 
 
     [Header("Dimensiones capsulas Paredes")]
 
     //capsulas para las paredes
-    public Vector2 size = new Vector2(0.5f, 3.18f); // ancho x alto
+    [SerializeField]
+    private Vector2 size = new Vector2(0.5f, 3.18f); // ancho x alto
 
 
     void Update()
@@ -48,6 +52,21 @@ public class Collision : MonoBehaviour
 
         //la funcion overlapCircle() lo que hace es devolver true si toca algo.
     }
+
+
+    public bool IsOnGround()
+    {
+        return onGround;
+    }
+
+    public bool IsOnWall()
+    {
+        return onWall;
+    }
+
+
+
+
 
     //esto es únicamente para debugear y solo se ve en la escena, pero basicamente lo que hace es dibujar en la escena los circulos creados para poder visualizarlos
     void OnDrawGizmos()
@@ -98,4 +117,6 @@ public class Collision : MonoBehaviour
         Gizmos.DrawLine(left + Vector2.up * radius, right + Vector2.up * radius);
         Gizmos.DrawLine(left + Vector2.down * radius, right + Vector2.down * radius);
     }
+
+
 } 

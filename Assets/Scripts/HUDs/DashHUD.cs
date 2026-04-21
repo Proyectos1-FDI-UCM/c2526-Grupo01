@@ -8,12 +8,16 @@ using UnityEngine;
 using UnityEngine.UI;
 //uso la libreria DOTween que es la que nos permiten los profes
 using DG.Tweening;
+using System.Runtime.CompilerServices;
 
 // Script para mostrar/ocultar el HUD del Dash
 public class DashHUD : MonoBehaviour
 {
-    public Image dashIcon;
-    public float fadeSpeed = 5f;
+    [SerializeField]
+    private Image dashIcon;
+
+    [SerializeField]
+    private float fadeSpeed = 5f;
 
     [SerializeField]
     private PlayerMovement jugador;
@@ -24,6 +28,22 @@ public class DashHUD : MonoBehaviour
 
     private bool visible = false;
     private Vector3 originalScale;
+
+
+    //Pongo constantes para que no existan "números mágicos",
+    //y pongo constantes en lugar de serializables xq en principio están bien y no se deberían tocar
+    private const float POP_INITIAL_SCALE = 0.7f;
+    private const float POP_TARGET_SCALE = 1f;
+    //lo q dura la animación
+    private const float POP_DURATION = 0.2f;
+
+    private const float FADE_IN_DURATION = 0.1f;
+    private const float FADE_FROM_ALPHA = 0.3f;
+
+    //alpha a 1 es q esta completamente visible
+    private const float VISIBLE_ALPHA = 1f;
+    //a 0 es invisible
+    private const float HIDDEN_ALPHA = 0f;
 
     void Start()
     {
@@ -43,14 +63,14 @@ public class DashHUD : MonoBehaviour
 
             if (visible)
             {
-                dashIcon.transform.localScale = originalScale * 0.7f;
+                dashIcon.transform.localScale = originalScale * POP_INITIAL_SCALE;
 
                 //esto es para que haga pop, usando las librerias dot
-                dashIcon.transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
+                dashIcon.transform.DOScale(POP_TARGET_SCALE, POP_DURATION).SetEase(Ease.OutBack);
 
                 //y esto es para que flashee al rellenarse
                 dashIcon.color = Color.white;
-                dashIcon.DOFade(1f, 0.1f).From(0.3f);
+                dashIcon.DOFade(VISIBLE_ALPHA, FADE_IN_DURATION).From(FADE_FROM_ALPHA);
 
                 readySound.Play();
             }
@@ -63,11 +83,11 @@ public class DashHUD : MonoBehaviour
 
         if (visible)
         {
-            targetAlpha = 1f; //alpha a 1 es q esta completamente visible
+            targetAlpha = VISIBLE_ALPHA; 
         }
         else
         {
-            targetAlpha = 0f; //a 0 es invisible
+            targetAlpha = HIDDEN_ALPHA;
         }
 
         c.a = Mathf.Lerp(c.a, targetAlpha, Time.deltaTime * fadeSpeed);

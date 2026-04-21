@@ -11,8 +11,11 @@ using UnityEngine;
 
 
 /// <summary>
-/// Comprotamiento del enemigo Robot, este enimgo va patrullando de derecha
-/// a izquierda hasta que entra en visión el jugador ahí, lo persigue.
+/// Comprotamiento del enemigo Robot: Este enimgo va patrullando de derecha
+/// a izquierda, si entra en visión con el jugador (detectado con un trigger)
+/// entonces persigue al enemigo a una mayor velocidad "chaseSpeed" mientras se encuentre bajo su visión,
+/// cuando el jugador escapa de su rango de visión el robot regresa a su comportamiento original,
+/// es decir, que baja su velocidad hasta "patrolSpeed" y sigue moviendose de derecha a izquierda.
 /// </summary>
 public class RobotEnemy : MonoBehaviour
 {
@@ -84,11 +87,13 @@ public class RobotEnemy : MonoBehaviour
             EndStun();   
         }
 
+        Transform target = vision.GetTarget();
+
         //si ve al jugador lo persique
-        if (vision != null && vision.target != null)
+        if (vision != null && target != null)
         {
             //calculamos la dirección de donde esta el jugador (izquierda o derecha)
-            float dx = vision.target.position.x - transform.position.x;
+            float dx = target.position.x - transform.position.x;
             dir = Mathf.Sign(dx);
 
             //se mueve el robot hacia el jugador (solo en el eje x claro)

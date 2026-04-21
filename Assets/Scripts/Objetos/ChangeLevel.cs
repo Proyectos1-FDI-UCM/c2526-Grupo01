@@ -12,7 +12,7 @@ using UnityEngine;
 /// <summary>
 // Sript para teletransportar al jugador a otra escena cuando entra por una puerta
 /// </summary>
-public class Door : MonoBehaviour
+public class ChangeLevel : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

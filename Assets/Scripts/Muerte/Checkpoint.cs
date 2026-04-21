@@ -24,6 +24,7 @@ public class Checkpoint : MonoBehaviour
         {
             //luego aqui igual poner por
 
+
             GameManager.Instance.SetRespawnPoint(transform.position);
         }
     }

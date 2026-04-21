@@ -35,11 +35,15 @@ public class PlayerMovement : MonoBehaviour
 
     //velocidad
     [SerializeField]
-    private float speed = 10f;
+    private float walkSpeed = 10f;
 
     //Fuerza (velocidad) del salto
     [SerializeField]
     private float jumpForce = 7f;
+
+    //velocidad actual del player
+    private float currentSpeed;
+
 
     [Space]
     [Header("Sprint")]
@@ -47,11 +51,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float sprintSpeed = 17f;
 
-    //Velocidad actual del player.
-    [SerializeField]
-    private float currentSpeed = 10f;
     [SerializeField]
     private float verticalSpeed = 0f;
+
 
     //el tiempo que tarda en llegar a la velocidad máxima del sprint (a más alto mas rápido)
     [SerializeField]
@@ -67,22 +69,26 @@ public class PlayerMovement : MonoBehaviour
     private float knockbackLockTime = 0.15f;
 
 
+
     [Space]
     [Header("Booleanos")]
 
-    public bool canMove = true;
-    public bool isDashing = false;
-    public bool isSprinting = false;
-    public bool wasSprinting = false;
+    [SerializeField]
+    private bool canMove = true;
+    [SerializeField]
+    private bool isDashing = false;
+    [SerializeField]
+    private bool isSprinting = false;
+    [SerializeField]
+    private bool wasSprinting = false;
 
     //settea si el jugador está agarrando/empujando algo
     private bool isGrabbing = false;
 
 
     [Space]
-
-    private bool groundTouch; //para detectar si esta en el suelo
-    private bool hasDashed;  //para detectar si ya ha dasheado
+    //para detectar si ya ha dasheado
+    private bool hasDashed;
 
     private float moveInput;
 
@@ -124,8 +130,11 @@ public class PlayerMovement : MonoBehaviour
         //asignamos la animacion para voltear el sprite
         anim = GetComponentInChildren<animacionprov>();
 
+        //inicializamos la velocidad actual a la de cuando el jugador anda
+        currentSpeed = walkSpeed;
+
         //para los checkpoints (comentad esta línea para comodidad en el testing)
-        //transform.position = GameManager.Instance.respawnPoint;
+        //transform.position = GameManager.Instance.GetRespawn();
 
     }
 
@@ -166,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
                 anim.Flip(1);
                 dashDirection = new Vector2(1, 0).normalized;
             }
-            else if(!isRight) //esta mirando a la izquierda
+            else if (!isRight) //esta mirando a la izquierda
             {
                 //si no hay input hace el dash hacia donde mira el personaje
                 anim.Flip(-1);
@@ -174,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (coll.onGround && !isDashing)
+        if (coll.IsOnGround() && !isDashing)
         {
             hasDashed = false;
         }
@@ -196,16 +205,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (coll.onGround && !isDashing)
-        {
-            GetComponent<BetterJumping>().enabled = true;
-        }
-
-
+        //Salto
         if (InputManager.Instance.JumpWasPressedThisFrame())
         {
             //si esta en el suelo puede saltar
-            if (coll.onGround && rb.linearVelocityY <= 0)
+            if (coll.IsOnGround() && rb.linearVelocityY <= 0)
             {
                 Jump(Vector2.up);
             }
@@ -214,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Sprint
-        if (coll.onGround && InputManager.Instance.SprintIsPressed())
+        if (coll.IsOnGround() && InputManager.Instance.SprintIsPressed())
         {
             Sprint();
 
@@ -230,13 +234,12 @@ public class PlayerMovement : MonoBehaviour
         //si suelta el botón de sprintar volvemos a la velociad normal
         if (!isSprinting)
         {
-            //currentSpeed = speed;
-            currentSpeed = Mathf.MoveTowards(currentSpeed, speed, timeDeceleration * Time.deltaTime);
+            currentSpeed = Mathf.MoveTowards(currentSpeed, walkSpeed, timeDeceleration * Time.deltaTime);
             sprintParticles.Stop();
         }
 
         //x si no estan las particulas
-        if (isSprinting && coll.onGround)
+        if (isSprinting && coll.IsOnGround())
         {
             if (!sprintParticles.isPlaying)
                 sprintParticles.Play();
@@ -263,8 +266,6 @@ public class PlayerMovement : MonoBehaviour
     //método para que el personaje ande, le pasamos la dirección x parámetro
     private void Walk(float moveX)
     {
-        // rb.linearVelocity = (new Vector2(moveX * currentSpeed, rb.linearVelocity.y));
-
         if (knockbackLockTimer > 0)
         {
             knockbackLockTimer -= Time.deltaTime;
@@ -290,12 +291,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Sprint()
     {
-        // currentSpeed = sprintSpeed;
-
-        float targetSpeed = sprintSpeed;
-
         //aceleración progresiva antes del sprint
-        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, timeAceleration * Time.deltaTime);
+        currentSpeed = Mathf.MoveTowards(currentSpeed, sprintSpeed, timeAceleration * Time.deltaTime);
     }
 
 
@@ -326,7 +323,7 @@ public class PlayerMovement : MonoBehaviour
             dashSound.Play();
         }
 
-        dashTimer = dashTimer - Time.deltaTime;
+        dashTimer = dashTimer - Time.fixedDeltaTime;
 
         //velocidad de dash
         rb.linearVelocity = dashDirection * dashSpeed;
@@ -347,7 +344,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //esto es para la interfaz del dsash
+    //esto es para la interfaz del dash
     public bool canDashUI()
     {
         if (!isDashing && !hasDashed && dashTimer <= 0)
