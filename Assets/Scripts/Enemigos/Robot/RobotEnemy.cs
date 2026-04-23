@@ -20,6 +20,8 @@ using UnityEngine;
 public class RobotEnemy : MonoBehaviour
 {
 
+    private Animator anim;
+
     [Space]
     [Header("Configuración del Robot")]
 
@@ -68,6 +70,7 @@ public class RobotEnemy : MonoBehaviour
 
     private float temporizador;
 
+
     private void Start()
     {
         patrolSpeedDefault = patrolSpeed;
@@ -76,6 +79,12 @@ public class RobotEnemy : MonoBehaviour
         stunned = false;
         rb = GetComponent<Rigidbody2D>();
         temporizador = 10000f;
+        //incializo el animator
+        anim = GetComponentInChildren<Animator>();
+
+        //x defecto esta la de modo patrulla, aunque debería entrar igual
+        anim.SetBool("modoPersecucion", false);
+        anim.SetBool("parado", false);
     }
 
 
@@ -92,6 +101,9 @@ public class RobotEnemy : MonoBehaviour
         //si ve al jugador lo persique
         if (vision != null && target != null)
         {
+            //activo la animación de perseguir
+            anim.SetBool("modoPersecucion", true);
+
             //calculamos la dirección de donde esta el jugador (izquierda o derecha)
             float dx = target.position.x - transform.position.x;
             dir = Mathf.Sign(dx);
@@ -111,6 +123,9 @@ public class RobotEnemy : MonoBehaviour
         }
         else //si no ve al jugador patrulla (anda d lado a lado)
         {
+            //animación en modo patrulla
+            anim.SetBool("modoPersecucion", false);
+
             //si no ve al jugador sigue patrullando
             timer = timer + Time.deltaTime;
 
@@ -169,7 +184,9 @@ public class RobotEnemy : MonoBehaviour
 
             //paramos al robot durante unos segundos tras tocarlo
             if (!stunned) 
-            { 
+            {
+                anim.SetBool("parado", true);
+
                 stunned = true;
                 //guardamos la direccion del sprite
                 lockedRotation = transform.rotation;
@@ -187,6 +204,9 @@ public class RobotEnemy : MonoBehaviour
     //finaliza el stun del robot y continua como de costummbre
     private void EndStun() 
     {
+        anim.SetBool("modoPersecucion", false);
+        anim.SetBool("parado", false);
+
         patrolSpeed = patrolSpeedDefault;
         chaseSpeed = chaseSpeedDefault;
         stunned = false;

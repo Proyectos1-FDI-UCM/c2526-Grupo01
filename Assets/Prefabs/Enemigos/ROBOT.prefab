@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2553e4fdd158fab44a7533ec360eee6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 4.45
-  chaseSpeed: 3.64
+  patrolSpeed: 3
+  chaseSpeed: 9
   patrolTurnTime: 1
   vision: {fileID: 7755604957564239563}
   knockbackForceX: 6
@@ -210,7 +210,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.21371937, y: 0.30844027}
+  m_Offset: {x: 2.5319824, y: 0.30844027}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -220,7 +220,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 10.727802, y: 1.0422224}
+  m_Size: {x: 8.438309, y: 1.0422224}
   m_EdgeRadius: 0
 --- !u!114 &7755604957564239563
 MonoBehaviour:
@@ -244,6 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1709707266629665833}
   - component: {fileID: 2629005060605675594}
+  - component: {fileID: 483038547465466426}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -321,3 +322,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &483038547465466426
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068644594828688194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6aee3b9ca43076849ac42f6ffdb0dbf1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
