@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5983825763135398690}
   - component: {fileID: 8817905290281096688}
   m_Layer: 0
-  m_Name: largedollHitbox
+  m_Name: LargedollHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

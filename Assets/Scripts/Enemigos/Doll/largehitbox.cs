@@ -8,7 +8,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class largehitbox : MonoBehaviour
+public class Largehitbox : MonoBehaviour
 {
     [SerializeField]
     private float knockbackForceX = 6f;
@@ -22,9 +22,12 @@ public class largehitbox : MonoBehaviour
     [SerializeField]
     private int noisedamage = 3;
 
-    public void Start()
+    private float timer = 0f;
+
+    private void FixedUpdate()
     {
-        Invoke(nameof(destroySelf), attackduration);
+        if (timer >= attackduration) Destroy(gameObject);
+        else timer += Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,9 +51,5 @@ public class largehitbox : MonoBehaviour
             Noise noise = collision.gameObject.GetComponent<Noise>();
             noise.takeNoise(noisedamage);
         }
-    }
-    private void destroySelf()
-    { 
-        Destroy(gameObject);
     }
 }
