@@ -23,8 +23,6 @@ public class PauseHUD : MonoBehaviour
     [SerializeField] //el script del playerMovement del jugador
     private MonoBehaviour player;
 
-    [SerializeField] //ganchooo
-    private MonoBehaviour gancho;
 
     private bool activo;
 
@@ -100,13 +98,6 @@ public class PauseHUD : MonoBehaviour
                         script.enabled = true;
                     }
                 }
-            }
-
-            MonoBehaviour[] scriptsGancho = player.GetComponents<MonoBehaviour>();
-
-            foreach (MonoBehaviour script in scriptsGancho)
-            {
-                script.enabled = true;
             }
 
         }

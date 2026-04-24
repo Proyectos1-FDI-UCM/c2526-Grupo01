@@ -128,9 +128,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4041672874709893958, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
+      propertyPath: sceneNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041672874709893958, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 729931615}
+    - target: {fileID: 4041672874709893958, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
+      propertyPath: initialSpawnPoint.x
+      value: 507
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041672874709893958, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
+      propertyPath: initialSpawnPoint.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 5714410296299232247, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -192,7 +204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e67665ea226d403ab8b32a4b067d8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 1
 --- !u!1 &682998152
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e67665ea226d403ab8b32a4b067d8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 1
 --- !u!1001 &304342008588681815
 PrefabInstance:
   m_ObjectHideFlags: 0

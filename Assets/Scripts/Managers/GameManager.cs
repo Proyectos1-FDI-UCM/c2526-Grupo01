@@ -46,9 +46,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioSource levelMusicTrack;
 
+    //respawnpoint
+    private Vector3 respawnPoint;
+
+
     //posicion incial
     [SerializeField]
-    private Vector3 respawnPoint;
+    private Vector3 initialSpawnPoint;
+
+    [SerializeField]
+    private int sceneNumber;
 
     #endregion
 
@@ -89,7 +96,7 @@ public class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
             Init();
-
+            respawnPoint = initialSpawnPoint;
             //activo la musica del nivel
             levelMusicTrack.Play();
 
@@ -108,6 +115,11 @@ public class GameManager : MonoBehaviour
             // Éramos la instancia de verdad, no un clon.
             _instance = null;
         } // if somos la instancia principal
+    }
+
+    private void Update()
+    {
+        Debug.Log("El numero de escena es: " + sceneNumber);
     }
 
     #endregion
@@ -177,6 +189,50 @@ public class GameManager : MonoBehaviour
         return respawnPoint;
     }
 
+    public void ResetRespawn(Vector3 point)
+    {
+        if (point != null)
+        {
+            respawnPoint = point;
+        }
+        else 
+        {
+            respawnPoint = initialSpawnPoint;
+        }
+    }
+
+    public void InitalRespawn(Vector3 point)
+    {
+        initialSpawnPoint = point;
+        respawnPoint = initialSpawnPoint;
+    }
+
+    public string GetScene() 
+    {
+        if(sceneNumber == 0) 
+        {
+            return "MenuPrincipal";
+        }
+        else if(sceneNumber == 1) 
+        {
+            return "Nivel1";
+        }
+        else if (sceneNumber == 2)
+        {
+            return "ArreglosGeneralesDani";
+        }
+        else
+        {
+            return "ArreglosGeneralesDani";
+        }
+
+    }
+
+    public void NextNumberScene(int n) 
+    {
+        sceneNumber = n;
+    }
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -197,6 +253,7 @@ public class GameManager : MonoBehaviour
         // a otro manager
     }
 
+ 
     #endregion
 } // class GameManager 
 // namespace

@@ -24,11 +24,11 @@ public class ChangeScene : MonoBehaviour
     /// Índice de la escena (en el build settings)
     /// que se cargará. 
     /// </summary>
-    [SerializeField]
-    private int nextScene;
+
+
 
     #endregion
-    
+
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
     // Documentar cada atributo que aparece aquí.
@@ -39,10 +39,10 @@ public class ChangeScene : MonoBehaviour
     // Ejemplo: _maxHealthPoints
 
     #endregion
-    
+
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-    
+
     // Por defecto están los típicos (Update y Start) pero:
     // - Hay que añadir todos los que sean necesarios
     // - Hay que borrar los que no se usen 
@@ -54,9 +54,11 @@ public class ChangeScene : MonoBehaviour
     /// <summary>
     /// Cambia de escena haciendo uso del GameManager
     /// </summary>
+    /// 
+
     public void ChangeToNextScene()
     {
-        GameManager.Instance.ChangeScene(nextScene);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(GameManager.Instance.GetScene());
     }
 
     public void MenuPrincipal()

@@ -865,7 +865,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1805685925}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: NivelPrueba
+        m_MethodName: ChangeToNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
