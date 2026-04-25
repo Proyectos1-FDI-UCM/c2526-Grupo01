@@ -1,34 +1,38 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Zona invisible que detecta cuando el jugador entra o sale y avisa al enemigo para que empiece o deje de perseguirlo.
+// Darío Pérez Zamorano
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
 using UnityEngine;
-// Añadir aquí el resto de directivas using
 
-
-/// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
-/// </summary>
 public class BujaranaZone : MonoBehaviour
 {
-    public BujaranaEnemy bujarana;
-    public Transform player;
+    // referencia al enemigo (la asignamos desde unity)
+    [SerializeField] private BujaranaEnemy bujarana;
 
+    // referencia al jugador
+    [SerializeField] private Transform player;
+
+    // se ejecuta cuando algo entra en la zona (trigger)
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // comprobamos si el que entra es el jugador
         if (collision.transform == player)
         {
+            // avisamos al enemigo de que el jugador ha entrado
             bujarana.PlayerEnteredZone();
         }
     }
+
+    // se ejecuta cuando algo sale de la zona
     private void OnTriggerExit2D(Collider2D collision)
     {
-       if (collision.transform == player)
+        // comprobamos si el que sale es el jugador
+        if (collision.transform == player)
         {
+            // avisamos al enemigo de que el jugador se ha ido
             bujarana.PlayerLeftZone();
         }
     }

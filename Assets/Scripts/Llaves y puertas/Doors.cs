@@ -1,36 +1,37 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Script para asignar tipo a la puerta, y que esta se abre si se posee la llave correspondiente.
+// Darío Pérez Zamorano
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
 using UnityEngine;
-// Añadir aquí el resto de directivas using
 
-
-/// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
-/// </summary>
 public class Doors : MonoBehaviour
 {
-    public string requiredKey;
+    // llave necesaria para abrir la puerta (se pone en unity)
+    [SerializeField] private string requiredKey;
 
+    // esto se ejecuta cuando algo choca con la puerta
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        KeyInventory keyinventory = collision.gameObject.GetComponent<KeyInventory>();
+        // intentamos coger el inventario del objeto que choca
+        KeyInventory keyInventory = collision.gameObject.GetComponent<KeyInventory>();
 
-        if (keyinventory != null )
+        // si tiene inventario (jugador)
+        if (keyInventory != null)
         {
-            if (keyinventory.HasKey(requiredKey))
+            // comprobamos si tiene la llave correcta
+            if (keyInventory.HasKey(requiredKey))
             {
+                // si la tiene, abrimos la puerta (la borramos)
                 Debug.Log("Puerta abierta");
                 Destroy(gameObject);
             }
             else
             {
-                Debug.Log("Necesitas la llave" + requiredKey);
+                // si no la tiene, avisamos
+                Debug.Log("Necesitas la llave " + requiredKey);
             }
         }
     }
