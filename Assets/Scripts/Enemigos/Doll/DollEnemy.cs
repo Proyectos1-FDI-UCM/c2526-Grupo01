@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Comportamiento de la muñeca, también controla sus animaciones de caída
+// Adrián de la Calle
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------

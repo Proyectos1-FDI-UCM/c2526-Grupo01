@@ -1,14 +1,13 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Comportamiento del AREA DE DAÑO generada por la muñeca
+// Adrián de la Calle
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
-
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Largehitbox : MonoBehaviour
+public class DollArea : MonoBehaviour
 {
     [SerializeField]
     private float knockbackForceX = 6f;

@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private animacionprov anim;
+    private AnimaPlayer anim;
 
 
     //Partículas
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<Collision>();
 
         //asignamos la animacion para voltear el sprite
-        anim = GetComponentInChildren<animacionprov>();
+        anim = GetComponentInChildren<AnimaPlayer>();
 
         //inicializamos la velocidad actual a la de cuando el jugador anda
         currentSpeed = walkSpeed;

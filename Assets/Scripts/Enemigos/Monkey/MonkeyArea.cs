@@ -1,3 +1,9 @@
+//---------------------------------------------------------
+// Zona que mantiene el ciclo de ataques del mono activos mientras el jugador esté dentro
+// Adrián de la Calle
+// Coulro
+// Proyectos 1 - Curso 2025-26
+//---------------------------------------------------------
 
 using UnityEngine;
 

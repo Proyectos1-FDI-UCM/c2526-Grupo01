@@ -1,4 +1,9 @@
-
+//---------------------------------------------------------
+// Comportamiento del mono, y ciclo de ataques
+// Adrián de la Calle
+// Coulro
+// Proyectos 1 - Curso 2025-26
+//---------------------------------------------------------
 
 using UnityEngine;
 using System.Collections;
@@ -43,6 +48,8 @@ public class Monkey : MonoBehaviour
     private float timerWave = 0f;
     private Vector3 posicionOriginal;
 
+    private bool attacking = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -52,6 +59,7 @@ public class Monkey : MonoBehaviour
     {
         if (jump == attacksBeforeJump)
         {
+            attacking = false;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, velocidadSalto);
             jump = 0;
         }
@@ -62,6 +70,7 @@ public class Monkey : MonoBehaviour
         {
             if (timer >= descansoAtaques)
             {
+                attacking = true;
                 if (timerWave >= i * descansoProyectiles)
                 {
                     if (i == numeroProyectiles)
@@ -78,16 +87,19 @@ public class Monkey : MonoBehaviour
                     }
                 }
 
-            timerWave = timerWave + Time.fixedDeltaTime;
+                timerWave = timerWave + Time.fixedDeltaTime;
             }
-
-
-            else timer = timer + Time.fixedDeltaTime;
+            else
+            {
+                timer = timer + Time.fixedDeltaTime;
+                attacking = false;
+            }
         }
         else
         {
             timerWave = 0f;
             timer = 0f;
+            attacking = false;
         }
     }
 
@@ -120,5 +132,9 @@ public class Monkey : MonoBehaviour
             player.ApplyKnockback(pushX * knockbackForceX, knockbackForceY);
 
         }
+    }
+    public bool IsAttacking()
+    {
+        return attacking;
     }
 }

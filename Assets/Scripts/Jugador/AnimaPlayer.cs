@@ -3,7 +3,7 @@ using UnityEngine.U2D;
 //CODIGO PROVISIONAL PARA PROBAR LAS ANIMACIONES
 
 
-public class animacionprov : MonoBehaviour
+public class AnimaPlayer : MonoBehaviour
 {
     [SerializeField]
     Animator _animator;

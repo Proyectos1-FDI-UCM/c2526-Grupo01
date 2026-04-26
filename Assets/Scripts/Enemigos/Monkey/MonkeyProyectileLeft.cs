@@ -1,12 +1,11 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Comportamiento de los proyectiles lanzados por el mono hacia la IZQUIERDA
+// Adrián de la Calle
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
 using UnityEngine;
-// Añadir aquí el resto de directivas using
 
 
 

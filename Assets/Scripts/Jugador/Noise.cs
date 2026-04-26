@@ -169,7 +169,11 @@ public class Noise : MonoBehaviour
         targetNoiseHUDAlpha = 1;
     }
 
-   
+   public float GetNoise() //Adrián
+    {
+        //Para la mano que avisa de muerte, devuelve el nivel de ruido
+        return noiseLevel;
+    }
 
     
 }
