@@ -391,4 +391,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    public bool GetIsDashing()
+    {
+        return isDashing;
+    }
+
+
 }
