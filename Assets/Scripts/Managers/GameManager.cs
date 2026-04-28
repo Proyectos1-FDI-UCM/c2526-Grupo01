@@ -46,8 +46,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioSource levelMusicTrack;
 
+    //respawnpoint
+    private Vector3 respawnPoint;
+
+
     //posicion incial
-    public Vector3 respawnPoint = new Vector3(-5f, -25f, 0f);
+    [SerializeField]
+    private Vector3 initialSpawnPoint;
+
+    [SerializeField]
+    private int sceneNumber;
 
     #endregion
 
@@ -88,11 +96,13 @@ public class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
             Init();
+            respawnPoint = initialSpawnPoint;
+            //activo la musica del nivel
+            levelMusicTrack.Play();
+
         } // if-else somos instancia nueva o no.
 
 
-        //activo la musica del nivel
-        levelMusicTrack.Play();
     }
 
     /// <summary>
@@ -105,6 +115,11 @@ public class GameManager : MonoBehaviour
             // Éramos la instancia de verdad, no un clon.
             _instance = null;
         } // if somos la instancia principal
+    }
+
+    private void Update()
+    {
+        Debug.Log("El numero de escena es: " + sceneNumber);
     }
 
     #endregion
@@ -162,13 +177,61 @@ public class GameManager : MonoBehaviour
         System.GC.Collect();
     } // ChangeScene
 
+
     //le pasamos x referencia la posicion del checkpoint 
     public void SetRespawnPoint(Vector3 checkPoint)
     {
         respawnPoint = checkPoint;
     }
 
+    public Vector3 GetRespawn()
+    {
+        return respawnPoint;
+    }
 
+    public void ResetRespawn(Vector3 point)
+    {
+        if (point != null)
+        {
+            respawnPoint = point;
+        }
+        else 
+        {
+            respawnPoint = initialSpawnPoint;
+        }
+    }
+
+    public void InitalRespawn(Vector3 point)
+    {
+        initialSpawnPoint = point;
+        respawnPoint = initialSpawnPoint;
+    }
+
+    public string GetScene() 
+    {
+        if(sceneNumber == 0) 
+        {
+            return "MenuPrincipal";
+        }
+        else if(sceneNumber == 1) 
+        {
+            return "Nivel1";
+        }
+        else if (sceneNumber == 2)
+        {
+            return "ArreglosGeneralesDani";
+        }
+        else
+        {
+            return "ArreglosGeneralesDani";
+        }
+
+    }
+
+    public void NextNumberScene(int n) 
+    {
+        sceneNumber = n;
+    }
 
     #endregion
 
@@ -190,6 +253,7 @@ public class GameManager : MonoBehaviour
         // a otro manager
     }
 
+ 
     #endregion
 } // class GameManager 
 // namespace

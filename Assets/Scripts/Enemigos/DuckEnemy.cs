@@ -27,25 +27,11 @@ public class DuckEnemy : MonoBehaviour
     [SerializeField]
     private AudioSource quackAudio;
 
-
-    //DEFORMAR EL SPRITE, como estrujarlo cuando se toca
-    [SerializeField]
-    private Transform spriteTransform;
-    private Vector3 originalScale;
-
-    [SerializeField]
-    private float squashX = 1f;
-    [SerializeField] 
-    private float squashY = 0.5f;
-
     [SerializeField] //ANIMATOR DE ADRIÁN
     private Animator _animator;
 
     private void Start()
     {
-        //nos guardamos la escala original del sprite
-        originalScale = spriteTransform.localScale;
-
         _animator = GetComponent<Animator>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -69,21 +55,8 @@ public class DuckEnemy : MonoBehaviour
             //reproducimos el sonido del pato cuando choca el jugador
             quackAudio.Play();
             //animacion como de estruje para el pato
-            //Squash();
             _animator.SetTrigger("choque");
         }
     }
 
-    public void Squash() 
-    {
-        spriteTransform.localScale = new Vector3(squashX, squashY, 1f);
-        //el invoke lo que hace es esperar un tiempo y luego llama al metodo
-        //en este caso llama a resetear el squash
-        Invoke(nameof(ResetSquash), 0.2f);
-    }
-
-    void ResetSquash()
-    {
-        spriteTransform.localScale = originalScale;
-    }
 } 

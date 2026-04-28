@@ -1,4 +1,4 @@
-//---------------------------------------------------------
+///---------------------------------------------------------
 // Menú de pausa
 // Daniel García Andrés
 // Coulro
@@ -39,7 +39,7 @@ public class PauseHUD : MonoBehaviour
     {
         if (MenuPausa != null)
         {
-            
+
             if (InputManager.Instance.PauseWasPressedThisFrame())
             {
                 UpdateHUD();
@@ -55,12 +55,12 @@ public class PauseHUD : MonoBehaviour
     }
 
     //si esta activo se oculta y viceversa
-    private void UpdateHUD() 
+    private void UpdateHUD()
     {
         //busca todos los gameObjects en la escena que tenga el script Enemy.cs (los enemigos vaya) para luego desactivarlos
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
 
-        if (activo) 
+        if (activo)
         {
             //reanuda todas las físicas
             Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
@@ -69,17 +69,8 @@ public class PauseHUD : MonoBehaviour
             activo = false;
 
             //se activa el jugador
-            if (player != null) 
+            if (player != null)
             {
-                /* Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-
-                if (rb != null)
-                {
-                    rb.simulated = true;
-                }
-
-                */
-
                 //activo d nuevo todos los scripts del jugador
                 MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
 
@@ -87,12 +78,15 @@ public class PauseHUD : MonoBehaviour
                 {
                     script.enabled = true;
                 }
-            } 
+
+
+         
+            }
 
             //se recorre el array entero activando todos los enemigos
             foreach (Enemy enemy in enemies)
             {
-                if (enemy != null) 
+                if (enemy != null)
                 {
                     //creo un array de scripts de lo enemigos
                     MonoBehaviour[] scripts = enemy.GetComponents<MonoBehaviour>();
@@ -103,7 +97,7 @@ public class PauseHUD : MonoBehaviour
                         //activamos los scripts
                         script.enabled = true;
                     }
-                } 
+                }
             }
 
         }
@@ -118,18 +112,6 @@ public class PauseHUD : MonoBehaviour
             //se desactiva el jugador
             if (player != null)
             {
-                /* Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-
-                if (rb != null)
-                {
-                    rb.linearVelocity = Vector2.zero;
-                    rb.angularVelocity = 0f;
-                    rb.simulated = false;
-                }
-
-               */
-
-
                 //busco y desactivo d nuevo todos los scripts del jugador
                 MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
 
@@ -154,8 +136,15 @@ public class PauseHUD : MonoBehaviour
                 }
             }
 
+            MonoBehaviour[] scriptsGancho = player.GetComponents<MonoBehaviour>();
+
+            foreach (MonoBehaviour script in scriptsGancho)
+            {
+                script.enabled = false;
+            }
+
         }
     }
 
 
-} 
+}

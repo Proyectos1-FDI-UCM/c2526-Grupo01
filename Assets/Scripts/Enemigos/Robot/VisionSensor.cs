@@ -15,7 +15,7 @@ using UnityEngine;
 public class VisionSensor : MonoBehaviour
 {
     //guardamos el objetivo (q en este caso será el jugador)
-    public Transform target { get; private set; }
+    private Transform target;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -37,6 +37,9 @@ public class VisionSensor : MonoBehaviour
         }
     }
 
-
+    public Transform GetTarget()
+    {
+        return target;
+    }
 
 } 

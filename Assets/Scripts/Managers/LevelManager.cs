@@ -1,7 +1,7 @@
 //---------------------------------------------------------
 // Gestor de escena. Podemos crear uno diferente con un
 // nombre significativo para cada escena, si es necesario
-// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín
+// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín, Daniel García Andrés
 // Template-P1
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -23,7 +23,6 @@ public class LevelManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
 
-    #region Atributos del Inspector (serialized fields)
 
     // Documentar cada atributo que aparece aquí.
     // El convenio de nombres de Unity recomienda que los atributos
@@ -31,11 +30,8 @@ public class LevelManager : MonoBehaviour
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
 
-    #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
-
-    #region Atributos Privados (private fields)
 
     /// <summary>
     /// Instancia única de la clase (singleton).
@@ -44,11 +40,11 @@ public class LevelManager : MonoBehaviour
 
 
 
-    #endregion
+
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
 
-    #region Métodos de MonoBehaviour
+
 
     protected void Awake()
     {
@@ -60,11 +56,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    #endregion
+
 
     // ---- MÉTODOS PÚBLICOS ----
 
-    #region Métodos públicos
+
 
     /// <summary>
     /// Propiedad para acceder a la única instancia de la clase.
@@ -91,11 +87,12 @@ public class LevelManager : MonoBehaviour
         return _instance != null;
     }
 
-    #endregion
+
+
+
 
     // ---- MÉTODOS PRIVADOS ----
 
-    #region Métodos Privados
 
     /// <summary>
     /// Dispara la inicialización.
@@ -109,6 +106,6 @@ public class LevelManager : MonoBehaviour
 
 
 
-    #endregion
+
 } // class LevelManager 
 // namespace

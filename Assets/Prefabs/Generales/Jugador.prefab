@@ -9787,10 +9787,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprintParticles: {fileID: 8075938607524013706}
   dashParticles: {fileID: 8197465411080101050}
-  speed: 10
-  jumpForce: 9.3
+  walkSpeed: 10
+  jumpForce: 12
   sprintSpeed: 20
-  currentSpeed: 10
   verticalSpeed: 0
   timeAceleration: 85
   timeDeceleration: 110
@@ -9799,7 +9798,7 @@ MonoBehaviour:
   isDashing: 1
   isSprinting: 0
   wasSprinting: 0
-  dashSpeed: 30
+  dashSpeed: 40
   dashUI: {fileID: 0}
   dashSound: {fileID: 1267995206995801504}
   sprintMultiplier: 1.8
@@ -9818,8 +9817,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  onGround: 0
-  onWall: 0
   collisionRadius: 0.31
   bottomOffset: {x: -0.29, y: -3.96}
   rightOffset: {x: 0.32, y: -2.2}
@@ -9838,8 +9835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f081a75363b38db42936f90f779782a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  fallMultiplier: 4
+  lowJumpMultiplier: 6
 --- !u!114 &3095624359927825909
 MonoBehaviour:
   m_ObjectHideFlags: 0

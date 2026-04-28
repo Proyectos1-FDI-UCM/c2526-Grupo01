@@ -18,8 +18,8 @@ public class Noise : MonoBehaviour
 
 
     /// DECLARACIÓN DE VARIABLES
-   // [SerializeField]
-    public float noiseLevel = 0f;   //Nivel de ruido
+    [SerializeField]
+    private float noiseLevel = 0f;   //Nivel de ruido
 
 
     //Variable que guarda el último momento de impacto en el tiempo
@@ -169,7 +169,11 @@ public class Noise : MonoBehaviour
         targetNoiseHUDAlpha = 1;
     }
 
-   
+   public float GetNoise() //Adrián
+    {
+        //Para la mano que avisa de muerte, devuelve el nivel de ruido
+        return noiseLevel;
+    }
 
     
 }

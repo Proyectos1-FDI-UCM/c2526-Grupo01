@@ -11,11 +11,16 @@ using UnityEngine;
 
 
 /// <summary>
-/// Comprotamiento del enemigo Robot, este enimgo va patrullando de derecha
-/// a izquierda hasta que entra en visión el jugador ahí, lo persigue.
+/// Comprotamiento del enemigo Robot: Este enimgo va patrullando de derecha
+/// a izquierda, si entra en visión con el jugador (detectado con un trigger)
+/// entonces persigue al enemigo a una mayor velocidad "chaseSpeed" mientras se encuentre bajo su visión,
+/// cuando el jugador escapa de su rango de visión el robot regresa a su comportamiento original,
+/// es decir, que baja su velocidad hasta "patrolSpeed" y sigue moviendose de derecha a izquierda.
 /// </summary>
 public class RobotEnemy : MonoBehaviour
 {
+
+    private Animator anim;
 
     [Space]
     [Header("Configuración del Robot")]
@@ -65,6 +70,7 @@ public class RobotEnemy : MonoBehaviour
 
     private float temporizador;
 
+
     private void Start()
     {
         patrolSpeedDefault = patrolSpeed;
@@ -73,6 +79,12 @@ public class RobotEnemy : MonoBehaviour
         stunned = false;
         rb = GetComponent<Rigidbody2D>();
         temporizador = 10000f;
+        //incializo el animator
+        anim = GetComponentInChildren<Animator>();
+
+        //x defecto esta la de modo patrulla, aunque debería entrar igual
+        anim.SetBool("modoPersecucion", false);
+        anim.SetBool("parado", false);
     }
 
 
@@ -84,11 +96,16 @@ public class RobotEnemy : MonoBehaviour
             EndStun();   
         }
 
+        Transform target = vision.GetTarget();
+
         //si ve al jugador lo persique
-        if (vision != null && vision.target != null)
+        if (vision != null && target != null)
         {
+            //activo la animación de perseguir
+            anim.SetBool("modoPersecucion", true);
+
             //calculamos la dirección de donde esta el jugador (izquierda o derecha)
-            float dx = vision.target.position.x - transform.position.x;
+            float dx = target.position.x - transform.position.x;
             dir = Mathf.Sign(dx);
 
             //se mueve el robot hacia el jugador (solo en el eje x claro)
@@ -106,6 +123,9 @@ public class RobotEnemy : MonoBehaviour
         }
         else //si no ve al jugador patrulla (anda d lado a lado)
         {
+            //animación en modo patrulla
+            anim.SetBool("modoPersecucion", false);
+
             //si no ve al jugador sigue patrullando
             timer = timer + Time.deltaTime;
 
@@ -164,7 +184,9 @@ public class RobotEnemy : MonoBehaviour
 
             //paramos al robot durante unos segundos tras tocarlo
             if (!stunned) 
-            { 
+            {
+                anim.SetBool("parado", true);
+
                 stunned = true;
                 //guardamos la direccion del sprite
                 lockedRotation = transform.rotation;
@@ -182,6 +204,9 @@ public class RobotEnemy : MonoBehaviour
     //finaliza el stun del robot y continua como de costummbre
     private void EndStun() 
     {
+        anim.SetBool("modoPersecucion", false);
+        anim.SetBool("parado", false);
+
         patrolSpeed = patrolSpeedDefault;
         chaseSpeed = chaseSpeedDefault;
         stunned = false;

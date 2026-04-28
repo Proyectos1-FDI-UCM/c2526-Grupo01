@@ -9,9 +9,20 @@ using UnityEngine;
 
 
 
-//Script que modifica el salto para dar una mejor sensación y mayor sencación de control 
-//haciendo uso de la gravedad y de la cantidad de tiempo que pulses el botón del salto
-//para hacer que el personaje no "flota" (como si que nos pasaba antes)
+/*Script que modifica el salto para dar una mejor sensación y un mayor control 
+haciendo uso de la gravedad y de la cantidad de tiempo que pulses el botón del salto
+de este modo, se consigue eliminar la sensación de “flotar” o de "salto globoso".
+
+En concreto, aumenta la velocidad de caída cuando el personaje desciende, 
+haciendo que el movimiento sea más rápido y contundente, y aplica una gravedad adicional 
+cuando el jugador suelta el botón de salto mientras aún está ascendiendo, 
+permitiendo realizar saltos de distinta altura (saltos cortos o largos) según la duración de la pulsación.
+
+Este componente permanece activo de forma continua durante toda la ejecución, 
+ya que su comportamiento depende únicamente de la velocidad vertical del jugador
+y del estado del input (si se esta pulsando el botón d salto o no) y
+al ejecutarse de forma autónoma en Update, no requiere ser gestionado desde PlayerMovement.cs
+*/
 
 public class BetterJumping : MonoBehaviour
 {
@@ -19,10 +30,12 @@ public class BetterJumping : MonoBehaviour
     private Rigidbody2D rb;
 
     //factor de velocidad de caida
-    public float fallMultiplier = 2.5f;
+    [SerializeField]
+    private float fallMultiplier = 2.5f;
 
     //factor de velocidad de la gravedad para un salto corto (para cortarlo casi en seco)
-    public float lowJumpMultiplier = 2f;
+    [SerializeField]
+    private float lowJumpMultiplier = 2f;
 
     void Start()
     {

@@ -27,6 +27,15 @@ public class BujaranaEnemy : MonoBehaviour
     // fuerza del empujon en Y
     [SerializeField] private float knockbackForceY = 4f;
 
+    // tiempo que dura el stun
+    [SerializeField] private float stunDuration = 1.5f;
+
+    // estado de stun
+    private bool isStunned = false;
+
+    // contador de stun
+    private float stunTimer = 0f;
+
     void Start()
     {
         // guardamos la posicion inicial al empezar
@@ -35,18 +44,27 @@ public class BujaranaEnemy : MonoBehaviour
 
     void Update()
     {
+        // si esta stuneado, no se mueve
+        if (isStunned)
+        {
+            stunTimer -= Time.deltaTime;
+
+            if (stunTimer <= 0f)
+            {
+                isStunned = false;
+            }
+
+            return;
+        }
+
         // si el jugador esta en la zona y existe
         if (playerInZone && player != null)
         {
-            // calculamos la direccion hacia el jugador
             Vector2 direction = (player.position - transform.position).normalized;
-
-            // movemos el enemigo hacia el jugador
             transform.position += (Vector3)direction * speed * Time.deltaTime;
         }
         else
         {
-            // si no, vuelve a su posicion inicial poco a poco
             transform.position = Vector2.MoveTowards
                 (transform.position, homeposition, speed * Time.deltaTime);
         }
@@ -54,30 +72,29 @@ public class BujaranaEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // intentamos coger el script del jugador
         PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
 
-        // si es el jugador
-        if (player != null)
+        // si es el jugador y no esta ya stuneado
+        if (player != null && !isStunned)
         {
-            // calculamos direccion entre enemigo y jugador
-            Vector2 direction = collision.transform.position - transform.position;
+            // activar stun
+            isStunned = true;
+            stunTimer = stunDuration;
 
-            // esto nos dice si el jugador esta a la izquierda o derecha
+            // direccion del empujon
+            Vector2 direction = collision.transform.position - transform.position;
             float pushX = Mathf.Sign(direction.x);
 
-            // aplicamos el empujon al jugador
+            // aplicar knockback
             player.ApplyKnockback(pushX * knockbackForceX, knockbackForceY);
         }
     }
 
-    // se llama cuando el jugador entra en la zona
     internal void PlayerEnteredZone()
     {
         playerInZone = true;
     }
 
-    // se llama cuando el jugador sale de la zona
     internal void PlayerLeftZone()
     {
         playerInZone = false;

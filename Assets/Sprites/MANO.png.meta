@@ -1,0 +1,1261 @@
+fileFormatVersion: 2
+guid: a0719eb9d7f03ee42a8634dc08d45eee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8820105548481751056
+    second: MANO_0
+  - first:
+      213: 3059919593450662566
+    second: MANO_1
+  - first:
+      213: -7982039135488093062
+    second: MANO_2
+  - first:
+      213: 6961972071299266449
+    second: MANO_3
+  - first:
+      213: 1230975517150949192
+    second: MANO_4
+  - first:
+      213: 578412752795480535
+    second: MANO_5
+  - first:
+      213: 246688621523536397
+    second: MANO_6
+  - first:
+      213: -9146125678750239937
+    second: MANO_7
+  - first:
+      213: 2498009287270136361
+    second: MANO_8
+  - first:
+      213: 2806797914040923582
+    second: MANO_9
+  - first:
+      213: 7399216717040641126
+    second: MANO_10
+  - first:
+      213: -3080684015120964524
+    second: MANO_11
+  - first:
+      213: -2066851150104562874
+    second: MANO_12
+  - first:
+      213: -2322691876139611421
+    second: MANO_13
+  - first:
+      213: -2154029956358799776
+    second: MANO_14
+  - first:
+      213: 2603839339904287504
+    second: MANO_15
+  - first:
+      213: -2889637834567756555
+    second: MANO_16
+  - first:
+      213: -7975397852523264509
+    second: MANO_17
+  - first:
+      213: 7559281481321805628
+    second: MANO_18
+  - first:
+      213: -4300291251063491230
+    second: MANO_19
+  - first:
+      213: -6779411870509235496
+    second: MANO_20
+  - first:
+      213: -1869322197326152295
+    second: MANO_21
+  - first:
+      213: 5209142544297316653
+    second: MANO_22
+  - first:
+      213: -2751230462940014175
+    second: MANO_23
+  - first:
+      213: -4050167509260910589
+    second: MANO_24
+  - first:
+      213: 4961560128026773844
+    second: MANO_25
+  - first:
+      213: 3684202292814566267
+    second: MANO_26
+  - first:
+      213: -452354077500097431
+    second: MANO_27
+  - first:
+      213: -7914486760727049155
+    second: MANO_28
+  - first:
+      213: 8894419089581853616
+    second: MANO_29
+  - first:
+      213: 9149152855697662348
+    second: MANO_30
+  - first:
+      213: -1577893995870088733
+    second: MANO_31
+  - first:
+      213: -953406012782428587
+    second: MANO_32
+  - first:
+      213: -4818406175134250694
+    second: MANO_33
+  - first:
+      213: 6783875789445156567
+    second: MANO_34
+  - first:
+      213: -1277402943614158567
+    second: MANO_35
+  - first:
+      213: -2856486249494507860
+    second: MANO_36
+  - first:
+      213: -4393070879356156086
+    second: MANO_37
+  - first:
+      213: 3923607479335674708
+    second: MANO_38
+  - first:
+      213: -1171017503504358556
+    second: MANO_39
+  - first:
+      213: 7771809404717334562
+    second: MANO_40
+  - first:
+      213: 310190477017497370
+    second: MANO_41
+  - first:
+      213: 3289601019997460064
+    second: MANO_42
+  - first:
+      213: 8215619871972138928
+    second: MANO_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MANO_0
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 151
+        width: 1558
+        height: 2272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f71b4d0cb0b89580800000000000000
+      internalID: -8820105548481751056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_1
+      rect:
+        serializedVersion: 2
+        x: 1733
+        y: 593
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aa62e878a4077a20800000000000000
+      internalID: 3059919593450662566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_2
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 572
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7457f962b91a3190800000000000000
+      internalID: -7982039135488093062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_3
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 575
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 197bbf576b4ed9060800000000000000
+      internalID: 6961972071299266449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_4
+      rect:
+        serializedVersion: 2
+        x: 1754
+        y: 567
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84f2cfaf5bd451110800000000000000
+      internalID: 1230975517150949192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_5
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 556
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d13ee7855fe60800800000000000000
+      internalID: 578412752795480535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_6
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 546
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0a8a088ef96c6300800000000000000
+      internalID: 246688621523536397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_7
+      rect:
+        serializedVersion: 2
+        x: 1745
+        y: 531
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f337307472f621180800000000000000
+      internalID: -9146125678750239937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_8
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 539
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92afc553636baa220800000000000000
+      internalID: 2498009287270136361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_9
+      rect:
+        serializedVersion: 2
+        x: 1765
+        y: 532
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb577bee4dfb3f620800000000000000
+      internalID: 2806797914040923582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_10
+      rect:
+        serializedVersion: 2
+        x: 1746
+        y: 523
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 664e653c66c4fa660800000000000000
+      internalID: 7399216717040641126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_11
+      rect:
+        serializedVersion: 2
+        x: 1759
+        y: 526
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 454ad7dd5363f35d0800000000000000
+      internalID: -3080684015120964524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_12
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 517
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 643f86264d11153e0800000000000000
+      internalID: -2066851150104562874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_13
+      rect:
+        serializedVersion: 2
+        x: 1747
+        y: 507
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ea43087b0424cfd0800000000000000
+      internalID: -2322691876139611421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_14
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 498
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06efeafca295b12e0800000000000000
+      internalID: -2154029956358799776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_15
+      rect:
+        serializedVersion: 2
+        x: 1756
+        y: 486
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 013ce2b7512b22420800000000000000
+      internalID: 2603839339904287504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_16
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 482
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f45f0d03b1f5e7d0800000000000000
+      internalID: -2889637834567756555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_17
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 461
+        width: 33
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30600f998e1b15190800000000000000
+      internalID: -7975397852523264509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_18
+      rect:
+        serializedVersion: 2
+        x: 1766
+        y: 477
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c37ff5bd476f7e860800000000000000
+      internalID: 7559281481321805628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_19
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 457
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 265f3ad14eb4254c0800000000000000
+      internalID: -4300291251063491230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_20
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 455
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d20b3892d0bae1a0800000000000000
+      internalID: -6779411870509235496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_21
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 450
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d3f999d55de06e0800000000000000
+      internalID: -1869322197326152295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_22
+      rect:
+        serializedVersion: 2
+        x: 1748
+        y: 443
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2157397b879a4840800000000000000
+      internalID: 5209142544297316653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_23
+      rect:
+        serializedVersion: 2
+        x: 1748
+        y: 438
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a91a39787aa1d9d0800000000000000
+      internalID: -2751230462940014175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_24
+      rect:
+        serializedVersion: 2
+        x: 1732
+        y: 427
+        width: 26
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 300cca9eb1aeac7c0800000000000000
+      internalID: -4050167509260910589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_25
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 414
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45907c226a00bd440800000000000000
+      internalID: 4961560128026773844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_26
+      rect:
+        serializedVersion: 2
+        x: 1765
+        y: 409
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7354ef277ae02330800000000000000
+      internalID: 3684202292814566267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_27
+      rect:
+        serializedVersion: 2
+        x: 1783
+        y: 428
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96c38e9fc5ae8b9f0800000000000000
+      internalID: -452354077500097431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_28
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 416
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3c055f49381a2290800000000000000
+      internalID: -7914486760727049155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_29
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 418
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bbcafd89035f6b70800000000000000
+      internalID: 8894419089581853616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_30
+      rect:
+        serializedVersion: 2
+        x: 1783
+        y: 416
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c812c974c0258fe70800000000000000
+      internalID: 9149152855697662348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_31
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 364
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e111f255c13a1ae0800000000000000
+      internalID: -1577893995870088733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_32
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 370
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55eb1616842d4c2f0800000000000000
+      internalID: -953406012782428587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_33
+      rect:
+        serializedVersion: 2
+        x: 1780
+        y: 362
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a39039bdc15912db0800000000000000
+      internalID: -4818406175134250694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_34
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 372
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7de4046861b252e50800000000000000
+      internalID: 6783875789445156567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_35
+      rect:
+        serializedVersion: 2
+        x: 1771
+        y: 357
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 919f6de6ac0c54ee0800000000000000
+      internalID: -1277402943614158567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_36
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 352
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cae8711f3e8bb58d0800000000000000
+      internalID: -2856486249494507860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_37
+      rect:
+        serializedVersion: 2
+        x: 1765
+        y: 315
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a470dda8f4da803c0800000000000000
+      internalID: -4393070879356156086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_38
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 306
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4536edbd634737630800000000000000
+      internalID: 3923607479335674708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_39
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 270
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 463abdde8c5bfbfe0800000000000000
+      internalID: -1171017503504358556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_40
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 258
+        width: 26
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 220873e0a730bdb60800000000000000
+      internalID: 7771809404717334562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_41
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 275
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f365b68940e4400800000000000000
+      internalID: 310190477017497370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_42
+      rect:
+        serializedVersion: 2
+        x: 1722
+        y: 244
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06616b9d2b207ad20800000000000000
+      internalID: 3289601019997460064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MANO_43
+      rect:
+        serializedVersion: 2
+        x: 1732
+        y: 236
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf1a8ecebeb30270800000000000000
+      internalID: 8215619871972138928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MANO_0: -8820105548481751056
+      MANO_1: 3059919593450662566
+      MANO_10: 7399216717040641126
+      MANO_11: -3080684015120964524
+      MANO_12: -2066851150104562874
+      MANO_13: -2322691876139611421
+      MANO_14: -2154029956358799776
+      MANO_15: 2603839339904287504
+      MANO_16: -2889637834567756555
+      MANO_17: -7975397852523264509
+      MANO_18: 7559281481321805628
+      MANO_19: -4300291251063491230
+      MANO_2: -7982039135488093062
+      MANO_20: -6779411870509235496
+      MANO_21: -1869322197326152295
+      MANO_22: 5209142544297316653
+      MANO_23: -2751230462940014175
+      MANO_24: -4050167509260910589
+      MANO_25: 4961560128026773844
+      MANO_26: 3684202292814566267
+      MANO_27: -452354077500097431
+      MANO_28: -7914486760727049155
+      MANO_29: 8894419089581853616
+      MANO_3: 6961972071299266449
+      MANO_30: 9149152855697662348
+      MANO_31: -1577893995870088733
+      MANO_32: -953406012782428587
+      MANO_33: -4818406175134250694
+      MANO_34: 6783875789445156567
+      MANO_35: -1277402943614158567
+      MANO_36: -2856486249494507860
+      MANO_37: -4393070879356156086
+      MANO_38: 3923607479335674708
+      MANO_39: -1171017503504358556
+      MANO_4: 1230975517150949192
+      MANO_40: 7771809404717334562
+      MANO_41: 310190477017497370
+      MANO_42: 3289601019997460064
+      MANO_43: 8215619871972138928
+      MANO_5: 578412752795480535
+      MANO_6: 246688621523536397
+      MANO_7: -9146125678750239937
+      MANO_8: 2498009287270136361
+      MANO_9: 2806797914040923582
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

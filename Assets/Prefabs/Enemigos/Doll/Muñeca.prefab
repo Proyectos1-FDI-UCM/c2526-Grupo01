@@ -152,11 +152,9 @@ MonoBehaviour:
   knockbackForceY: 4
   fallDelay: 0.5
   screamDelay: 2
-  destroytime: 1
-  smalldollHitbox: {fileID: 3189299129649048528, guid: 49115197cc5002a46857c0fc08b3950c, type: 3}
-  largedollHitbox: {fileID: 5990316828569338437, guid: 20f6fd14932f331488037aba948db4e0, type: 3}
-  SpawnPoint: {fileID: 2276384411493998742}
-  _animator: {fileID: 0}
+  destroyTime: 0
+  largeDollHitbox: {fileID: 5990316828569338437, guid: e513f03a339dfe148ac15fd2e3b7912b, type: 3}
+  _animator: {fileID: 2585738106503065448}
 --- !u!95 &2585738106503065448
 Animator:
   serializedVersion: 7

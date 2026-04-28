@@ -718,6 +718,7 @@ GameObject:
   - component: {fileID: 2094650926}
   - component: {fileID: 2094650925}
   - component: {fileID: 2094650924}
+  - component: {fileID: 2094650927}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -789,7 +790,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9149388496513041272, guid: bdaeee04a68fe4283b8789c48055f778, type: 3}
+      - m_Target: {fileID: 2094650927}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: MenuPrincipal
         m_Mode: 1
@@ -839,6 +840,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094650922}
   m_CullTransparentMesh: 1
+--- !u!114 &2094650927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094650922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e67665ea226d403ab8b32a4b067d8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: 0
 --- !u!1 &2125487323
 GameObject:
   m_ObjectHideFlags: 0
