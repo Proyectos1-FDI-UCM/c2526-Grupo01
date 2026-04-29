@@ -6,6 +6,7 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,6 +55,12 @@ public class Noise : MonoBehaviour
     private float noiseHUDApha;
     private float targetNoiseHUDAlpha;
 
+    //Esto es para el animator
+    private bool damaged = false;
+
+    private float timer = 0;
+    [SerializeField]
+    private float deathPause = 3f;
 
 
     [SerializeField]
@@ -73,15 +80,25 @@ public class Noise : MonoBehaviour
         //Si se cambia el target de alpha, se inicia un fade.
         HUDPresence();
 
+        if (noiseLevel >= 100) timer += Time.deltaTime; 
 
         //Código provisional de muerte [CAMBIAR]
-        if (noiseLevel >= 100)
+        if (noiseLevel >= 100 && timer >= deathPause)
         {
             DeadbyNoise();
         }
     }
 
+    public bool hasTakenDamage()
+    {
+        if (damaged)
+        {
+            damaged = false;
+            return true;
+        }
 
+        else return damaged;
+    }
 
     /// MÉTODO DE ADICIÓN DE RUIDO: Éste método toma como medida del ruido a sumar 
     /// la cantidad de ruido que supone cada enemigo individualmente
@@ -89,6 +106,9 @@ public class Noise : MonoBehaviour
     {
         //Establecemos visibilidad a la barra de ruido
         targetNoiseHUDAlpha = 1;
+
+        //Se avisa al animaPlayer de que ha recibido daño
+        damaged = true;
 
 
         noiseLevel += noiseDamage;
@@ -135,7 +155,7 @@ public class Noise : MonoBehaviour
     }
 
     
-    /// Método provisional de muerte por ruido
+    /// Método de muerte por ruido
     private void DeadbyNoise()
     {
         System.GC.Collect();

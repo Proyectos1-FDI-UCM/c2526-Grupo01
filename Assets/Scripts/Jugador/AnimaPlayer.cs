@@ -1,13 +1,18 @@
 using UnityEngine;
 using UnityEngine.U2D;
-//CODIGO PROVISIONAL PARA PROBAR LAS ANIMACIONES
+//CODIGO PARA LAS ANIMACIONES
 
 
 public class AnimaPlayer : MonoBehaviour
 {
     [SerializeField]
     Animator _animator;
-    [SerializeField] private Transform sprite;
+    [SerializeField] 
+    private Transform sprite;
+    [SerializeField] 
+    private Collision sueloDetector;
+    [SerializeField]
+    private Noise ruido;
 
     private void Start()
     {
@@ -21,7 +26,13 @@ public class AnimaPlayer : MonoBehaviour
 
         //el 0.1 es x si el mando tiene drift
         bool moving = Mathf.Abs(move) > 0.1f;
+        bool enSuelo = sueloDetector.IsOnGround();
+        bool damaged = ruido.hasTakenDamage();
 
+        if(damaged) _animator.SetTrigger("takenDamage");
+
+        _animator.SetBool("enAire", !enSuelo);
+        
         _animator.SetBool("isMoving", moving);
     }
 

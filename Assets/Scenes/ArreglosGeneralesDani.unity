@@ -358,6 +358,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1907639577248877234, guid: 850d2538c0032494cb9cee1057227e86, type: 3}
+      propertyPath: noiseEffect
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8561302807442919861, guid: 850d2538c0032494cb9cee1057227e86, type: 3}
       propertyPath: m_Name
       value: Pato V2
@@ -1340,6 +1344,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4898091752522782772, guid: 2f928d4f60be3ff43805f757a21878cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.4821777
+      objectReference: {fileID: 0}
     - target: {fileID: 5874058117492338342, guid: 2f928d4f60be3ff43805f757a21878cb, type: 3}
       propertyPath: m_Name
       value: NoiseBar
@@ -1499,11 +1507,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b8aabe939f76941a8ceeae1397814c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1959494606}
-  smoothSpeed: 6
-  alturalimitearriba: 2
-  alturalimiteabajo: 2
-  alturabase: 3
+  playerMovement: {fileID: 0}
+  smoothCamSpeedX: 6
+  limitUp: 1
+  limitDown: 1.5
+  dashCamDistance: 3
+  dashCamSpeed: 10
 --- !u!1001 &1627698543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1763,25 +1772,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1959494611}
     - target: {fileID: 2107524443944748223, guid: 8dec02748cd77144cb5e359479a57950, type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107524443944748223, guid: 8dec02748cd77144cb5e359479a57950, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1959494606}
-    - target: {fileID: 2107524443944748223, guid: 8dec02748cd77144cb5e359479a57950, type: 3}
-      propertyPath: maxnoise
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107524443944748223, guid: 8dec02748cd77144cb5e359479a57950, type: 3}
-      propertyPath: distanceX
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107524443944748223, guid: 8dec02748cd77144cb5e359479a57950, type: 3}
-      propertyPath: distanceY
-      value: -30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2168,10 +2161,6 @@ PrefabInstance:
       propertyPath: noiseHUD
       value: 
       objectReference: {fileID: 2112252264}
-    - target: {fileID: 3095624359927825909, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
-      propertyPath: noiseBarPotential
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4320656709459814811, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
       propertyPath: dashUI
       value: 
