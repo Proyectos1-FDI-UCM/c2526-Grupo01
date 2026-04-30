@@ -51,7 +51,7 @@ MonoBehaviour:
   knockbackForceX: 30
   knockbackForceY: 4
   attackduration: 2
-  noisedamage: 3
+  noisedamage: 50
 --- !u!58 &-645424517011985590
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +144,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1932617305
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 56b999805f61c084cb6554189ed43b2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -41,12 +41,6 @@ public class Noise : MonoBehaviour
     [SerializeField]
     private Image noiseBar;
 
-    //ruido potencial
-    [SerializeField]
-    private Image noiseBarPotential;
-
-
-    
 
 
     [SerializeField]

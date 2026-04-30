@@ -6,6 +6,7 @@
 //---------------------------------------------------------
 
 using UnityEngine;
+using UnityEngine.Rendering;
 
 
 /// <summary>
@@ -66,6 +67,31 @@ public class CameraFollow : MonoBehaviour
         }
 
     }
+
+
+   
+    // Getters y setters para usar los atributos en el CameraTrigger
+
+    //Getters
+    public float GetLimitUp()
+    {
+        return limitUp;
+    }
+    public float GetLimitDown()
+    {
+        return limitDown;
+    }
+
+    //Setters
+    public void SetLimitUp(float up)
+    {
+        limitUp = up;
+    }
+    public void SetLimitDown(float down)
+    {
+        limitDown = down;
+    }
+
 
     private void UpdateCameraPosition()
     {
