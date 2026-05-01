@@ -11,6 +11,37 @@ using static UnityEngine.GraphicsBuffer;
 using System.Runtime.CompilerServices;
 public class Monkey : MonoBehaviour
 {
+    [Header("Sonidos Mono")]
+
+    [SerializeField]
+    private AudioClip monkeySound;
+
+
+    [SerializeField]
+    private AudioClip attackSound;
+
+    [SerializeField]
+    private AudioClip hitSound;
+
+
+    //para controlar el volumen de cada sonido
+    [SerializeField]
+    private float volumeMonkey;
+
+    [SerializeField]
+    private float volumeHit;
+
+    [SerializeField]
+    private float volumeAttack;
+
+    //para ver cual es el clip actual y hacer que no suene todo el rato
+    private AudioClip currentClip;
+
+    private AudioSource audioSource;
+
+    [Space]
+    [Header("Atributos Mono")]
+
     [SerializeField]
     private float descansoAtaques = 6f; //TIEMPO ENTRE ATAQUES
 
@@ -54,6 +85,7 @@ public class Monkey : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         posicionOriginal = transform.position;
+        audioSource = GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -70,6 +102,13 @@ public class Monkey : MonoBehaviour
         {
             if (timer >= descansoAtaques)
             {
+                //activo el sonido de mono
+                if (currentClip != attackSound)
+                {
+                    activateAttackSound();
+                    currentClip = attackSound;
+                }
+
                 attacking = true;
                 if (timerWave >= i * descansoProyectiles)
                 {
@@ -97,6 +136,13 @@ public class Monkey : MonoBehaviour
         }
         else
         {
+            //activo el sonido de mono
+            if (currentClip != monkeySound)
+            {
+                activateMonkeySound();
+                currentClip = monkeySound;
+            }
+
             timerWave = 0f;
             timer = 0f;
             attacking = false;
@@ -119,6 +165,10 @@ public class Monkey : MonoBehaviour
 
         if (player != null)
         {
+
+            //activo el sonido de golpe
+            activateHitSound();
+
             //calculamos el vector para ver en que dirección viene el player y x donde hay q aplicar la fuercza
             Vector2 direction = collision.transform.position - transform.position;
 
@@ -136,5 +186,37 @@ public class Monkey : MonoBehaviour
     public bool IsAttacking()
     {
         return attacking;
+    }
+
+    private void activateMonkeySound()
+    {
+        audioSource.Stop();
+        audioSource.clip = monkeySound;
+        audioSource.volume = volumeMonkey;
+        audioSource.loop = true;
+        audioSource.Play();
+
+    }
+
+    private void activateAttackSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = attackSound;
+        audioSource.volume = volumeAttack;
+        audioSource.loop = true;
+        audioSource.Play();
+
+    }
+
+
+    private void activateHitSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = hitSound;
+        audioSource.volume = volumeHit;
+        //el sonido de golpe solo lo reproduzco una vez porque no tiene sentido que sea un loop
+        audioSource.loop = false;
+        audioSource.Play();
+        currentClip = hitSound;
     }
 }

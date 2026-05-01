@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
         if (noise == null || Time.time < lastHitTime + cooldown)
         {
-            Debug.Log("No hay nada que haga ruido");
+           // Debug.Log("No hay nada que haga ruido");
 
 
         }

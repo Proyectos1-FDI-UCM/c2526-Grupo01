@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Script para controlar el movimiento del jugador
-// Daniel García Andrés, Samuel McDermott y Hector Prous Arroyo con créditos a André Cardoso del canal "Mix and Jam"
+// Daniel García Andrés, Samuel McDermott con créditos a André Cardoso del canal "Mix and Jam"
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -11,6 +11,28 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Sonidos jugador")]
+
+    [SerializeField]
+    private AudioClip sprintSound;
+
+
+
+    [SerializeField]
+    private AudioClip jumpSound;
+
+    [SerializeField]
+    private AudioClip dashSound;
+
+
+
+    [SerializeField]
+    private AudioSource audioSource;
+
+    // jump + dash
+    [SerializeField] 
+    private AudioSource fxAudio;   
+
     private Collision coll;
 
     private Rigidbody2D rb;
@@ -105,8 +127,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashTime = 0.15f;
     [SerializeField]
     private DashHUD dashUI;
-    [SerializeField]
-    private AudioSource dashSound;
+
 
 
     //para no tocar la serializble d arriba
@@ -135,6 +156,10 @@ public class PlayerMovement : MonoBehaviour
 
         //para los checkpoints (comentad esta línea para comodidad en el testing)
         //transform.position = GameManager.Instance.GetRespawn();
+
+
+        //asigno el audioSource
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -247,6 +272,22 @@ public class PlayerMovement : MonoBehaviour
 
         flipParticles();
 
+        if (isSprinting && coll.IsOnGround() && Mathf.Abs(moveInput) > 0.1f)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = sprintSound;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -284,6 +325,8 @@ public class PlayerMovement : MonoBehaviour
     //método para saltar
     private void Jump(Vector2 dir)
     {
+        fxAudio.PlayOneShot(jumpSound);
+
         rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
         rb.linearVelocity += dir * jumpForce;
     }
@@ -317,10 +360,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
-        //esto es para que no se repita muchas veces y no distorsione
-        if (!dashSound.isPlaying)
+        //activo el sonido del dash
+        if (dashTimer == dashTime)
         {
-            dashSound.Play();
+            fxAudio.PlayOneShot(dashSound);
         }
 
         dashTimer = dashTimer - Time.fixedDeltaTime;
@@ -339,7 +382,6 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 1f;
 
         }
-
 
     }
 
@@ -395,6 +437,18 @@ public class PlayerMovement : MonoBehaviour
     {
         return isDashing;
     }
+
+
+    private void activateSprintSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = sprintSound;
+        audioSource.loop = true;
+        audioSource.Play();
+
+    }
+
+
 
 
 }

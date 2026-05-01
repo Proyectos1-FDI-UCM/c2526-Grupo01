@@ -9,6 +9,31 @@ using UnityEngine;
 
 public class BujaranaEnemy : MonoBehaviour
 {
+
+    [Header("Sonidos Bujarania")]
+
+    [SerializeField]
+    private AudioClip spiderSound;
+
+    [SerializeField]
+    private AudioClip hitSound;
+
+
+    //para controlar el volumen de cada sonido
+    [SerializeField]
+    private float volumeSpider;
+
+    [SerializeField]
+    private float volumeHit;
+
+    //para ver cual es el clip actual y hacer que no suene todo el rato
+    private AudioClip currentClip;
+
+    private AudioSource audioSource;
+
+    [Space]
+    [Header("Atributos Bujarania")]
+
     // referencia al jugador
     [SerializeField] private Transform player;
 
@@ -40,6 +65,10 @@ public class BujaranaEnemy : MonoBehaviour
     {
         // guardamos la posicion inicial al empezar
         homeposition = transform.position;
+
+        //sonido de araña al empezar
+        audioSource = GetComponent<AudioSource>();
+   
     }
 
     void Update()
@@ -54,20 +83,31 @@ public class BujaranaEnemy : MonoBehaviour
                 isStunned = false;
             }
 
-            return;
-        }
-
-        // si el jugador esta en la zona y existe
-        if (playerInZone && player != null)
-        {
-            Vector2 direction = (player.position - transform.position).normalized;
-            transform.position += (Vector3)direction * speed * Time.deltaTime;
         }
         else
         {
-            transform.position = Vector2.MoveTowards
-                (transform.position, homeposition, speed * Time.deltaTime);
+            //activo el sonido de araña
+            if (currentClip != spiderSound)
+            {
+                activateSpiderSound();
+                currentClip = spiderSound;
+            }
+
+            // si el jugador esta en la zona y existe
+            if (playerInZone && player != null)
+            {
+                Vector2 direction = (player.position - transform.position).normalized;
+                transform.position += (Vector3)direction * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards
+                    (transform.position, homeposition, speed * Time.deltaTime);
+            }
+
         }
+
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -77,6 +117,9 @@ public class BujaranaEnemy : MonoBehaviour
         // si es el jugador y no esta ya stuneado
         if (player != null && !isStunned)
         {
+            //activo el sonido de golpe
+            activateHitSound();
+
             // activar stun
             isStunned = true;
             stunTimer = stunDuration;
@@ -90,13 +133,34 @@ public class BujaranaEnemy : MonoBehaviour
         }
     }
 
-    internal void PlayerEnteredZone()
+    public void PlayerEnteredZone()
     {
         playerInZone = true;
     }
 
-    internal void PlayerLeftZone()
+    public void PlayerLeftZone()
     {
         playerInZone = false;
+    }
+
+    private void activateSpiderSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = spiderSound;
+        audioSource.volume = volumeSpider;
+        audioSource.loop = true;
+        audioSource.Play();
+
+    }
+
+    private void activateHitSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = hitSound;
+        audioSource.volume = volumeHit;
+        //el sonido de golpe solo lo reproduzco una vez porque no tiene sentido que sea un loop
+        audioSource.loop = false;
+        audioSource.Play();
+        currentClip = hitSound;
     }
 }

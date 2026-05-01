@@ -16,7 +16,12 @@ using UnityEngine.UI;
 /// se inicia un proceso de regeneración del nivel de ruido hasta el 0. 
 public class Noise : MonoBehaviour
 {
+    [Header("Sonido Damage Jugador")]
+    [SerializeField]
+    private AudioSource fxAudio;
 
+    [SerializeField] 
+    private AudioClip hitSound;
 
     /// DECLARACIÓN DE VARIABLES
     [SerializeField]
@@ -60,9 +65,12 @@ public class Noise : MonoBehaviour
     [SerializeField]
     private float fadeRate;
 
+
+
     private void Start()
     {
         UpdateBar();
+
     }
 
     private void Update()
@@ -98,6 +106,9 @@ public class Noise : MonoBehaviour
     /// la cantidad de ruido que supone cada enemigo individualmente
     public void takeNoise(int noiseDamage)
     {
+
+        fxAudio.PlayOneShot(hitSound);
+
         //Establecemos visibilidad a la barra de ruido
         targetNoiseHUDAlpha = 1;
 
@@ -113,6 +124,7 @@ public class Noise : MonoBehaviour
 
         //Se guarda el último frame en el que se ha recibido daño para Regenerate()
         lastHitTime = Time.time;
+
     }
 
 
@@ -189,6 +201,8 @@ public class Noise : MonoBehaviour
         return noiseLevel;
     }
 
-    
+
+
+
 }
 

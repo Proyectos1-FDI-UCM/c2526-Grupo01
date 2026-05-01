@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("El numero de escena es: " + sceneNumber);
+        //Debug.Log("El numero de escena es: " + sceneNumber);
     }
 
     #endregion
