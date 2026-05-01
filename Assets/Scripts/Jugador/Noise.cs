@@ -20,6 +20,10 @@ public class Noise : MonoBehaviour
     [SerializeField]
     private AudioSource fxAudio;
 
+    //Esto es para el animator
+    [SerializeField] 
+    private AnimaPlayer animaPlayer;
+
     [SerializeField] 
     private AudioClip hitSound;
 
@@ -54,8 +58,6 @@ public class Noise : MonoBehaviour
     private float noiseHUDApha;
     private float targetNoiseHUDAlpha;
 
-    //Esto es para el animator
-    private bool damaged = false;
 
     private float timer = 0;
     [SerializeField]
@@ -91,29 +93,17 @@ public class Noise : MonoBehaviour
         }
     }
 
-    public bool hasTakenDamage()
-    {
-        if (damaged)
-        {
-            damaged = false;
-            return true;
-        }
-
-        else return damaged;
-    }
 
     /// MÉTODO DE ADICIÓN DE RUIDO: Éste método toma como medida del ruido a sumar 
     /// la cantidad de ruido que supone cada enemigo individualmente
     public void takeNoise(int noiseDamage)
     {
-
+        //Se avisa al animaPlayer de que ha recibido daño
+        animaPlayer.TakeDamage();
         fxAudio.PlayOneShot(hitSound);
 
         //Establecemos visibilidad a la barra de ruido
         targetNoiseHUDAlpha = 1;
-
-        //Se avisa al animaPlayer de que ha recibido daño
-        damaged = true;
 
 
         noiseLevel += noiseDamage;
