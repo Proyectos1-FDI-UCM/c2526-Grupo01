@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1485252133
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7582cff43cb9a044f8bb26585f313e94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,7 +124,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.38136673, y: -0.38136435}
+  m_Offset: {x: 0.38134766, y: 3.7950172}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -134,7 +134,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5.4122086, y: 11.236623}
+  m_Size: {x: 12.108215, y: 19.589386}
   m_EdgeRadius: 0
 --- !u!114 &4322239387865005177
 MonoBehaviour:
@@ -148,15 +148,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af81200dd52fae54883e69f45573a000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screamSound: {fileID: 8300000, guid: c5be0a9f8853954469a13139b0f6a939, type: 3}
+  breakSound: {fileID: 8300000, guid: b2192455f7459a447a5034151a759ba8, type: 3}
+  explosionSound: {fileID: 8300000, guid: d07a855db06b56843a86d7341beb117a, type: 3}
+  volumeScream: 0.2
+  volumeBreak: 0.2
+  volumeExplosion: 0.2
   knockbackForceX: 6
   knockbackForceY: 4
   fallDelay: 0.5
-  screamDelay: 2
-  destroytime: 1
-  smalldollHitbox: {fileID: 3189299129649048528, guid: 49115197cc5002a46857c0fc08b3950c, type: 3}
-  largedollHitbox: {fileID: 5990316828569338437, guid: 20f6fd14932f331488037aba948db4e0, type: 3}
-  SpawnPoint: {fileID: 2276384411493998742}
-  _animator: {fileID: 0}
+  screamDelay: 1
+  destroyTime: 0
+  largeDollHitbox: {fileID: 5990316828569338437, guid: e513f03a339dfe148ac15fd2e3b7912b, type: 3}
+  _animator: {fileID: 2585738106503065448}
 --- !u!95 &2585738106503065448
 Animator:
   serializedVersion: 7

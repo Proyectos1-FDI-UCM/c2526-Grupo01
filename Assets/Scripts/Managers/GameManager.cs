@@ -209,22 +209,24 @@ public class GameManager : MonoBehaviour
 
     public string GetScene() 
     {
-        if(sceneNumber == 0) 
+        if (sceneNumber == 0)
         {
             return "MenuPrincipal";
         }
-        else if(sceneNumber == 1) 
+        else if (sceneNumber == 1)
         {
             return "Nivel1";
         }
         else if (sceneNumber == 2)
         {
-            return "ArreglosGeneralesDani";
+            return "Nivel_2";
         }
-        else
+        else if (sceneNumber == 3)
         {
-            return "ArreglosGeneralesDani";
+            return "BossFinal";
         }
+        else return "BossFinal";
+        
 
     }
 

@@ -17,7 +17,7 @@ public class AnimaPlayer : MonoBehaviour
     [SerializeField] 
     private Rigidbody2D rb;
 
-    private float damageTimer;
+    private float damageTimer;  
     private const float DAMAGE_DURATION = 0.2f;
     private bool isDamaged;
 
@@ -42,7 +42,6 @@ public class AnimaPlayer : MonoBehaviour
 
         float move = InputManager.Instance.MovementVector.x;
 
-        bool cayendo = rb.linearVelocity.y < -0.1f;
 
         bool moving = Mathf.Abs(move) > 0.1f;
         bool enSuelo = sueloDetector.IsOnGround();
@@ -52,7 +51,7 @@ public class AnimaPlayer : MonoBehaviour
 
 
         //para que cuando salte no salga la animación de caída hasta que la y del jugador baje
-        _animator.SetBool("enAire", !enSuelo && cayendo);
+        _animator.SetBool("enAire", !enSuelo);
     }
 
     public void Flip(int side)

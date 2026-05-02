@@ -30,6 +30,8 @@ public class CameraTrigger : MonoBehaviour
     private float CTlimitUp;
     [SerializeField]
     private float CTlimitDown;
+    [SerializeField]
+    private Collider2D playerBox;
 
 
 
@@ -39,8 +41,8 @@ public class CameraTrigger : MonoBehaviour
 
     //Métodos auxiliares para proteger los valores iniciales de la cámara y
     //recuperarlos posteriormente.
-    float auxUp;
-    float auxDown;
+    private float auxUp;
+    private float auxDown;
 
 
 
@@ -55,19 +57,13 @@ public class CameraTrigger : MonoBehaviour
     /// Start is called on the frame when a script is enabled just before 
     /// any of the Update methods are called the first time.
     /// </summary>
-    void Start()
-    {
-
-
-    }
+    
+    
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    void Update()
-    {
-
-    }
+    
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
@@ -87,14 +83,19 @@ public class CameraTrigger : MonoBehaviour
     //Detección de entrada del player
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerMovement>())
+        if (other == playerBox)
         {
             //Guardamos valores anteriores
             auxUp = camera.GetLimitUp();
             auxDown = camera.GetLimitDown();
+
+            Debug.Log("1Valores arriba abajo: " + auxUp + " " + auxDown);
+
             //Establecemos los valores deseados
             camera.SetLimitUp(CTlimitUp);
             camera.SetLimitDown(CTlimitDown);
+            Debug.Log("2Valores arriba abajo: " + auxUp + " " + auxDown);
+
         }
     }
 
@@ -102,19 +103,17 @@ public class CameraTrigger : MonoBehaviour
     //Detección de salida del player
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerMovement>())
+        if (other==playerBox)
         {
+            Debug.Log("3Valores arriba abajo: " + auxUp + " " + auxDown);
+
             //Se reestablecen los valores iniciales
             camera.SetLimitUp(auxUp);
             camera.SetLimitDown(auxDown);
 
             //Se resetean los valores auxiliares para cambios futuros
             auxUp = 0f;
-            auxDown = 0f;
-
-
-
-
+           auxDown = 0f;
         }
     }
     #endregion   
