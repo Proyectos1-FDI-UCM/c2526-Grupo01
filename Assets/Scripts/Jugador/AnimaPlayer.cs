@@ -6,13 +6,15 @@ using UnityEngine.U2D;
 public class AnimaPlayer : MonoBehaviour
 {
     [SerializeField]
-    Animator _animator;
+    private Animator _animator;
     [SerializeField] 
     private Transform sprite;
     [SerializeField] 
     private Collision sueloDetector;
     [SerializeField]
     private Noise ruido;
+    [SerializeField]
+    private PlayerMovement movement;
 
     [SerializeField] 
     private Rigidbody2D rb;
@@ -45,12 +47,13 @@ public class AnimaPlayer : MonoBehaviour
 
         bool moving = Mathf.Abs(move) > 0.1f;
         bool enSuelo = sueloDetector.IsOnGround();
+        bool dashing = movement.GetIsDashing();
 
 
         _animator.SetBool("isMoving", moving);
 
+        _animator.SetBool("isDashing", dashing);
 
-        //para que cuando salte no salga la animación de caída hasta que la y del jugador baje
         _animator.SetBool("enAire", !enSuelo);
     }
 

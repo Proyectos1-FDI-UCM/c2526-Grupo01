@@ -10276,6 +10276,7 @@ MonoBehaviour:
   sprite: {fileID: 445197012211134863}
   sueloDetector: {fileID: 5247343625389120173}
   ruido: {fileID: 3095624359927825909}
+  movement: {fileID: 4320656709459814811}
   rb: {fileID: 1772529439046110227}
 --- !u!1 &8754472848465433151
 GameObject:
