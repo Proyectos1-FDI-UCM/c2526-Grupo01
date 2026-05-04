@@ -1,33 +1,36 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Gestiona el inventario de llaves del jugador.
+// Darío Pérez Zamorano
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
 using System.Collections.Generic;
 using UnityEngine;
-// Añadir aquí el resto de directivas using
 
-
-/// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
-/// </summary>
 public class KeyInventory : MonoBehaviour
 {
-    public List<string> keys = new List<string>();
+    // lista donde guardamos las llaves que tiene el jugador
+    private List<string> keys = new List<string>();
 
-    public void AddKey(string key)
+    // este metodo sirve para añadir una llave al inventario
+    internal void AddKey(string key)
     {
+        // si no tenemos ya esa llave
         if (!keys.Contains(key))
         {
+            // la añadimos a la lista
             keys.Add(key);
-            Debug.Log("Llave recogida" + key);
+
+            // mensaje para comprobar que funciona
+            Debug.Log("Llave recogida " + key);
         }
     }
-    public bool HasKey(string key)
+
+    // este metodo comprueba si tenemos una llave concreta
+    internal bool HasKey(string key)
     {
+        // devuelve true si la lista contiene esa llave
         return keys.Contains(key);
     }
 } // class KeyInventory 

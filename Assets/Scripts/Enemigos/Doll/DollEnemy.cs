@@ -16,6 +16,34 @@ using UnityEngine;
 /// </summary>
 public class DollEnemy : MonoBehaviour
 {
+    [Header("Sonidos estatua")]
+
+    [SerializeField]
+    private AudioClip screamSound;
+
+    [SerializeField]
+    private AudioClip breakSound;
+
+    [SerializeField]
+    private AudioClip explosionSound;
+
+    //para controlar el volumen de cada sonido
+    [SerializeField]
+    private float volumeScream;
+
+    [SerializeField]
+    private float volumeBreak;
+
+    [SerializeField]
+    private float volumeExplosion;
+
+    //el audiosource principal lo uso para grito y para sonido de romper.
+    private AudioSource audioSource;
+
+
+    [Space]
+    [Header("Atributos estatua")]
+
     [SerializeField]
     private float knockbackForceX = 6f;
     [SerializeField]
@@ -49,40 +77,53 @@ public class DollEnemy : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         spawnPoint = transform.position;
+
+        //incializo el audioSource
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
     {
-        if (!playerDetected) return;
-
-        timer += Time.deltaTime;
-
-        switch (state)
+        if (playerDetected) 
         {
-            case 1: // Espera grito
-                if (timer >= screamDelay)
-                {
-                    timer = 0f;
-                    Scream();
-                }
-                break;
 
-            case 2: // Espera caída
-                if (timer >= fallDelay)
-                {
-                    timer = 0f;
-                    FallAttack();
-                }
-                break;
+            timer += Time.deltaTime;
 
-            case 3: // Espera destruirse
-                if (timer >= destroyTime)
-                {
-                    Destroy(gameObject);
-                }
-                break;
-        }
+            switch (state)
+            {
+                case 1: // Espera grito
+                    if (timer >= screamDelay)
+                    {
+                        timer = 0f;
+                        Scream();
+
+                    }
+                    break;
+
+                case 2: // Espera caída
+
+                    if (timer >= fallDelay)
+                    {
+                        timer = 0f;
+                        FallAttack();
+                    }
+                    break;
+
+                case 3: // Espera destruirse
+
+                    if (timer >= destroyTime)
+                    {
+
+                        Destroy(gameObject);
+                    }
+                    break;
+            }
+        } 
+
+       
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -93,7 +134,7 @@ public class DollEnemy : MonoBehaviour
             playerDetected = true;
 
             _animator.SetTrigger("grito");
-
+            activateScreamSound();
             state = 1;
             timer = 0f;
         }
@@ -102,6 +143,7 @@ public class DollEnemy : MonoBehaviour
     public void Scream()
     {
         _animator.SetTrigger("caida");
+        activateBreakSound();
 
         state = 2;
         timer = 0f;
@@ -109,9 +151,40 @@ public class DollEnemy : MonoBehaviour
 
     public void FallAttack()
     {
+        activateExplosionSound();
         Instantiate(largeDollHitbox, spawnPoint, Quaternion.identity);
+
 
         state = 3;
         timer = 0f;
     }
+
+    private void activateScreamSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = screamSound;
+        audioSource.volume = volumeScream;
+        //el sonido de golpe solo lo reproduzco una vez porque no tiene sentido que sea un loop
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
+
+    private void activateBreakSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = breakSound;
+        audioSource.volume = volumeBreak;
+        //el sonido de golpe solo lo reproduzco una vez porque no tiene sentido que sea un loop
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
+
+    private void activateExplosionSound()
+    {
+        audioSource.PlayOneShot(explosionSound, volumeExplosion);
+
+    }
+
 }

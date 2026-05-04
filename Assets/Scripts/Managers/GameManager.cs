@@ -57,6 +57,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int sceneNumber;
 
+    private const string FIRST_DEFAULT_LEVEL = "Nivel_1";
+
+    private string actualLevel;
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -99,6 +103,7 @@ public class GameManager : MonoBehaviour
             respawnPoint = initialSpawnPoint;
             //activo la musica del nivel
             levelMusicTrack.Play();
+            actualLevel = FIRST_DEFAULT_LEVEL;
 
         } // if-else somos instancia nueva o no.
 
@@ -119,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("El numero de escena es: " + sceneNumber);
+        //Debug.Log("El numero de escena es: " + sceneNumber);
     }
 
     #endregion
@@ -158,7 +163,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="index">Índice de la escena (en el build settings)
     /// que se cargará.</param>
-    public void ChangeScene(int index)
+    public void ChangeScene(string name)
     {
         // Antes y después de la carga fuerza la recolección de basura, por eficiencia,
         // dado que se espera que la carga tarde un tiempo, y dado que tenemos al
@@ -173,7 +178,7 @@ public class GameManager : MonoBehaviour
         //
         // En realidad... todo esto es algo antiguo por lo que lo mismo ya está resuelto)
         System.GC.Collect();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(index);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(name);
         System.GC.Collect();
     } // ChangeScene
 
@@ -207,31 +212,24 @@ public class GameManager : MonoBehaviour
         respawnPoint = initialSpawnPoint;
     }
 
-    public string GetScene() 
-    {
-        if(sceneNumber == 0) 
-        {
-            return "MenuPrincipal";
-        }
-        else if(sceneNumber == 1) 
-        {
-            return "Nivel1";
-        }
-        else if (sceneNumber == 2)
-        {
-            return "ArreglosGeneralesDani";
-        }
-        else
-        {
-            return "ArreglosGeneralesDani";
-        }
-
-    }
 
     public void NextNumberScene(int n) 
     {
         sceneNumber = n;
     }
+
+    public void setActualLevelScene(string levelName)
+    {
+        actualLevel = levelName;
+    }
+
+    public string getActualLevel() 
+    { 
+        return actualLevel; 
+    }
+
+
+
 
     #endregion
 

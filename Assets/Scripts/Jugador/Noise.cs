@@ -6,6 +6,7 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,16 @@ using UnityEngine.UI;
 /// se inicia un proceso de regeneración del nivel de ruido hasta el 0. 
 public class Noise : MonoBehaviour
 {
+    [Header("Sonido Damage Jugador")]
+    [SerializeField]
+    private AudioSource fxAudio;
 
+    //Esto es para el animator
+    [SerializeField] 
+    private AnimaPlayer animaPlayer;
+
+    [SerializeField] 
+    private AudioClip hitSound;
 
     /// DECLARACIÓN DE VARIABLES
     [SerializeField]
@@ -40,12 +50,6 @@ public class Noise : MonoBehaviour
     [SerializeField]
     private Image noiseBar;
 
-    //ruido potencial
-    [SerializeField]
-    private Image noiseBarPotential;
-
-
-    
 
 
     [SerializeField]
@@ -55,13 +59,21 @@ public class Noise : MonoBehaviour
     private float targetNoiseHUDAlpha;
 
 
+    private float timer = 0;
+    [SerializeField]
+    private float deathPause = 3f;
+
 
     [SerializeField]
     private float fadeRate;
 
+
+    private const string DEATH_NAME_SCENE = "MUERTE";
+
     private void Start()
     {
         UpdateBar();
+
     }
 
     private void Update()
@@ -73,20 +85,24 @@ public class Noise : MonoBehaviour
         //Si se cambia el target de alpha, se inicia un fade.
         HUDPresence();
 
+        if (noiseLevel >= 100) timer += Time.deltaTime; 
 
         //Código provisional de muerte [CAMBIAR]
-        if (noiseLevel >= 100)
+        if (noiseLevel >= 100 && timer >= deathPause)
         {
             DeadbyNoise();
         }
     }
 
 
-
     /// MÉTODO DE ADICIÓN DE RUIDO: Éste método toma como medida del ruido a sumar 
     /// la cantidad de ruido que supone cada enemigo individualmente
     public void takeNoise(int noiseDamage)
     {
+        //Se avisa al animaPlayer de que ha recibido daño
+        animaPlayer.TakeDamage();
+        fxAudio.PlayOneShot(hitSound);
+
         //Establecemos visibilidad a la barra de ruido
         targetNoiseHUDAlpha = 1;
 
@@ -99,6 +115,7 @@ public class Noise : MonoBehaviour
 
         //Se guarda el último frame en el que se ha recibido daño para Regenerate()
         lastHitTime = Time.time;
+
     }
 
 
@@ -135,12 +152,10 @@ public class Noise : MonoBehaviour
     }
 
     
-    /// Método provisional de muerte por ruido
+    /// Método de muerte por ruido
     private void DeadbyNoise()
     {
-        System.GC.Collect();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
-        System.GC.Collect();
+        GameManager.Instance.ChangeScene(DEATH_NAME_SCENE);
     }
 
 
@@ -175,6 +190,8 @@ public class Noise : MonoBehaviour
         return noiseLevel;
     }
 
-    
+
+
+
 }
 

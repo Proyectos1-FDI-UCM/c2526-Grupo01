@@ -5,6 +5,7 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +26,10 @@ public class ChangeScene : MonoBehaviour
     /// que se cargará. 
     /// </summary>
 
-
+    private const string LAST_SCENE_NAME = "Creditos";
+    private const string FIRST_LEVEL_NAME = "Nivel_1";
+    //no me deja poner un Vector3 como constante asi que para que nadie lo toque lo dejo en así en lugar de serializable.
+    private Vector3 FIRST_SPAWNPOINT = new Vector3(-3,-25,0);
 
     #endregion
 
@@ -56,10 +60,6 @@ public class ChangeScene : MonoBehaviour
     /// </summary>
     /// 
 
-    public void ChangeToNextScene()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(GameManager.Instance.GetScene());
-    }
 
     public void MenuPrincipal()
     {
@@ -80,6 +80,21 @@ public class ChangeScene : MonoBehaviour
         Application.Quit();
     }
 
+    public void DeadRespawn()
+    {
+        string level = GameManager.Instance.getActualLevel();
+
+        //esto es para que si has completado el juego
+        //al darle a jugar te vuelva a llevar al primer nivel
+        //y resetamos tmb el spawnpoint
+        if(level == LAST_SCENE_NAME)
+        {
+            level = FIRST_LEVEL_NAME;
+            GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT);
+        }
+
+        GameManager.Instance.ChangeScene(level);
+    }
 
     #endregion
 

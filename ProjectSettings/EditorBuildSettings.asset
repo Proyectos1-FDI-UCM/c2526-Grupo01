@@ -12,14 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Nivel_1.unity
     guid: a3bc103322a7ea5418cc6374bc525aa9
   - enabled: 1
-    path: Assets/Scenes/ArreglosGeneralesDani.unity
-    guid: fe4966f4d23f05541b2fadc3f3e3557a
+    path: Assets/Scenes/Nivel_2.unity
+    guid: 9cd31f7d94fb4424bbac35d2564500e9
+  - enabled: 1
+    path: Assets/Scenes/BossFinal.unity
+    guid: 6df8d0078e7cf2046b8e811421c722c4
   - enabled: 1
     path: Assets/Scenes/Salida.unity
     guid: e2f4e99e872748943aaf6a105245f8b9
   - enabled: 1
     path: Assets/Scenes/MUERTE.unity
     guid: 8cd2c7fad269d624fb33c0988e3e84cc
+  - enabled: 1
+    path: Assets/Scenes/Creditos.unity
+    guid: 9d6b3cc4eef84db46b5b38290f3542d7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

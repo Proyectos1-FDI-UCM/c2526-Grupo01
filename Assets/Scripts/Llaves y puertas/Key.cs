@@ -1,29 +1,30 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Llave que, al colisionar con el jugador, se añade a su inventario.
+// Darío Pérez Zamorano
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
 using UnityEngine;
-// Añadir aquí el resto de directivas using
 
-
-/// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
-/// </summary>
 public class Key : MonoBehaviour
 {
-    public string KeyColor;
+    // color o tipo de la llave (lo ponemos desde unity)
+    [SerializeField] private string keyColor;
 
+    // esto se ejecuta cuando algo entra en el trigger
     private void OnTriggerEnter2D(Collider2D other)
     {
-        KeyInventory keyinventory = other.GetComponent<KeyInventory>();
+        // intentamos coger el inventario del objeto que ha tocado la llave
+        KeyInventory keyInventory = other.GetComponent<KeyInventory>();
 
-        if (keyinventory != null )
+        // si tiene inventario (normalmente el jugador)
+        if (keyInventory != null)
         {
-            keyinventory.AddKey(KeyColor);
+            // le añadimos la llave
+            keyInventory.AddKey(keyColor);
+
+            // destruimos la llave del mapa
             Destroy(gameObject);
         }
     }

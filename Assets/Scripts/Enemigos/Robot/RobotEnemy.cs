@@ -19,8 +19,34 @@ using UnityEngine;
 /// </summary>
 public class RobotEnemy : MonoBehaviour
 {
+    [Header("Sonidos del Robot")]
+
+    [SerializeField]
+    private AudioClip patrollSound;
+
+    [SerializeField]
+    private AudioClip chaseSound;
+
+    [SerializeField]
+    private AudioClip hitSound;
+
+    //para controlar el volumen de cada sonido
+    [SerializeField]
+    private float volumePatroll;
+
+    [SerializeField]
+    private float volumeChase;
+
+    [SerializeField]
+    private float volumeHit;   
+
+    //para ver cual es el clip actual y hacer que no suene todo el rato
+    private AudioClip currentClip;
+
+    private AudioSource audioSource;
 
     private Animator anim;
+
 
     [Space]
     [Header("Configuración del Robot")]
@@ -85,6 +111,12 @@ public class RobotEnemy : MonoBehaviour
         //x defecto esta la de modo patrulla, aunque debería entrar igual
         anim.SetBool("modoPersecucion", false);
         anim.SetBool("parado", false);
+
+        //sonido del robot al iniciar patrulla
+        audioSource = GetComponent<AudioSource>();
+        activatePatrollSound();
+
+
     }
 
 
@@ -96,68 +128,85 @@ public class RobotEnemy : MonoBehaviour
             EndStun();   
         }
 
-        Transform target = vision.GetTarget();
-
-        //si ve al jugador lo persique
-        if (vision != null && target != null)
+        //si esta stunneado no hace nada, (además lo pongo porque si no los sonidos no van bien)
+        if(!stunned)
         {
-            //activo la animación de perseguir
-            anim.SetBool("modoPersecucion", true);
+            Transform target = vision.GetTarget();
 
-            //calculamos la dirección de donde esta el jugador (izquierda o derecha)
-            float dx = target.position.x - transform.position.x;
-            dir = Mathf.Sign(dx);
-
-            //se mueve el robot hacia el jugador (solo en el eje x claro)
-            rb.linearVelocity = new Vector2(dir * chaseSpeed, rb.linearVelocity.y);
-
-            //giramos
-            if (dir < 0)
+            //si ve al jugador lo persique
+            if (vision != null && target != null)
             {
-                transform.rotation = Quaternion.Euler(0, -180, 0);
+                //pongo el sonido de perseguir
+                if (currentClip != chaseSound)
+                {
+                    activateChaseSound();
+                    currentClip = chaseSound;
+                }
+
+                //activo la animación de perseguir
+                anim.SetBool("modoPersecucion", true);
+
+                //calculamos la dirección de donde esta el jugador (izquierda o derecha)
+                float dx = target.position.x - transform.position.x;
+                dir = Mathf.Sign(dx);
+
+                //se mueve el robot hacia el jugador (solo en el eje x claro)
+                rb.linearVelocity = new Vector2(dir * chaseSpeed, rb.linearVelocity.y);
+
+                //giramos
+                if (dir < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, -180, 0);
+                }
+                else if (dir > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
             }
-            else if (dir > 0)
+            else //si no ve al jugador patrulla (anda d lado a lado)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                //pongo el sonido de patrullar
+                if (currentClip != patrollSound)
+                {
+                    activatePatrollSound();
+                    currentClip = patrollSound;
+                }
+
+                //animación en modo patrulla
+                anim.SetBool("modoPersecucion", false);
+
+                //si no ve al jugador sigue patrullando
+                timer = timer + Time.deltaTime;
+
+                //si el temporizador (timer) supera los segundos de patrolTurnTime 
+                //(el tiempo que tarda en girar patrollando) le damos la vuelta y reinciamos el temporizador
+                if (timer >= patrolTurnTime)
+                {
+                    timer = 0f;
+                    dir = dir * (-1f);
+                }
+
+                //movemos al robot
+                rb.linearVelocity = new Vector2(dir * patrolSpeed, rb.linearVelocity.y);
+
+                //y giramos el sprite
+                if (dir < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, -180, 0);
+                }
+                else if (dir > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+
+                //para que no gire el sprite si deberia estar quieto
+                if (stunned)
+                {
+                    transform.rotation = lockedRotation;
+                }
             }
         }
-        else //si no ve al jugador patrulla (anda d lado a lado)
-        {
-            //animación en modo patrulla
-            anim.SetBool("modoPersecucion", false);
-
-            //si no ve al jugador sigue patrullando
-            timer = timer + Time.deltaTime;
-
-            //si el temporizador (timer) supera los segundos de patrolTurnTime 
-            //(el tiempo que tarda en girar patrollando) le damos la vuelta y reinciamos el temporizador
-            if (timer >= patrolTurnTime)
-            {
-                timer = 0f;
-                dir = dir * (-1f);
-            }
-
-            //movemos al robot
-            rb.linearVelocity = new Vector2(dir * patrolSpeed, rb.linearVelocity.y);
-
-            //y giramos el sprite
-            if (dir < 0)
-            {
-                transform.rotation = Quaternion.Euler(0, -180, 0);
-            }
-            else if (dir > 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-
-            //para que no gire el sprite si deberia estar quieto
-            if (stunned)
-            {
-                transform.rotation = lockedRotation;
-            }
-        }
-
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -185,6 +234,9 @@ public class RobotEnemy : MonoBehaviour
             //paramos al robot durante unos segundos tras tocarlo
             if (!stunned) 
             {
+                //sonido de golpe
+                activateHitSound();
+
                 anim.SetBool("parado", true);
 
                 stunned = true;
@@ -211,5 +263,37 @@ public class RobotEnemy : MonoBehaviour
         chaseSpeed = chaseSpeedDefault;
         stunned = false;
 
-    } 
+    }
+
+    private void activatePatrollSound() 
+    {
+        audioSource.Stop();
+        audioSource.clip = patrollSound;
+        audioSource.volume = volumePatroll;
+        audioSource.loop = true;
+        audioSource.Play();
+
+    }
+
+    private void activateChaseSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = chaseSound;
+        audioSource.volume = volumeChase;
+        audioSource.loop = true;
+        audioSource.Play();
+
+    }
+
+    private void activateHitSound()
+    {
+
+        audioSource.Stop();
+        audioSource.clip = hitSound;
+        audioSource.volume = volumeHit;
+        //el sonido de golpe solo lo reproduzco una vez porque no tiene sentido que sea un loop
+        audioSource.loop = false;
+        audioSource.Play();
+
+    }
 } 
