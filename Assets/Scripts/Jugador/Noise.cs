@@ -68,6 +68,7 @@ public class Noise : MonoBehaviour
     private float fadeRate;
 
 
+    private const string DEATH_NAME_SCENE = "MUERTE";
 
     private void Start()
     {
@@ -154,9 +155,7 @@ public class Noise : MonoBehaviour
     /// Método de muerte por ruido
     private void DeadbyNoise()
     {
-        System.GC.Collect();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
-        System.GC.Collect();
+        GameManager.Instance.ChangeScene(DEATH_NAME_SCENE);
     }
 
 

@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = walkSpeed;
 
         //para los checkpoints (comentad esta línea para comodidad en el testing)
-        //transform.position = GameManager.Instance.GetRespawn();
+        transform.position = GameManager.Instance.GetRespawn();
 
 
         //asigno el audioSource

@@ -18,10 +18,6 @@ public class ChangeLevel : MonoBehaviour
     [SerializeField]
     private string nextSceneName;
 
-    //para sumarle uno al index d las escenas
-    [SerializeField]
-    private int changeScene;
-
     //el punto de aparíción de la siguiente escena
     [SerializeField]
     private Vector3 nextSpawnPoint;
@@ -45,9 +41,9 @@ public class ChangeLevel : MonoBehaviour
             {
                 hasTriggered = true;
 
+                GameManager.Instance.setActualLevelScene(nextSceneName);
                 GameManager.Instance.ResetRespawn(nextSpawnPoint);
-                GameManager.Instance.NextNumberScene(changeScene);
-                UnityEngine.SceneManagement.SceneManager.LoadScene(GameManager.Instance.GetScene());
+                GameManager.Instance.ChangeScene(nextSceneName);
             }
 
 

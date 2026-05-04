@@ -89,12 +89,12 @@ public class CameraTrigger : MonoBehaviour
             auxUp = camera.GetLimitUp();
             auxDown = camera.GetLimitDown();
 
-            Debug.Log("1Valores arriba abajo: " + auxUp + " " + auxDown);
+           // Debug.Log("1Valores arriba abajo: " + auxUp + " " + auxDown);
 
             //Establecemos los valores deseados
             camera.SetLimitUp(CTlimitUp);
             camera.SetLimitDown(CTlimitDown);
-            Debug.Log("2Valores arriba abajo: " + auxUp + " " + auxDown);
+            // Debug.Log("2Valores arriba abajo: " + auxUp + " " + auxDown);
 
         }
     }
@@ -105,7 +105,7 @@ public class CameraTrigger : MonoBehaviour
     {
         if (other==playerBox)
         {
-            Debug.Log("3Valores arriba abajo: " + auxUp + " " + auxDown);
+            //Debug.Log("3Valores arriba abajo: " + auxUp + " " + auxDown);
 
             //Se reestablecen los valores iniciales
             camera.SetLimitUp(auxUp);
