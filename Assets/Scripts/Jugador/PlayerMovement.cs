@@ -140,6 +140,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float sprintMultiplier = 1.8f;
 
+    private const string DEAD_SCENE_NAME = "MUERTE";
+
     void Start()
     {
         //asignamos el rigidbody del jugador
@@ -155,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = walkSpeed;
 
         //para los checkpoints (comentad esta línea para comodidad en el testing)
-        transform.position = GameManager.Instance.GetRespawn();
+        //transform.position = GameManager.Instance.GetRespawn();
 
 
         //asigno el audioSource
@@ -354,7 +356,7 @@ public class PlayerMovement : MonoBehaviour
     public void DeadZone()
     {
         System.GC.Collect();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MUERTE");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(DEAD_SCENE_NAME);
         System.GC.Collect();
     }
 

@@ -778,6 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e67665ea226d403ab8b32a4b067d8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: 0
 --- !u!1 &1805685920
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +865,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1805685925}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: DeadRespawn
+        m_MethodName: ChangeToNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -924,6 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e67665ea226d403ab8b32a4b067d8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: 1
 --- !u!1 &2061448668
 GameObject:
   m_ObjectHideFlags: 0

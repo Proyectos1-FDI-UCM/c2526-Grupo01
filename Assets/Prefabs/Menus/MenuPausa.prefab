@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e67665ea226d403ab8b32a4b067d8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 0
 --- !u!1 &2161358747050742552
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e67665ea226d403ab8b32a4b067d8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 0
 --- !u!1 &5376141221031695003
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,8 +462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000038147, y: -51}
-  m_SizeDelta: {x: 1383.2261, y: 789.2359}
+  m_AnchoredPosition: {x: 6.5699, y: -68.0816}
+  m_SizeDelta: {x: 1480.4602, y: 828.6555}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1543053698089042634
 CanvasRenderer:
@@ -495,7 +493,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3976773637508145633, guid: 6d4bb282e2e22114a8e75d798f69df0e, type: 3}
+  m_Sprite: {fileID: -3198519508080850693, guid: 7a5f46f4e32fd8947950ad01803b5b51, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

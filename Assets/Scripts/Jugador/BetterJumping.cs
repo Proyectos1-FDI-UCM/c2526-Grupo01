@@ -37,6 +37,11 @@ public class BetterJumping : MonoBehaviour
     [SerializeField]
     private float lowJumpMultiplier = 2f;
 
+    [Header("Limite del salto (Dejadlo por defecto a 10f)")]
+    [SerializeField]
+    //limita la subida aunque sigas pulsando el botón de salto, a 10f a mí me parece perfecto la verdad
+    private float maxJumpVelocity = 10f; 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,6 +49,14 @@ public class BetterJumping : MonoBehaviour
 
     void Update()
     {
+        //si el jugador sube más rápido d lo permitido por maxJumpVelocity entonces
+        //aplicamos un cap a la velocidad en el eje Y cuando es positiva (mientras esta subiendo debido al salto)
+        if (rb.linearVelocity.y > maxJumpVelocity)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxJumpVelocity);
+        }
+
+
         //si el jugador esta cayendo (el eje y es menor que 0)
         if (rb.linearVelocity.y < 0)
         {
