@@ -228,7 +228,10 @@ public class GameManager : MonoBehaviour
         return actualLevel; 
     }
 
-
+    public void setMusicVolume(float volume)
+    {
+        levelMusicTrack.volume = volume;
+    }
 
 
     #endregion

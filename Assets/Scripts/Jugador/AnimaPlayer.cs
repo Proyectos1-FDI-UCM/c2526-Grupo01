@@ -49,12 +49,20 @@ public class AnimaPlayer : MonoBehaviour
         bool enSuelo = sueloDetector.IsOnGround();
         bool dashing = movement.GetIsDashing();
 
+        bool falling = rb.linearVelocity.y < -0.02f;
+
+        bool jumping = rb.linearVelocity.y > 0.05f;
+
 
         _animator.SetBool("isMoving", moving);
 
         _animator.SetBool("isDashing", dashing);
 
-        _animator.SetBool("enAire", !enSuelo);
+        //para que cuando salte no salga la animación de caída hasta que la y del jugador baje
+        _animator.SetBool("enAire", !enSuelo && falling);
+
+        //para que salte
+        _animator.SetBool("saltando", !enSuelo && jumping && !InputManager.Instance.SprintIsPressed());
     }
 
     public void Flip(int side)

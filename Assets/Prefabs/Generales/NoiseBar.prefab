@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.133}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74.7, y: -40.6}
-  m_SizeDelta: {x: 183.1721, y: 29.1957}
+  m_AnchoredPosition: {x: 193.76276, y: -149.89645}
+  m_SizeDelta: {x: 455.6021, y: 63.9238}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5668945535829876421
 CanvasRenderer:
@@ -111,8 +111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15.5, y: 3.4821777}
-  m_SizeDelta: {x: 244.1343, y: 117.7193}
+  m_AnchoredPosition: {x: 11, y: 45}
+  m_SizeDelta: {x: 632.1903, y: 384.5078}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &354318662489965228
 CanvasRenderer:
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

@@ -70,9 +70,17 @@ public class Noise : MonoBehaviour
 
     private const string DEATH_NAME_SCENE = "MUERTE";
 
+    [Header("Cheto")]
+    //para el cheat de no morir
+    private bool noDeadCheat;
+    [SerializeField]
+    private Image imageDeadCheat;
+
     private void Start()
     {
         UpdateBar();
+        noDeadCheat = false;
+        imageDeadCheat.enabled = false;
 
     }
 
@@ -83,7 +91,11 @@ public class Noise : MonoBehaviour
 
         //Llamamos al cambio de alpha en cada frame.
         //Si se cambia el target de alpha, se inicia un fade.
-        HUDPresence();
+        if (!noDeadCheat)
+        {
+            HUDPresence();
+        }
+
 
         if (noiseLevel >= 100) timer += Time.deltaTime; 
 
@@ -92,6 +104,24 @@ public class Noise : MonoBehaviour
         {
             DeadbyNoise();
         }
+
+        //para el cheat de no morir ni recibir daño
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            if (!noDeadCheat)
+            {
+                noDeadCheat = true;
+                imageDeadCheat.enabled = true;
+            }
+            else
+            {
+                noDeadCheat = false;
+                imageDeadCheat.enabled = false;
+            }
+ 
+        }
+
+
     }
 
 
@@ -99,22 +129,26 @@ public class Noise : MonoBehaviour
     /// la cantidad de ruido que supone cada enemigo individualmente
     public void takeNoise(int noiseDamage)
     {
-        //Se avisa al animaPlayer de que ha recibido daño
-        animaPlayer.TakeDamage();
-        fxAudio.PlayOneShot(hitSound);
+        if (!noDeadCheat)
+        {
+            //Se avisa al animaPlayer de que ha recibido daño
+            animaPlayer.TakeDamage();
+            fxAudio.PlayOneShot(hitSound);
 
-        //Establecemos visibilidad a la barra de ruido
-        targetNoiseHUDAlpha = 1;
+            //Establecemos visibilidad a la barra de ruido
+            targetNoiseHUDAlpha = 1;
 
 
-        noiseLevel += noiseDamage;
-        noiseLevel = Mathf.Clamp(noiseLevel, 0, 100);
+            noiseLevel += noiseDamage;
+            noiseLevel = Mathf.Clamp(noiseLevel, 0, 100);
 
-        //Se llama al método para actualizar en la barra el nivel de ruido provocado
-        UpdateBar();
+            //Se llama al método para actualizar en la barra el nivel de ruido provocado
+            UpdateBar();
 
-        //Se guarda el último frame en el que se ha recibido daño para Regenerate()
-        lastHitTime = Time.time;
+            //Se guarda el último frame en el que se ha recibido daño para Regenerate()
+            lastHitTime = Time.time;
+
+        }
 
     }
 
@@ -155,7 +189,11 @@ public class Noise : MonoBehaviour
     /// Método de muerte por ruido
     private void DeadbyNoise()
     {
-        GameManager.Instance.ChangeScene(DEATH_NAME_SCENE);
+        if (!noDeadCheat) 
+        {
+            GameManager.Instance.ChangeScene(DEATH_NAME_SCENE);
+        }
+       
     }
 
 
