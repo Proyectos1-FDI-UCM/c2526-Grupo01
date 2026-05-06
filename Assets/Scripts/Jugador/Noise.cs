@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 
 ///Lógica básica de recepción de nivel de ruido y regeneración del mismo. 
-///Tras recibir daño de ruido y permanecer 5 segundos sin subidas,
+///Tras recibir daño de ruido y permanecer cierto tiempo sin subidas,
 /// se inicia un proceso de regeneración del nivel de ruido hasta el 0. 
 public class Noise : MonoBehaviour
 {

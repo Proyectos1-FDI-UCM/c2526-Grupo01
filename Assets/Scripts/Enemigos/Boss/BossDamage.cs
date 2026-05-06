@@ -11,21 +11,12 @@ using UnityEngine.Rendering;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Código para añadirle ruido al jugador, ya que el boss no tiene collider.
 /// </summary>
 public class BossDamage : MonoBehaviour
 {
-    // ---- ATRIBUTOS DEL INSPECTOR ----
-    #region Atributos del Inspector (serialized fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
-
-    #endregion
-
+ 
+  
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
     //Valor elevado de ruido para garantizar la muerte instantánea
@@ -50,38 +41,11 @@ public class BossDamage : MonoBehaviour
        
 
     }
-    void Start()
-    {
-        
-    }
-
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-        
-    }
-    #endregion
-
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-    // Documentar cada método que aparece aquí con ///<summary>
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    // Ejemplo: GetPlayerController
-
-    #endregion
     
-    // ---- MÉTODOS PRIVADOS ----
-    #region Métodos Privados
-    // Documentar cada método que aparece aquí
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
+    #endregion
 
-    #endregion   
-
-} // class BossDamage 
+  
+    
+  
+} 
 // namespace

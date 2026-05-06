@@ -10,8 +10,8 @@ using UnityEngine;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Activador de la persecución del boss. Cuando el jugador entra en el trigger, 
+/// activa el método de persecución de la zona del Boss.
 /// </summary>
 public class BossTrigger : MonoBehaviour
 {
