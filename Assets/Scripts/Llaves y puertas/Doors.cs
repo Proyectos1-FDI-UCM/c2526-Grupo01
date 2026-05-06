@@ -7,6 +7,14 @@
 
 using UnityEngine;
 
+/*
+Controla el comportamiento de una puerta.
+
+Comprueba si el jugador tiene la llave necesaria al colisionar con ella.
+Si la posee, la puerta se abre (se destruye). Si no, muestra un mensaje
+indicando qué llave se necesita.
+*/
+
 public class Doors : MonoBehaviour
 {
     // llave necesaria para abrir la puerta (se pone en unity)

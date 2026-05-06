@@ -7,6 +7,14 @@
 
 using UnityEngine;
 
+/*
+Representa una llave recogible en el juego.
+
+Cuando el jugador entra en contacto con ella, se añade al inventario
+(KeyInventory) usando su identificador (por ejemplo, color) y se
+elimina del escenario.
+*/
+
 public class Key : MonoBehaviour
 {
     // color o tipo de la llave (lo ponemos desde unity)

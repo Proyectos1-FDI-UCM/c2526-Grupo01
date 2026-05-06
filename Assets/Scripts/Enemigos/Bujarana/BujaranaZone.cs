@@ -7,6 +7,13 @@
 
 using UnityEngine;
 
+/*
+Define la zona de detección del enemigo Bujarana.
+
+Detecta cuándo el jugador entra o sale de un área determinada (trigger)
+y notifica al enemigo para que comience o detenga la persecución.
+*/
+
 public class BujaranaZone : MonoBehaviour
 {
     // referencia al enemigo (la asignamos desde unity)

@@ -8,6 +8,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Gestiona el inventario de llaves del jugador.
+
+Almacena las llaves recogidas en una lista, evitando duplicados.
+Permite añadir nuevas llaves y comprobar si el jugador posee una
+llave específica.
+*/
+
 public class KeyInventory : MonoBehaviour
 {
     // lista donde guardamos las llaves que tiene el jugador

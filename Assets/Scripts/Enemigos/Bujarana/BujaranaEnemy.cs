@@ -7,6 +7,18 @@
 
 using UnityEngine;
 
+/*
+Controla el comportamiento del enemigo Bujarana.
+
+Persigue al jugador cuando este entra en su zona de detección y regresa
+a su posición inicial cuando el jugador se aleja. Al colisionar con el
+jugador, aplica un empujón (knockback) y entra en un estado de stun
+temporal durante el cual no puede moverse.
+
+También gestiona la reproducción de sonidos según su estado:
+movimiento (sonido ambiente) y golpe (interacción con el jugador).
+*/
+
 public class BujaranaEnemy : MonoBehaviour
 {
 
