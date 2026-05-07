@@ -18,11 +18,17 @@ public class Checkpoint : MonoBehaviour
 {
     private Animator anim;
 
+    private AudioSource sfx;
+
+    private const float SFX_VOLUME = 1f;
+
     private void Start()
     {
         //asigno el animator del hijo
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("usado", false);
+        sfx = GetComponent<AudioSource>();
+        sfx.volume = SFX_VOLUME;  
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,6 +37,7 @@ public class Checkpoint : MonoBehaviour
 
         if (player != null)
         {
+            sfx.Play();
            //cambio la animación
            anim.SetBool("usado", true);
 

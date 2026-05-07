@@ -37,7 +37,10 @@ public class BossZone : MonoBehaviour
     [SerializeField]
     private float triggerDelay = 3f;
 
-  
+
+    
+    
+   
 
     #endregion
 
@@ -47,13 +50,23 @@ public class BossZone : MonoBehaviour
     //rb para el movimiento
     private Rigidbody2D rb;
 
+    //Variable de audio para los efectos de sonido
+    private AudioSource audioSource;
+
     //Bool para activar y desactivar la persecución
     private bool chasing = false;
 
     //Variable para guardar el momento de activación de la persecución
     private float triggerTime;
- 
-    
+
+
+
+    //Variables de cambio de volumen del boss
+    private const float VOL_INIT = 0.5f;
+
+    private const float VOL_BOSS = 1f;
+
+
 
     #endregion
 
@@ -63,9 +76,17 @@ public class BossZone : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         //Inicia el riggidbody y chasing a false
         rb = GetComponent<Rigidbody2D>();
-        chasing  = false;
+        chasing = false;
+
+        //Inicialización de las variables de sonido
+        audioSource.Stop();
+        audioSource.loop = true;     
+        audioSource.Play();
+        audioSource.volume = VOL_INIT;
+
     }
 
     /// <summary>
@@ -74,35 +95,35 @@ public class BossZone : MonoBehaviour
     void Update()
     {
         //En cada frame se hace una cosa u otra dependiendo del estado de chasing
-        if (chasing) 
+        if (chasing)
         {
             BossChase();
-        } 
+        }
         else BossStill();
     }
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-   
+
 
     //Método que pone chasing a true e inicia el contador con triggerTime
     public void StartChase()
     {
-       
+
         chasing = true;
         triggerTime = Time.time;
-        
+        audioSource.volume = VOL_BOSS;
 
-
-        Debug.Log("empieza el boss. Chase = " + chasing);
+            Debug.Log("empieza el boss. Chase = " + chasing);
 
     }
-        //Método que pone chasing a false
+    //Método que pone chasing a false
     public void EndChase()
     {
         chasing = false;
         Debug.Log("Deja de perseguir. Chase = " + chasing);
+        audioSource.Stop();
 
     }
 
@@ -135,7 +156,7 @@ public class BossZone : MonoBehaviour
     }
 
 
-   
+
 
 
     #endregion

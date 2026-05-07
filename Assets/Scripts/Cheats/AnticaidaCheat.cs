@@ -5,7 +5,7 @@
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
 
-using Microsoft.Unity.VisualStudio.Editor;
+//using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;

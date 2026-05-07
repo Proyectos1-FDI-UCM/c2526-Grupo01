@@ -107,7 +107,7 @@ public class ChangeScene : MonoBehaviour
     {
         System.GC.Collect();
         GameManager.Instance.SetRespawnPoint(THIRD_SPAWNPOINT);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_3BossFinalLeo");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BossFinal");
         System.GC.Collect();
     }
 

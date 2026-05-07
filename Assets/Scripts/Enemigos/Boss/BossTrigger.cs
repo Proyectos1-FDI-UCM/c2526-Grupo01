@@ -24,12 +24,6 @@ public class BossTrigger : MonoBehaviour
     [SerializeField]
     private PlayerMovement jugador;
 
-
-    ///A COMPLETAR Componente transform que hará aparecer la zona de muerte
-    //[SerializeField]
-    //private Transform TransformSpawn;
-
-
     //Componente de la cámara de la escena de boss
     [SerializeField]
     private CameraBoss cam;
@@ -42,8 +36,8 @@ public class BossTrigger : MonoBehaviour
 
     #endregion
 
-    // ---- ATRIBUTOS PRIVADOS ----
-    #region Atributos Privados (private fields)
+    // ---- MÉTODOS PRIVADOS ----
+    #region Métodos Privados (private fields)
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //El trigger detecta al jugador

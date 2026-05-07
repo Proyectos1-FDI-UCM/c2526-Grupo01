@@ -17,6 +17,11 @@ indicando qué llave se necesita.
 
 public class Doors : MonoBehaviour
 {
+
+    
+
+
+
     // llave necesaria para abrir la puerta (se pone en unity)
     [SerializeField] private string requiredKey;
 
@@ -34,6 +39,8 @@ public class Doors : MonoBehaviour
             {
                 // si la tiene, abrimos la puerta (la borramos)
                 Debug.Log("Puerta abierta");
+
+
                 Destroy(gameObject);
             }
             else

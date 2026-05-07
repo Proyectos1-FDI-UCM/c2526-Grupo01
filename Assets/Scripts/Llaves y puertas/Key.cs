@@ -20,9 +20,17 @@ public class Key : MonoBehaviour
     // color o tipo de la llave (lo ponemos desde unity)
     [SerializeField] private string keyColor;
 
+
+
+
+
+
+  
+
     // esto se ejecuta cuando algo entra en el trigger
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         // intentamos coger el inventario del objeto que ha tocado la llave
         KeyInventory keyInventory = other.GetComponent<KeyInventory>();
 
@@ -31,7 +39,6 @@ public class Key : MonoBehaviour
         {
             // le añadimos la llave
             keyInventory.AddKey(keyColor);
-
             // destruimos la llave del mapa
             Destroy(gameObject);
         }
