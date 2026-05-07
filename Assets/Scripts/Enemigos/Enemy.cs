@@ -22,18 +22,31 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float cooldown = 1.0f;
 
-    //Variable privada
-    private float lastHitTime = -1000f;
 
-    //Cuando entra en contacto con el player (gameobject que tiene noise) hace que se llame a takeNoise
-    //en Noise con el valor deseado.
+    //Variable privada
+    private float lastHitTime = -Mathf.Infinity;
+
+    //Cuando entra en contacto con el player (gameobject que tiene noise) y ha pasado el tiempo
+    //de cooldown, hace que se llame a takeNoise en Noise con el valor deseado.
+ 
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Noise noise = collision.gameObject.GetComponent<Noise>();
+        //.GetComponent<Noise>();
 
-        if (noise != null || Time.time > lastHitTime + cooldown)
+        if (noise == null || Time.time < lastHitTime + cooldown)
         {
-           noise.TakeNoise(noiseEffect);
+            // Debug.Log("No hay nada que haga ruido");
+
+
         }
+        else noise.TakeNoise(noiseEffect);
+
     }
+
+
+
+
 }
