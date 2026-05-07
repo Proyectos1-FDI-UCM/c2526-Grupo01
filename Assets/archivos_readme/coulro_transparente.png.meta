@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: b0acab374978b61449bda306e9582281
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7805557655942054480
+    second: coulro_transparente_0
+  - first:
+      213: 394420047588415292
+    second: coulro_transparente_1
+  - first:
+      213: -2211054750771887886
+    second: coulro_transparente_2
+  - first:
+      213: 2218519956621377128
+    second: coulro_transparente_3
+  - first:
+      213: 3324360700388424140
+    second: coulro_transparente_4
+  - first:
+      213: 4881105108044917100
+    second: coulro_transparente_5
+  - first:
+      213: 7965342294746110403
+    second: coulro_transparente_6
+  - first:
+      213: 7561649279076722938
+    second: coulro_transparente_7
+  - first:
+      213: 3794987661607931284
+    second: coulro_transparente_8
+  - first:
+      213: -2534398756876543722
+    second: coulro_transparente_9
+  - first:
+      213: 6287058086031326468
+    second: coulro_transparente_10
+  - first:
+      213: -5604425542819065561
+    second: coulro_transparente_11
+  - first:
+      213: -7055109802398369668
+    second: coulro_transparente_12
+  - first:
+      213: 1038245291922889832
+    second: coulro_transparente_13
+  - first:
+      213: -1824379038566514594
+    second: coulro_transparente_14
+  - first:
+      213: -212043934529978072
+    second: coulro_transparente_15
+  - first:
+      213: 8876086869804741852
+    second: coulro_transparente_16
+  - first:
+      213: -5595025266102215332
+    second: coulro_transparente_17
+  - first:
+      213: -5831182429614734279
+    second: coulro_transparente_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: coulro_transparente_0
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 34
+        width: 1351
+        height: 1725
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 052c14c1559e25c60800000000000000
+      internalID: 7805557655942054480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_1
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 715
+        width: 1672
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c37dccc81f2497500800000000000000
+      internalID: 394420047588415292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_2
+      rect:
+        serializedVersion: 2
+        x: 1625
+        y: 614
+        width: 42
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f04d493b61c051e0800000000000000
+      internalID: -2211054750771887886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_3
+      rect:
+        serializedVersion: 2
+        x: 2123
+        y: 682
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86e38857524c9ce10800000000000000
+      internalID: 2218519956621377128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_4
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 616
+        width: 35
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc9bbeb9170822e20800000000000000
+      internalID: 3324360700388424140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_5
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 615
+        width: 31
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c69ac5c0c3b2db340800000000000000
+      internalID: 4881105108044917100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_6
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 614
+        width: 31
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c99cb86d949a8e60800000000000000
+      internalID: 7965342294746110403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_7
+      rect:
+        serializedVersion: 2
+        x: 1772
+        y: 615
+        width: 38
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af8e47bb4ff50f860800000000000000
+      internalID: 7561649279076722938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_8
+      rect:
+        serializedVersion: 2
+        x: 1815
+        y: 614
+        width: 32
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49d8129eb218aa430800000000000000
+      internalID: 3794987661607931284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_9
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 614
+        width: 30
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6199e2922c104dcd0800000000000000
+      internalID: -2534398756876543722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_10
+      rect:
+        serializedVersion: 2
+        x: 1888
+        y: 616
+        width: 51
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40df42cd40e104750800000000000000
+      internalID: 6287058086031326468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_11
+      rect:
+        serializedVersion: 2
+        x: 1970
+        y: 615
+        width: 38
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 721d42e89a41932b0800000000000000
+      internalID: -5604425542819065561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_12
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 614
+        width: 42
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c783ba8a307371e90800000000000000
+      internalID: -7055109802398369668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_13
+      rect:
+        serializedVersion: 2
+        x: 2059
+        y: 616
+        width: 51
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86c19c69796986e00800000000000000
+      internalID: 1038245291922889832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_14
+      rect:
+        serializedVersion: 2
+        x: 2147
+        y: 616
+        width: 35
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e50039e2ee08ea6e0800000000000000
+      internalID: -1824379038566514594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_15
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 614
+        width: 31
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 821809d3a2bae0df0800000000000000
+      internalID: -212043934529978072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_16
+      rect:
+        serializedVersion: 2
+        x: 2245
+        y: 614
+        width: 60
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd478360bf13e2b70800000000000000
+      internalID: 8876086869804741852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_17
+      rect:
+        serializedVersion: 2
+        x: 2308
+        y: 616
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5d54a80a2a7a52b0800000000000000
+      internalID: -5595025266102215332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coulro_transparente_18
+      rect:
+        serializedVersion: 2
+        x: 2367
+        y: 614
+        width: 41
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9348056a97a731fa0800000000000000
+      internalID: -5831182429614734279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      coulro_transparente_0: 7805557655942054480
+      coulro_transparente_1: 394420047588415292
+      coulro_transparente_10: 6287058086031326468
+      coulro_transparente_11: -5604425542819065561
+      coulro_transparente_12: -7055109802398369668
+      coulro_transparente_13: 1038245291922889832
+      coulro_transparente_14: -1824379038566514594
+      coulro_transparente_15: -212043934529978072
+      coulro_transparente_16: 8876086869804741852
+      coulro_transparente_17: -5595025266102215332
+      coulro_transparente_18: -5831182429614734279
+      coulro_transparente_2: -2211054750771887886
+      coulro_transparente_3: 2218519956621377128
+      coulro_transparente_4: 3324360700388424140
+      coulro_transparente_5: 4881105108044917100
+      coulro_transparente_6: 7965342294746110403
+      coulro_transparente_7: 7561649279076722938
+      coulro_transparente_8: 3794987661607931284
+      coulro_transparente_9: -2534398756876543722
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
