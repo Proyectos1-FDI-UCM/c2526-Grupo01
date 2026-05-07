@@ -7,13 +7,7 @@
 
 using System.Collections;
 using UnityEngine;
-// Añadir aquí el resto de directivas using
 
-
-/// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
-/// </summary>
 public class DollEnemy : MonoBehaviour
 {
     [Header("Sonidos estatua")]
@@ -131,12 +125,14 @@ public class DollEnemy : MonoBehaviour
 
         if (player != null && !playerDetected)
         {
-            playerDetected = true;
+            //Esto es lo que activa todo el ciclo de animaciones y esperas
+            //Como no se resetea a false, basta con que el jugador entre una vez en la zona, da igual si se queda dentro o si sale
+            playerDetected = true; 
 
             _animator.SetTrigger("grito");
             activateScreamSound();
             state = 1;
-            timer = 0f;
+            timer = 0f; //Inicializa el timer
         }
     }
 
@@ -152,7 +148,7 @@ public class DollEnemy : MonoBehaviour
     public void FallAttack()
     {
         activateExplosionSound();
-        Instantiate(largeDollHitbox, spawnPoint, Quaternion.identity);
+        Instantiate(largeDollHitbox, spawnPoint, Quaternion.identity); //Crea la zona de daño
 
 
         state = 3;
@@ -184,7 +180,6 @@ public class DollEnemy : MonoBehaviour
     private void activateExplosionSound()
     {
         audioSource.PlayOneShot(explosionSound, volumeExplosion);
-
     }
 
 }

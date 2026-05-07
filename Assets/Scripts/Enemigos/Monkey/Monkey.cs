@@ -130,6 +130,13 @@ public class Monkey : MonoBehaviour
             }
             else
             {
+                //cambia el ruido de ataque a estándar
+                if (currentClip != monkeySound)
+                {
+                    activateMonkeySound();
+                    currentClip = monkeySound;
+                }
+
                 timer = timer + Time.fixedDeltaTime;
                 attacking = false;
             }

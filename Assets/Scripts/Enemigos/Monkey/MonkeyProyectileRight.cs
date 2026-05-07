@@ -28,7 +28,7 @@ public class MonkeyProyectileRight : MonoBehaviour
         
         rb.linearVelocity = new Vector2(direction * speed, 0f);
 
-        Destroy(gameObject, timestay);
+        Destroy(gameObject, timestay); //El proyectil desaparece tras un tiempo
     }
 
     private void FixedUpdate()
@@ -39,7 +39,7 @@ public class MonkeyProyectileRight : MonoBehaviour
     {
         PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
 
-        if (player != null) Destroy(gameObject);
+        if (player != null) Destroy(gameObject); //Si choca con el player, desaparece
     }
 } // class MonkeyProyectile 
 // namespace

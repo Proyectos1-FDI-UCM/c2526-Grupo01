@@ -25,7 +25,7 @@ public class DollArea : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (timer >= attackduration) Destroy(gameObject);
+        if (timer >= attackduration) Destroy(gameObject); //Se autodestruye
         else timer += Time.deltaTime;
     }
 

@@ -1,6 +1,12 @@
+//---------------------------------------------------------
+// Control de las animaciones del player
+// Adrián de la Calle
+// Coulro
+// Proyectos 1 - Curso 2025-26
+//---------------------------------------------------------
+
 using UnityEngine;
 using UnityEngine.U2D;
-//CODIGO PARA LAS ANIMACIONES
 
 
 public class AnimaPlayer : MonoBehaviour
@@ -65,7 +71,7 @@ public class AnimaPlayer : MonoBehaviour
         _animator.SetBool("saltando", !enSuelo && jumping && !InputManager.Instance.SprintIsPressed());
     }
 
-    public void Flip(int side)
+    public void Flip(int side) //gira el sprite
     {
 
         Vector3 scale = sprite.localScale;

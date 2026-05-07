@@ -21,6 +21,7 @@ public class MonkeyAnimation : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Usa un bool del Mono para comprobar su estado
         if(Mono.IsAttacking()) animator.SetTrigger("IsAttacking");
         else animator.SetTrigger("NotAttacking");
     }

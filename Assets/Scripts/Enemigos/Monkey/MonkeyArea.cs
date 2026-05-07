@@ -25,6 +25,7 @@ public class MonkeyArea : MonoBehaviour
     }
     public bool PlayerInArea()
     {
+        //El mono utiliza este bool para controlar su ciclo de ataques
         return detected;
     }
 } // class MonkeyArea 
