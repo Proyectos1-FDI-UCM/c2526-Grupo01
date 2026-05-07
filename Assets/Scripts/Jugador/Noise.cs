@@ -127,7 +127,7 @@ public class Noise : MonoBehaviour
 
     /// MÉTODO DE ADICIÓN DE RUIDO: Éste método toma como medida del ruido a sumar 
     /// la cantidad de ruido que supone cada enemigo individualmente
-    public void takeNoise(int noiseDamage)
+    public void TakeNoise(int noiseDamage)
     {
         if (!noDeadCheat)
         {

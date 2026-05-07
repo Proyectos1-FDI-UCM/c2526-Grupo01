@@ -36,10 +36,9 @@ public class BossDamage : MonoBehaviour
         {
             Debug.Log("He chocado con player");
             player = collision.GetComponent<Noise>();
-            player.takeNoise(damage);
+            player.TakeNoise(damage);
+            player.TakeNoise(damage);
         }
-       
-
     }
     
     #endregion

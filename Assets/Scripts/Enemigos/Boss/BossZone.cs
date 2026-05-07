@@ -8,10 +8,13 @@
 using UnityEngine;
 // Añadir aquí el resto de directivas using
 
-
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Boss final del juego. Trigger que mata de un golpe al jugador y lo persigue.
+/// Contiene: 
+/// - Métodos que inician y terminan el boss.
+/// - Método que se llama en el update que salta cuando se inicia el boss. Hace que persiga siempre al jugador.
+/// - Método que termina el boss
+/// - Método para frenar el boss
 /// </summary>
 public class BossZone : MonoBehaviour
 {
@@ -34,6 +37,7 @@ public class BossZone : MonoBehaviour
     [SerializeField]
     private float triggerDelay = 3f;
 
+  
 
     #endregion
 
@@ -48,6 +52,8 @@ public class BossZone : MonoBehaviour
 
     //Variable para guardar el momento de activación de la persecución
     private float triggerTime;
+ 
+    
 
     #endregion
 
@@ -57,7 +63,9 @@ public class BossZone : MonoBehaviour
 
     void Start()
     {
+        //Inicia el riggidbody y chasing a false
         rb = GetComponent<Rigidbody2D>();
+        chasing  = false;
     }
 
     /// <summary>
@@ -66,27 +74,17 @@ public class BossZone : MonoBehaviour
     void Update()
     {
         //En cada frame se hace una cosa u otra dependiendo del estado de chasing
-        if (chasing) BossChase();
+        if (chasing) 
+        {
+            BossChase();
+        } 
         else BossStill();
-
     }
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-    public void BossChase()
-    {
-        //Si el tiempo actual supera al momento del trigging + el delay establecido
-        //la zona de boss empieza a seguir al componente referencia del player
-
-
-        if (Time.time >= triggerTime + triggerDelay)
-        {
-            Vector2 direction = (jugador.position - transform.position).normalized;
-            rb.linearVelocity = direction * speed;
-        }
-
-    }
+   
 
     //Método que pone chasing a true e inicia el contador con triggerTime
     public void StartChase()
@@ -94,11 +92,13 @@ public class BossZone : MonoBehaviour
        
         chasing = true;
         triggerTime = Time.time;
+        
+
+
         Debug.Log("empieza el boss. Chase = " + chasing);
 
     }
-
-    //Método que pone chasing a false
+        //Método que pone chasing a false
     public void EndChase()
     {
         chasing = false;
@@ -114,14 +114,29 @@ public class BossZone : MonoBehaviour
 
 
 
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-    // Documentar cada método que aparece aquí
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
+
+    private void BossChase()
+    {
+        //Si el tiempo actual supera al momento del trigging + el delay establecido
+        //la zona de boss empieza a seguir al componente referencia del player
+
+
+        if (Time.time >= triggerTime + triggerDelay)
+        {
+            Vector2 direction = (jugador.position - transform.position).normalized;
+            rb.linearVelocity = direction * speed;
+        }
+
+    }
+
+
+   
+
 
     #endregion
 

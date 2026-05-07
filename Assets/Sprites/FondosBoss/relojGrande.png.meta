@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8182673d31b1e23488c870aa81aa5937
+guid: 881c6ac900410244c879c52d628ae50e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3952700587368955776
-    second: rayasCheat_0
+      213: 2121695027781112353
+    second: relojGrande_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rayasCheat_0
+      name: relojGrande_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1470
-        height: 980
+        width: 672
+        height: 495
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 080456212cf2529c0800000000000000
-      internalID: -3952700587368955776
+      spriteID: 1221b94f266c17d10800000000000000
+      internalID: 2121695027781112353
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      rayasCheat_0: -3952700587368955776
+      relojGrande_0: 2121695027781112353
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
