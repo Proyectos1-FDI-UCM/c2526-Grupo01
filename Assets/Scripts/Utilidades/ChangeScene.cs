@@ -107,7 +107,7 @@ public class ChangeScene : MonoBehaviour
     {
         System.GC.Collect();
         GameManager.Instance.SetRespawnPoint(THIRD_SPAWNPOINT);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("BossFinal");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_3BossFinalLeo");
         System.GC.Collect();
     }
 
@@ -116,6 +116,14 @@ public class ChangeScene : MonoBehaviour
     {
         System.GC.Collect();
         UnityEngine.SceneManagement.SceneManager.LoadScene("SelectorNivel");
+        System.GC.Collect();
+    }
+
+    //te lleva a los créditos
+    public void Creditos()
+    {
+        System.GC.Collect();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Creditos");
         System.GC.Collect();
     }
 
