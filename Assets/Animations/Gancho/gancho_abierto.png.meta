@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5bc40726935a62c4fb7f87995c89447b
+guid: b853adeafd13cbd4889f2e904ad01774
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5560401577794438831
-    second: gancho_cerrandose2_0
+      213: -2204228962588183383
+    second: gancho_abierto_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gancho_cerrandose2_0
+      name: gancho_abierto_0
       rect:
         serializedVersion: 2
-        x: 145
-        y: 25
-        width: 425
-        height: 847
+        x: 28
+        y: 102
+        width: 657
+        height: 770
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa685f456c38a2d40800000000000000
-      internalID: 5560401577794438831
+      spriteID: 9a4bd41ef610961e0800000000000000
+      internalID: -2204228962588183383
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      gancho_cerrandose2_0: 5560401577794438831
+      gancho_abierto_0: -2204228962588183383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

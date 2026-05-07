@@ -35,6 +35,9 @@ public class Gancho : MonoBehaviour
     private double posXgancho = 0.2;
     private double posYgancho = -1;
 
+    [SerializeField]
+    private Animator animator;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,6 +49,7 @@ public class Gancho : MonoBehaviour
         posicionFinal = posicionInicial + new Vector3(0, alturaMaxima, 0);
 
         tieneJugador = false;
+        animator.SetBool("Pillado", false);
         bajando = false;
     }
 
@@ -61,6 +65,7 @@ public class Gancho : MonoBehaviour
                 jugadorTransform = jugador.transform;
                 jugadorTransform.parent = transform;
                 tieneJugador = true;
+                animator.SetBool("Pillado", true);
             }
         }
     }
@@ -112,6 +117,7 @@ public class Gancho : MonoBehaviour
                         jugadorTransform = null;
                     }
                     tieneJugador = false;
+                    animator.SetBool("Pillado", false);
                     bajando = true;
                     progreso = 0f;
                 }

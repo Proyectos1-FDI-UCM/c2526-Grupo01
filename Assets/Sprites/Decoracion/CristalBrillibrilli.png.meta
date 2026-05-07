@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: 23fab162370b82b4aaa9bb6f8607b7fc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5542982463068292101
+    second: CristalBrillibrilli_0
+  - first:
+      213: -9179213095350345914
+    second: CristalBrillibrilli_1
+  - first:
+      213: 2123737573614442546
+    second: CristalBrillibrilli_2
+  - first:
+      213: 1687968841615564977
+    second: CristalBrillibrilli_3
+  - first:
+      213: 8598259199220530695
+    second: CristalBrillibrilli_4
+  - first:
+      213: 1284377591318976015
+    second: CristalBrillibrilli_5
+  - first:
+      213: 7984815844182047343
+    second: CristalBrillibrilli_6
+  - first:
+      213: -5339900093253144613
+    second: CristalBrillibrilli_7
+  - first:
+      213: 4846344097783835851
+    second: CristalBrillibrilli_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CristalBrillibrilli_0
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1154
+        width: 396
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 504c763ae21acec40800000000000000
+      internalID: 5542982463068292101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalBrillibrilli_1
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 1217
+        width: 311
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64f5706c252ec9080800000000000000
+      internalID: -9179213095350345914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalBrillibrilli_2
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 1121
+        width: 360
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23850773218097d10800000000000000
+      internalID: 2123737573614442546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalBrillibrilli_3
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 679
+        width: 421
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b06c6cd7bedc6710800000000000000
+      internalID: 1687968841615564977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalBrillibrilli_4
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 459
+        width: 560
+        height: 514
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70e3648af27235770800000000000000
+      internalID: 8598259199220530695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalBrillibrilli_5
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 37
+        width: 425
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f061a084d9603d110800000000000000
+      internalID: 1284377591318976015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalBrillibrilli_6
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 165
+        width: 238
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ab16574b3cfce60800000000000000
+      internalID: 7984815844182047343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalBrillibrilli_7
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 297
+        width: 214
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdf229d382dd4e5b0800000000000000
+      internalID: -5339900093253144613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalBrillibrilli_8
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 284
+        width: 108
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcc67b7a74ca14340800000000000000
+      internalID: 4846344097783835851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CristalBrillibrilli_0: 5542982463068292101
+      CristalBrillibrilli_1: -9179213095350345914
+      CristalBrillibrilli_2: 2123737573614442546
+      CristalBrillibrilli_3: 1687968841615564977
+      CristalBrillibrilli_4: 8598259199220530695
+      CristalBrillibrilli_5: 1284377591318976015
+      CristalBrillibrilli_6: 7984815844182047343
+      CristalBrillibrilli_7: -5339900093253144613
+      CristalBrillibrilli_8: 4846344097783835851
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

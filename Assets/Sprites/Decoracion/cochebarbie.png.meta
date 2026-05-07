@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b853adeafd13cbd4889f2e904ad01774
+guid: 01bb2be992439954c8c9d9675e07d7f2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2204228962588183383
-    second: gancho_abierto_0
+      213: -6976729997665578659
+    second: cochebarbie_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gancho_abierto_0
+      name: cochebarbie_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 102
-        width: 657
-        height: 770
+        x: 4
+        y: 24
+        width: 972
+        height: 381
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a4bd41ef610961e0800000000000000
-      internalID: -2204228962588183383
+      spriteID: d51d45b080dad2f90800000000000000
+      internalID: -6976729997665578659
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      gancho_abierto_0: -2204228962588183383
+      cochebarbie_0: -6976729997665578659
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

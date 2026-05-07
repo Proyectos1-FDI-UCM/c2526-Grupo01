@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ab98817d049d60b4da564a5f88755f1d
+guid: 4eed7d7da40e938429bc3aa23778536b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3350639938695706170
-    second: gancho_cerrado_0
+      213: 6025420713844545647
+    second: cajaLetraB_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gancho_cerrado_0
+      name: cajaLetraB_0
       rect:
         serializedVersion: 2
-        x: 170
-        y: 23
-        width: 386
-        height: 849
+        x: 16
+        y: 19
+        width: 756
+        height: 758
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6c94ecb6ab22081d0800000000000000
-      internalID: -3350639938695706170
+      spriteID: f681cf617389e9350800000000000000
+      internalID: 6025420713844545647
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      gancho_cerrado_0: -3350639938695706170
+      cajaLetraB_0: 6025420713844545647
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
