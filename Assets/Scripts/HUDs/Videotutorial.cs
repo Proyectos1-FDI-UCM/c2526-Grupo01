@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
+// Script encargado de mostrar los videotutoriales 
 // Daniel García Andrés
 // Coulro
 // Proyectos 1 - Curso 2025-26
@@ -12,12 +12,16 @@ using UnityEngine;
 
 /// <summary>
 /// Script que al entrar en contacto con el trigger muestra un panel con
-/// un video tutorial describiendo esa mécanica
+/// un video tutorial describiendo esa mécanica, pudiendo cerrarse al 
+/// pulsar el botón de interactuar (E/Y)
 /// </summary>
 public class Videotutorial : MonoBehaviour
 {
+    //indica si el videotutorial ya se ha activado anteriormente
+    //para que solo se muestre una vez
     private bool activado = false;
 
+    //cnvas que contiene el videotutorial
     private Canvas canvas;
 
 
@@ -43,9 +47,8 @@ public class Videotutorial : MonoBehaviour
         if(!activado) 
         {
             canvas.enabled = true; 
+            //evito que vuelva a activarse el tutorial
             activado = true;
-
-
         }
     }
 

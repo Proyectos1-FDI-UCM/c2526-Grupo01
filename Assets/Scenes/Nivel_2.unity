@@ -10694,6 +10694,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5552580028219440067, guid: 67e6509a13ac55649aca6d88756c1c0a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552580028219440067, guid: 67e6509a13ac55649aca6d88756c1c0a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552580028219440067, guid: 67e6509a13ac55649aca6d88756c1c0a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857301572228936022, guid: 67e6509a13ac55649aca6d88756c1c0a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857301572228936022, guid: 67e6509a13ac55649aca6d88756c1c0a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8440435279582522848, guid: 67e6509a13ac55649aca6d88756c1c0a, type: 3}
       propertyPath: m_Name
       value: MenuPausa
@@ -18975,11 +18995,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8590810639196299410, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.18
+      value: 154.31
       objectReference: {fileID: 0}
     - target: {fileID: 8590810639196299410, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.95
+      value: -10.48
       objectReference: {fileID: 0}
     - target: {fileID: 8590810639196299410, guid: 482d2e599e0349c47b526cc80b9685f7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20011,7 +20031,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: BossFinal
-  changeScene: 3
   nextSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835594594
 GameObject:

@@ -9,14 +9,34 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
+/// <summary>
+/// Script principal encargado de controlar el movimiento del jugador.
+///
+/// Gestiona todas las mecánicas de desplazamiento del personaje,
+/// incluyendo:
+/// - Movimiento horizontal.
+/// - Salto.
+/// - Sprint.
+/// - Dash.
+/// - Knockback provocado por enemigos.
+/// - Orientación del sprite.
+/// - Reproducción de sonidos.
+/// - Activación de partículas.
+/// - Comunicación con el HUD del dash.
+///
+/// El script utiliza:
+/// - Rigidbody2D para aplicar movimiento físico.
+/// - El script Collision para detectar suelo y paredes.
+/// - El InputManager para leer las entradas del jugador.
+/// - Sistemas de partículas y sonido para mejorar el feedback visual.
+///
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Sonidos jugador")]
 
     [SerializeField]
     private AudioClip sprintSound;
-
-
 
     [SerializeField]
     private AudioClip jumpSound;
@@ -29,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
-    // jump + dash
+    //para el sonido de jump y de dash
     [SerializeField] 
     private AudioSource fxAudio;   
 
@@ -129,17 +149,18 @@ public class PlayerMovement : MonoBehaviour
     private DashHUD dashUI;
 
 
-
-    //para no tocar la serializble d arriba
+    //temporizador interno del dash
     private float dashTimer;
     private Vector2 dashDirection;
 
 
 
-    //sprint
+    //multiplicador del sprint
     [SerializeField]
     private float sprintMultiplier = 1.8f;
 
+
+    //nombre de la escena de muerte
     private const string DEAD_SCENE_NAME = "MUERTE";
 
     void Start()
@@ -219,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
         isSprinting = InputManager.Instance.SprintIsPressed();
 
 
-        //CAMBIO DE ORIENTACIÓN       
+        //Cambio de orientación       
         if (moveX < 0)
         {
             anim.Flip(-1);
@@ -258,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
             wasSprinting = isSprinting;
         }
 
-        //si suelta el botón de sprintar volvemos a la velociad normal
+        //si suelta el botón de sprintar volvemos a la velocidad normal
         if (!isSprinting)
         {
             currentSpeed = Mathf.MoveTowards(currentSpeed, walkSpeed, timeDeceleration * Time.deltaTime);
@@ -306,14 +327,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    //método para que el personaje ande, le pasamos la dirección x parámetro
+    //método para que el personaje ande, le pasamos la dirección por parámetro
     private void Walk(float moveX)
     {
         if (knockbackLockTimer > 0)
         {
             knockbackLockTimer -= Time.deltaTime;
 
-            // NO tocamos la X mientras dura el knockback
+            //NO tocamos la X mientras dura el knockback
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y);
         }
         else
@@ -352,7 +373,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
+    //cambiamos a la escena de muerte
     public void DeadZone()
     {
         System.GC.Collect();

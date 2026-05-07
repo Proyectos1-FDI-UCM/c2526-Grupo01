@@ -11,7 +11,7 @@ using UnityEngine;
 
 /// <summary>
 /// Comportamiento de los checkpoints que pasan su ubicación
-/// al gameManager para que luego en el start() del player se spawnee ahí
+/// al gameManager para que luego en el start() del player el jugador se spawnee ahí
 /// </summary
 /// 
 public class Checkpoint : MonoBehaviour
@@ -31,8 +31,10 @@ public class Checkpoint : MonoBehaviour
 
         if (player != null)
         {
-            anim.SetBool("usado", true);
+           //cambio la animación
+           anim.SetBool("usado", true);
 
+           //le paso al GM el nuevo punto de reaparición
            GameManager.Instance.SetRespawnPoint(transform.position);
            
 

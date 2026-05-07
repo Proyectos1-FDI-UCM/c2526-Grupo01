@@ -1,5 +1,5 @@
 ///---------------------------------------------------------
-// Menú de pausa
+// Script encargado de gestionar el menú de pausa
 // Daniel García Andrés
 // Coulro
 // Proyectos 1 - Curso 2025-26
@@ -13,7 +13,9 @@ using UnityEngine.EventSystems;
 
 
 /// <summary>
-/// Si pulsas ESC / Start se abre/cierra el menu de pausa, pausando el juego y permitiendo volver al menú principal o salir del juego 
+/// Si pulsas ESC / Start se abre/cierra el menu de pausa, pausando el juego
+/// (activando o desactivando los scripts del jugador/enemigos)
+/// y permitiendo volver al menú principal o salir del juego 
 /// </summary>
 public class PauseHUD : MonoBehaviour
 {
@@ -49,7 +51,7 @@ public class PauseHUD : MonoBehaviour
         else
         {
             //meto un warning x si se os olvida linkearlo
-            Debug.LogWarning("No se ha asociado un Menú en el Serialize");
+            Debug.LogWarning("No se ha asociado un MenuPausa en el [Serialize]");
         }
 
     }

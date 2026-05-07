@@ -13,7 +13,10 @@ using UnityEngine;
 
 /// <summary>
 /// Comportamiento del pato de goma
-/// con su sonido, rebotes y pequeña animación
+/// con su sonido, aplicando un retroceso al jugador
+/// en función del del lado desde
+/// el que el jugador golpee al pato. 
+/// Además tiene animación al chocar
 /// </summary>
 public class DuckEnemy : MonoBehaviour
 {

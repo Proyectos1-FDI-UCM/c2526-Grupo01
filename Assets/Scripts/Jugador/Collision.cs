@@ -8,10 +8,11 @@
 using UnityEngine;
 // Añadir aquí el resto de directivas using
 
-
-///Script encargado de detectar las zonas en contacto con el personaje como suelos, paredes o enemigos.  <summary>
-//Lo que hace este script es crear 3 circulos basándose en la hitbox circular del jugador (por eso cambie el collider de box a capsule)
-//uno debajo por si toca el suelo y los otros 2 en ambos lados por si entra en contacto con una pared
+/// <summary>
+///Script encargado de detectar las zonas en contacto con el personaje como suelos, paredes o enemigos.  
+///Lo que hace este script es crear 3 cápsulas basándose en la hitbox del jugador (por eso cambie el collider de box a capsule)
+///uno debajo por si toca el suelo y los otros 2 en ambos lados por si entra en contacto con una pared
+/// <summary>
 public class Collision : MonoBehaviour
 {
     [Header("Capas")]

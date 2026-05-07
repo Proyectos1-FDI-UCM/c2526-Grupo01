@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
+// Sensor de visión del robot
 // Daniel García Andrés
 // Coulro
 // Proyectos 1 - Curso 2025-26
@@ -10,7 +10,18 @@ using UnityEngine;
 
 
 /// <summary>
-/// Script que define el campo de visión del robot
+/// Script que define el campo de visión del robot utilizando 
+/// un collider configurado como Trigger para detectar
+/// cuándo el jugador entra o sale del área de visión.
+///
+/// Cuando el jugador entra en el trigger:
+/// - Se guarda su Transform como objetivo.
+///
+/// Cuando el jugador sale del trigger:
+/// - El objetivo se elimina.
+///
+/// Otros scripts del enemigo pueden consultar este objetivo
+/// para saber si el jugador está siendo detectado.
 /// </summary>
 public class VisionSensor : MonoBehaviour
 {
@@ -19,7 +30,6 @@ public class VisionSensor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         PlayerMovement player = other.GetComponent<PlayerMovement>();
 
         if (player != null)

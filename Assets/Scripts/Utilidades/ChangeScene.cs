@@ -60,7 +60,7 @@ public class ChangeScene : MonoBehaviour
     /// </summary>
     /// 
 
-
+    //lleva al menu principal
     public void MenuPrincipal()
     {
         System.GC.Collect();
@@ -68,13 +68,23 @@ public class ChangeScene : MonoBehaviour
         System.GC.Collect();
     }
 
-    public void NivelPrueba()
+    //lleva al primer nivel
+    public void PrimerNivel()
     {
         System.GC.Collect();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_1");
         System.GC.Collect();
     }
 
+    //lleva a la cinemática
+    public void Cinematica()
+    {
+        System.GC.Collect();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Cinematica");
+        System.GC.Collect();
+    }
+
+    //sale del juego
     public void SalirDelJuego()
     {
         Application.Quit();

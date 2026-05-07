@@ -11,7 +11,7 @@ using UnityEngine;
 
 /// <summary>
 ///Scrpit encargado de gestionar las zonas en las que el jugador puede morir
-///como acantilados por ejemplo
+///como acantilados con grandes caídas por ejemplo
 /// </summary>
 public class Deadzone : MonoBehaviour
 {

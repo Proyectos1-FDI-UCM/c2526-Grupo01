@@ -143,6 +143,10 @@ PrefabInstance:
       propertyPath: initialSpawnPoint.y
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 4571033835433549748, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
+      propertyPath: m_Volume
+      value: 0.008
+      objectReference: {fileID: 0}
     - target: {fileID: 5714410296299232247, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -674,7 +678,7 @@ GameObject:
   - component: {fileID: 8367459987453189912}
   - component: {fileID: 867915454}
   m_Layer: 5
-  m_Name: ButtonLevel1
+  m_Name: BotonJugar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1058,7 +1062,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 867915454}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: NivelPrueba
+        m_MethodName: Cinematica
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

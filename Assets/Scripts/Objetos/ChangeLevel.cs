@@ -6,11 +6,10 @@
 //---------------------------------------------------------
 
 using UnityEngine;
-// Añadir aquí el resto de directivas using
 
 
 /// <summary>
-// Sript para teletransportar al jugador a otra escena cuando entra por una puerta
+/// Sript para teletransportar al jugador a otra escena cuando entra por una puerta
 /// </summary>
 public class ChangeLevel : MonoBehaviour
 {
@@ -45,8 +44,6 @@ public class ChangeLevel : MonoBehaviour
                 GameManager.Instance.ResetRespawn(nextSpawnPoint);
                 GameManager.Instance.ChangeScene(nextSceneName);
             }
-
-
         }
     }
 

@@ -22,7 +22,7 @@ public class KeyInventory : MonoBehaviour
     private List<string> keys = new List<string>();
 
     // este metodo sirve para añadir una llave al inventario
-    internal void AddKey(string key)
+    public void AddKey(string key)
     {
         // si no tenemos ya esa llave
         if (!keys.Contains(key))
@@ -36,7 +36,7 @@ public class KeyInventory : MonoBehaviour
     }
 
     // este metodo comprueba si tenemos una llave concreta
-    internal bool HasKey(string key)
+    public bool HasKey(string key)
     {
         // devuelve true si la lista contiene esa llave
         return keys.Contains(key);

@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Script para gestionar el HUD del Dash
+// Script para mostrar/ocultar el HUD del Dash
 // Daniel García Andrés
 // Coulro
 // Proyectos 1 - Curso 2025-26
@@ -10,7 +10,20 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Runtime.CompilerServices;
 
-// Script para mostrar/ocultar el HUD del Dash
+
+/// <summary>
+/// Este script controla el icono del Dash dentro del HUD.
+/// Su función es mostrar visualmente cuándo el jugador puede
+/// volver a utilizar el dash.
+///
+/// Cuando el dash se recarga:
+/// -El icono aparece gradualmente con una animación de "popeo"
+/// -Se desvanece lentamente.
+/// -Se reproduce un sonido indicando que el dash está listo.
+///
+/// Cuando el dash no está disponible, el icono desaparece
+/// progresivamente 
+/// </summary>
 public class DashHUD : MonoBehaviour
 {
     [SerializeField]
@@ -31,7 +44,7 @@ public class DashHUD : MonoBehaviour
 
 
     //Pongo constantes para que no existan "números mágicos",
-    //y pongo constantes en lugar de serializables xq en principio están bien y no se deberían tocar
+    //y pongo constantes en lugar de serializables porque en principio están bien y no se deberían tocar
     private const float POP_INITIAL_SCALE = 0.7f;
     private const float POP_TARGET_SCALE = 1f;
     //lo q dura la animación
@@ -76,7 +89,6 @@ public class DashHUD : MonoBehaviour
             }
         }
 
-        //hacemos el fade fade
         Color c = dashIcon.color;
 
         float targetAlpha;
@@ -90,8 +102,10 @@ public class DashHUD : MonoBehaviour
             targetAlpha = HIDDEN_ALPHA;
         }
 
+        //se interpola suavemente el alpha (la transparencia)
         c.a = Mathf.Lerp(c.a, targetAlpha, Time.deltaTime * fadeSpeed);
 
+        //se aplica el nuevo color al icono
         dashIcon.color = c;
     }
 

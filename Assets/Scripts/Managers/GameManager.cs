@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Contiene el componente GameManager
-// Guillermo Jiménez Díaz, Pedro P. Gómez Martín
+// Guillermo Jiménez Díaz, Pedro P. Gómez Martín, Daniel García Andrés
 // Marco A. Gómez Martín
 // Template-P1
 // Proyectos 1 - Curso 2025-26
