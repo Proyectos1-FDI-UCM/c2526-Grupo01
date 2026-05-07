@@ -60,11 +60,11 @@ Los **controles** son los siguientes:
 
 <h1 align="center">Miembros del equipo</h1>
 
-<strong>Daniel García Andrés</strong>
-<strong>Adrián de la Calle Valiente</strong>
-<strong>Leopoldo Gutiérrez Cobo</strong>
-<strong>Samuel McDermott de Juan</strong>
-<strong>Darío Pérez Zamorano</strong>
+<strong>Daniel García Andrés</strong><br>
+<strong>Adrián de la Calle Valiente</strong><br>
+<strong>Leopoldo Gutiérrez Cobo</strong><br>
+<strong>Samuel McDermott de Juan</strong><br>
+<strong>Darío Pérez Zamorano</strong><br>
 <strong>Héctor Abdon Prous Arroyo</strong>
 
 
