@@ -10,8 +10,10 @@ using UnityEngine;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Código específico para la cámara del boss.
+/// Contiene:
+/// - Lógica de cámara base
+/// - Método que cambia el encuadre y la altura de la cámara del boss.
 /// </summary>
 public class CameraBoss : MonoBehaviour
 {
@@ -44,28 +46,65 @@ public class CameraBoss : MonoBehaviour
     private float fieldIni = 4f;
 
 
-    //Componente cam
+
+    // ---- ATRIBUTOS PRIVADOS ----
+    #region Atributos Privados (private fields)
+
+    //Componente de la cámara en la escena
     private Camera cam;
 
-
+    //Componentes del código original
     private float recorridoDashCam = 0f;
     private int dirPlayer = 1;
+
+
+    
+    
+    //Variables para la transición de encuadre
+    private float zoomT = 0f;
+    private float startSize;
+    private float targetSize;
+    private bool zooming = false;
+    private float zoomLimit = 1f;
+
+
+    #endregion
+
+   
 
 
 
 
     void Start()
     {
+        //Inicializamos cámara y encuadre inicial
         cam = GetComponent<Camera>();
         cam.orthographicSize = fieldIni;
         Debug.Log("se cambia");
 
-        // SetLimitDown(limitDown);
-        // SetLimitUp(limitUp);
+       
     }
 
     void LateUpdate()   //late update necesario para la camara (movimiento despues del calculo de fisicas y elementos)
     {
+        //Condicional que hace con el update el cambio de encuadre
+        if (zooming)
+        {
+            //Se guarda el frame actual multiplicado por el valor elegido
+            zoomT += Time.deltaTime * interp;
+
+            //se hace el cambio con un smooth
+            cam.orthographicSize = Mathf.Lerp(startSize, targetSize, zoomT);
+
+            
+            //Evitamos que zoomee más de lo deseado
+            if (zoomT >= zoomLimit)
+            {
+                zooming = false;
+            }
+        }
+
+        //Movimiento genérico del código de la cámara
         if (playerMovement != null)
         {
             UpdateDashCam();
@@ -104,18 +143,13 @@ public class CameraBoss : MonoBehaviour
 
 
     //metodo de cambio de tamaño ortografico
-
     public void ChangeField(float size)
     {
-        cam = GetComponent<Camera>();
-
-        cam.orthographicSize = Mathf.Lerp(fieldIni, size, interp);
-
-        limitDown = Mathf.Lerp(limitDown, limitDownBoss, interp);
-        limitUp = Mathf.Lerp(limitUp, limitUpBoss, interp);
+        startSize = cam.orthographicSize;
+        targetSize = size;
+        zoomT = 0f;
+        zooming = true;
     }
-
-
 
 
 

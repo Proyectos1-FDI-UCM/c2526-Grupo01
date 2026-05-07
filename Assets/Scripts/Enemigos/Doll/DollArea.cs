@@ -48,7 +48,7 @@ public class DollArea : MonoBehaviour
             player.ApplyKnockback(pushX * knockbackForceX, knockbackForceY);
 
             Noise noise = collision.gameObject.GetComponent<Noise>();
-            noise.takeNoise(noisedamage);
+            noise.TakeNoise(noisedamage);
         }
     }
 }

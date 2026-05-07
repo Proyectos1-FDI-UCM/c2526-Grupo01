@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Función que complementa a Noise.cs y añade un valor de ruido a cada enemigo.
+// Leopoldo Gutiérrez Cobo
 // Coulro
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -10,33 +10,30 @@ using UnityEngine;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Class enemy que establece el cooldown y el efecto de ruido de cada enemigo.
 /// </summary>
 public class Enemy : MonoBehaviour
 {
+
+    //Atributos publicos
     [SerializeField]
-    private int noiseEffect = 3;
+    private int noiseEffect;
 
     [SerializeField]
     private float cooldown = 1.0f;
 
-    private float lastHitTime = -Mathf.Infinity;
+    //Variable privada
+    private float lastHitTime = -1000f;
 
+    //Cuando entra en contacto con el player (gameobject que tiene noise) hace que se llame a takeNoise
+    //en Noise con el valor deseado.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Noise noise = collision.gameObject.GetComponent<Noise>();
-            //.GetComponent<Noise>();
 
-        if (noise == null || Time.time < lastHitTime + cooldown)
+        if (noise != null || Time.time > lastHitTime + cooldown)
         {
-           // Debug.Log("No hay nada que haga ruido");
-
-
+           noise.TakeNoise(noiseEffect);
         }
-        else noise.takeNoise(noiseEffect);
-
     }
-
-
 }
