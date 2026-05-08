@@ -1607,6 +1607,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6177382723393544646, guid: e5669c60109a26f43ab2ff825237d5e8, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1380715
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177382723393544646, guid: e5669c60109a26f43ab2ff825237d5e8, type: 3}
+      propertyPath: m_Offset.x
+      value: -5.6420765
+      objectReference: {fileID: 0}
     - target: {fileID: 7299783483778653191, guid: e5669c60109a26f43ab2ff825237d5e8, type: 3}
       propertyPath: requiredKey
       value: Blue
@@ -9688,7 +9696,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.12569246, y: -0.06044005}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9698,7 +9706,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.7486151, y: 1.1208799}
   m_EdgeRadius: 0
 --- !u!4 &1234483366
 Transform:

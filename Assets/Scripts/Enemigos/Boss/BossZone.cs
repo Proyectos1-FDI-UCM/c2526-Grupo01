@@ -64,7 +64,7 @@ public class BossZone : MonoBehaviour
     //Variables de cambio de volumen del boss
     private const float VOL_INIT = 0.5f;
 
-    private const float VOL_BOSS = 1f;
+    private const float VOL_BOSS = 0.67f;
 
 
 

@@ -38,7 +38,6 @@ public class MonkeyProyectileLeft : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Monkey mono = collision.gameObject.GetComponent<Monkey>();
-<<<<<<< Updated upstream
 
         if (mono != null)
         {
@@ -50,17 +49,6 @@ public class MonkeyProyectileLeft : MonoBehaviour
         }
 
 
-=======
-
-        if (mono != null)
-        {
-            //nada
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
->>>>>>> Stashed changes
     }
 } // class MonkeyProyectile 
 // namespace
