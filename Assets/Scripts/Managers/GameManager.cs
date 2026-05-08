@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("El numero de escena es: " + sceneNumber);
+        Debug.Log("La escena es: " + actualLevel);
     }
 
     #endregion
@@ -188,6 +188,11 @@ public class GameManager : MonoBehaviour
         respawnPoint = checkPoint;
     }
 
+    public void SetInitialRespawnPoint(Vector3 checkPoint)
+    {
+        initialSpawnPoint = checkPoint;
+    }
+
     public Vector3 GetRespawn()
     {
         return respawnPoint;
@@ -227,6 +232,7 @@ public class GameManager : MonoBehaviour
     {
         levelMusicTrack.volume = volume;
     }
+
 
 
     #endregion

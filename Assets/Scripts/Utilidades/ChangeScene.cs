@@ -20,7 +20,7 @@ public class ChangeScene : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-
+    
     /// <summary>
     /// Índice de la escena (en el build settings)
     /// que se cargará. 
@@ -31,9 +31,11 @@ public class ChangeScene : MonoBehaviour
     private const string SECOND_LEVEL_NAME = "Nivel2Final";
     private const string BOSS_LEVEL_NAME = "Nivel3Boss";
     //no me deja poner un Vector3 como constante asi que para que nadie lo toque lo dejo en así en lugar de serializable.
-    private Vector3 FIRST_SPAWNPOINT = new Vector3(-124f, 0f, 0f);
-    private Vector3 SECOND_SPAWNPOINT = new Vector3(4f, -26f, 0f);
+    private Vector3 FIRST_SPAWNPOINT = new Vector3(-124f,0f,0f);
+    private Vector3 SECOND_SPAWNPOINT = new Vector3(3f, -26f, 0f);
     private Vector3 THIRD_SPAWNPOINT = new Vector3(0f, 4f, 0f);
+
+    private string level;
 
     #endregion
 
@@ -75,11 +77,12 @@ public class ChangeScene : MonoBehaviour
     //lleva al primer nivel
     public void PrimerNivel()
     {
-        System.GC.Collect();
+
         GameManager.Instance.setActualLevelScene(FIRST_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel1Final");
-        System.GC.Collect();
+        GameManager.Instance.ChangeScene("Nivel1Final");
+   
+
     }
 
     //lleva a la cinemática
@@ -99,21 +102,21 @@ public class ChangeScene : MonoBehaviour
     //nivel 2
     public void SegundoNivel()
     {
-        System.GC.Collect();
+
         GameManager.Instance.setActualLevelScene(SECOND_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(SECOND_SPAWNPOINT);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel2Final");
-        System.GC.Collect();
+        GameManager.Instance.ChangeScene("Nivel2Final");
+
     }
 
     //nivel boss
     public void BossNivel()
     {
-        System.GC.Collect();
+
         GameManager.Instance.setActualLevelScene(BOSS_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(THIRD_SPAWNPOINT);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel3Boss");
-        System.GC.Collect();
+        GameManager.Instance.ChangeScene("Nivel3Boss");
+
     }
 
     //te lleva al menu de selección de nivel
@@ -134,7 +137,9 @@ public class ChangeScene : MonoBehaviour
 
     public void DeadRespawn()
     {
-        string level = GameManager.Instance.getActualLevel();
+        level = GameManager.Instance.getActualLevel();
+
+
 
         //esto es para que si has completado el juego
         //al darle a jugar te vuelva a llevar al primer nivel
@@ -143,9 +148,18 @@ public class ChangeScene : MonoBehaviour
         {
             level = FIRST_LEVEL_NAME;
             GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT);
+            GameManager.Instance.SetInitialRespawnPoint(FIRST_SPAWNPOINT);
+            
         }
 
-        GameManager.Instance.ChangeScene(level);
+        if(level == SECOND_LEVEL_NAME)
+        {
+            GameManager.Instance.SetInitialRespawnPoint(SECOND_SPAWNPOINT);
+        }
+
+        GameManager.Instance.setActualLevelScene(level);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(level);
+        //GameManager.Instance.ChangeScene(level);
     }
 
     #endregion
@@ -160,4 +174,4 @@ public class ChangeScene : MonoBehaviour
     #endregion
 
 } // class ChangeScene 
-  // namespace
+// namespace
