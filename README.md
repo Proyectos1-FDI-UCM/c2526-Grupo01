@@ -30,7 +30,7 @@ A lo largo del nivel, el jugador encontrará distintos elementos interactivos, o
 - Mecánicas de dash, sprint y exploración  
 - Progresión a través de distintos niveles dentro de una juguetería 
 - Control compatible con teclado y mando
-> ⚠️ **Nota:** En el nivel 2, al morir y darle a reaparecer desde el menu de pausa reapareces en el suelo
+> ⚠️ **Nota:** En principio no tenemos constacia de errores.
 
 
 
