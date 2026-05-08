@@ -37,9 +37,18 @@ public class MonkeyProyectileRight : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+        Monkey mono = collision.gameObject.GetComponent<Monkey>();
 
-        if (player != null) Destroy(gameObject); //Si choca con el player, desaparece
+
+        if (mono != null)
+        {
+            //nada
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
     }
 } // class MonkeyProyectile 
 // namespace

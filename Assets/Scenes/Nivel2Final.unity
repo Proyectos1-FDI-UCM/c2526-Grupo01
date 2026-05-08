@@ -2784,7 +2784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4041672874709893958, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
       propertyPath: initialSpawnPoint.y
-      value: 26
+      value: -26
       objectReference: {fileID: 0}
     - target: {fileID: 5714410296299232247, guid: bb8d60a2e115fb543a374208abf1c0e2, type: 3}
       propertyPath: m_Name
@@ -12889,6 +12889,10 @@ PrefabInstance:
     - target: {fileID: 2339441419389427897, guid: 32f2df3ff195d7740a22507a77342e47, type: 3}
       propertyPath: m_Name
       value: Monkey
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898940837173180867, guid: 32f2df3ff195d7740a22507a77342e47, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6587172427690296148, guid: 32f2df3ff195d7740a22507a77342e47, type: 3}
       propertyPath: m_LocalScale.x
