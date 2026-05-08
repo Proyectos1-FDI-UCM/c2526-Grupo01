@@ -177,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
         //inicializamos la velocidad actual a la de cuando el jugador anda
         currentSpeed = walkSpeed;
 
+        //para los checkpoints (comentad esta línea para comodidad en el testing)
         transform.position = GameManager.Instance.GetRespawn();
 
 

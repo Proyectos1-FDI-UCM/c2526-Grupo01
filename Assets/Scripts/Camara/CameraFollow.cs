@@ -29,16 +29,45 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float dashCamDistance = 3f; //distancia a la que se dirigira la camara en caso de que se detecte un dash
     [SerializeField] private float dashCamSpeed = 10f; //velocidad de la camara durante y despues del dash con direccion a la dashCamDistance y posteriormente al jugador nuevamente
 
+    [Header("Zoom Settings")]
+    [SerializeField] private float interp = 2f;
+    private float zoomT = 0f;
+    private float startSize;
+    private float targetSize;
+    private bool zooming = false;
+    private Camera cam;
+
     private float recorridoDashCam = 0f;
     private int dirPlayer = 1;
 
+    void Start()
+    {
+        cam = GetComponent<Camera>();
+        targetSize = cam.orthographicSize;
+    }
+
     void LateUpdate()   //late update necesario para la camara (movimiento despues del calculo de fisicas y elementos)
     {
+        if (zooming)
+        {
+            zoomT += Time.deltaTime * interp;
+            cam.orthographicSize = Mathf.Lerp(startSize, targetSize, zoomT);
+            if (zoomT >= 1f) zooming = false;
+        }
         if (playerMovement != null)
         {
             UpdateDashCam();
             UpdateCameraPosition();
         }
+    }
+
+    
+    public void ChangeField(float size)
+    {
+        startSize = cam.orthographicSize;
+        targetSize = size;
+        zoomT = 0f;
+        zooming = true;
     }
 
     private void UpdateDashCam()

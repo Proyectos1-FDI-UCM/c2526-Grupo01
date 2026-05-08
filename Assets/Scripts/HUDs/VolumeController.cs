@@ -23,7 +23,7 @@ public class VolumeController : MonoBehaviour
     private Slider musicSlider;
 
     //constante de volumen por defecto
-    private const float VOLUME_MUSIC_DEFAULT = 0.75f;
+    private const float VOLUME_MUSIC_DEFAULT = 0.4f;
 
     private float actualVolume;
 

@@ -26,7 +26,7 @@ public class BossTrigger : MonoBehaviour
 
     //Componente de la cámara de la escena de boss
     [SerializeField]
-    private CameraBoss cam;
+    private CameraFollow cam;
 
     //Variable para el tamaño ortográfico
     [SerializeField]
