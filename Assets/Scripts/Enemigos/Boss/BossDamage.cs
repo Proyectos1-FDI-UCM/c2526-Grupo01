@@ -34,7 +34,6 @@ public class BossDamage : MonoBehaviour
     {
         if (collision.GetComponent<Noise>())
         {
-            Debug.Log("He chocado con player");
             player = collision.GetComponent<Noise>();
             player.TakeNoise(damage);
             player.TakeNoise(damage);

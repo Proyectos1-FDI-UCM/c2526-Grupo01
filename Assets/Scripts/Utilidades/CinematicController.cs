@@ -23,13 +23,17 @@ public class CinematicController : MonoBehaviour
     private VideoPlayer videoPlayer;
 
     //nombre de la escena del primer nivel
-    private const string FIRST_SCENE_NAME = "Nivel_1";
+    private const string FIRST_SCENE_NAME = "Nivel1Final";
 
     // Evita cambiar varias veces de escena
     private bool hasFinished;
 
+    private const float INIT_VOLUME = 0f;
+    private const float FINAL_VOLUME = 0.5f;
+
     private void Start()
     {
+        GameManager.Instance.setMusicVolume(INIT_VOLUME);
         videoPlayer = GetComponent<VideoPlayer>();
         hasFinished = false;
     }
@@ -57,6 +61,8 @@ public class CinematicController : MonoBehaviour
     //Carga la escena del primer nivel
     private void LoadFirstLevelScene()
     {
+        GameManager.Instance.setMusicVolume(FINAL_VOLUME);
+
         GameManager.Instance.ChangeScene(FIRST_SCENE_NAME);
     }
 

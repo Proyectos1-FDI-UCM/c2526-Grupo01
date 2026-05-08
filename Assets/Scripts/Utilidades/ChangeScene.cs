@@ -27,13 +27,13 @@ public class ChangeScene : MonoBehaviour
     /// </summary>
 
     private const string LAST_SCENE_NAME = "Creditos";
-    private const string FIRST_LEVEL_NAME = "Nivel_1";
-    private const string SECOND_LEVEL_NAME = "Nivel_2";
-    private const string BOSS_LEVEL_NAME = "Nivel_3BossFinalLeo";
+    private const string FIRST_LEVEL_NAME = "Nivel1Final";
+    private const string SECOND_LEVEL_NAME = "Nivel2Final";
+    private const string BOSS_LEVEL_NAME = "Nivel3Boss";
     //no me deja poner un Vector3 como constante asi que para que nadie lo toque lo dejo en así en lugar de serializable.
-    private Vector3 FIRST_SPAWNPOINT = new Vector3(-3f,-25f,0f);
-    private Vector3 SECOND_SPAWNPOINT = new Vector3(-1.5f, -23f, 0f);
-    private Vector3 THIRD_SPAWNPOINT = new Vector3(0f, 40f, 0f);
+    private Vector3 FIRST_SPAWNPOINT = new Vector3(-124f,0f,0f);
+    private Vector3 SECOND_SPAWNPOINT = new Vector3(4f, -26f, 0f);
+    private Vector3 THIRD_SPAWNPOINT = new Vector3(0f, 4f, 0f);
 
     #endregion
 
@@ -78,7 +78,7 @@ public class ChangeScene : MonoBehaviour
         System.GC.Collect();
         GameManager.Instance.setActualLevelScene(FIRST_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT); 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel1Final");
         System.GC.Collect();
     }
 
@@ -102,7 +102,7 @@ public class ChangeScene : MonoBehaviour
         System.GC.Collect();
         GameManager.Instance.setActualLevelScene(FIRST_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(SECOND_SPAWNPOINT);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_2");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel2Final");
         System.GC.Collect();
     }
 
@@ -112,7 +112,7 @@ public class ChangeScene : MonoBehaviour
         System.GC.Collect();
         GameManager.Instance.setActualLevelScene(BOSS_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(THIRD_SPAWNPOINT);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_3BossFinalLeo");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel3Boss");
         System.GC.Collect();
     }
 

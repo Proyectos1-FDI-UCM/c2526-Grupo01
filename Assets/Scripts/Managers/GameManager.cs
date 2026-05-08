@@ -54,10 +54,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Vector3 initialSpawnPoint;
 
-    [SerializeField]
-    private int sceneNumber;
+    
 
-    private const string FIRST_DEFAULT_LEVEL = "Nivel_1";
+    private const string FIRST_DEFAULT_LEVEL = "Nivel1Final";
 
     private string actualLevel;
 
@@ -213,10 +212,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void NextNumberScene(int n) 
-    {
-        sceneNumber = n;
-    }
 
     public void setActualLevelScene(string levelName)
     {

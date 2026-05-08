@@ -80,7 +80,6 @@ public class CameraBoss : MonoBehaviour
         //Inicializamos cámara y encuadre inicial
         cam = GetComponent<Camera>();
         cam.orthographicSize = fieldIni;
-        Debug.Log("se cambia");
 
        
     }
