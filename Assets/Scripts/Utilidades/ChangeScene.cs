@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Contiene el componente ChangeScene
-// Guillermo Jiménez Díaz
+// Guillermo Jiménez Díaz, Daniel García Andrés
 // Template-P1
 // Proyectos 1 - Curso 2025-26
 //---------------------------------------------------------
@@ -28,6 +28,8 @@ public class ChangeScene : MonoBehaviour
 
     private const string LAST_SCENE_NAME = "Creditos";
     private const string FIRST_LEVEL_NAME = "Nivel_1";
+    private const string SECOND_LEVEL_NAME = "Nivel_2";
+    private const string BOSS_LEVEL_NAME = "Nivel_3BossFinalLeo";
     //no me deja poner un Vector3 como constante asi que para que nadie lo toque lo dejo en así en lugar de serializable.
     private Vector3 FIRST_SPAWNPOINT = new Vector3(-3f,-25f,0f);
     private Vector3 SECOND_SPAWNPOINT = new Vector3(-1.5f, -23f, 0f);
@@ -74,6 +76,7 @@ public class ChangeScene : MonoBehaviour
     public void PrimerNivel()
     {
         System.GC.Collect();
+        GameManager.Instance.setActualLevelScene(FIRST_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT); 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_1");
         System.GC.Collect();
@@ -97,6 +100,7 @@ public class ChangeScene : MonoBehaviour
     public void SegundoNivel()
     {
         System.GC.Collect();
+        GameManager.Instance.setActualLevelScene(FIRST_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(SECOND_SPAWNPOINT);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_2");
         System.GC.Collect();
@@ -106,6 +110,7 @@ public class ChangeScene : MonoBehaviour
     public void BossNivel()
     {
         System.GC.Collect();
+        GameManager.Instance.setActualLevelScene(BOSS_LEVEL_NAME);
         GameManager.Instance.SetRespawnPoint(THIRD_SPAWNPOINT);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel_3BossFinalLeo");
         System.GC.Collect();
