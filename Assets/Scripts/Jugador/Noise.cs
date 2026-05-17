@@ -8,6 +8,7 @@
 
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -191,6 +192,8 @@ public class Noise : MonoBehaviour
     {
         if (!noDeadCheat) 
         {
+            //le digo al GameManager en el nivel en el que me encuentro
+            GameManager.Instance.setActualLevelScene(SceneManager.GetActiveScene().name);
             GameManager.Instance.ChangeScene(DEATH_NAME_SCENE);
         }
        

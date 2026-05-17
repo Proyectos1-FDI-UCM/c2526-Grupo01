@@ -77,9 +77,9 @@ public class ChangeScene : MonoBehaviour
     //lleva al primer nivel
     public void PrimerNivel()
     {
-
-        GameManager.Instance.setActualLevelScene(FIRST_LEVEL_NAME);
+        GameManager.Instance.SetInitialRespawnPoint(FIRST_SPAWNPOINT);
         GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT);
+        GameManager.Instance.setActualLevelScene(FIRST_LEVEL_NAME);
         GameManager.Instance.ChangeScene("Nivel1Final");
    
 
@@ -102,9 +102,9 @@ public class ChangeScene : MonoBehaviour
     //nivel 2
     public void SegundoNivel()
     {
-
-        GameManager.Instance.setActualLevelScene(SECOND_LEVEL_NAME);
+        GameManager.Instance.SetInitialRespawnPoint(SECOND_SPAWNPOINT);
         GameManager.Instance.SetRespawnPoint(SECOND_SPAWNPOINT);
+        GameManager.Instance.setActualLevelScene(SECOND_LEVEL_NAME);
         GameManager.Instance.ChangeScene("Nivel2Final");
 
     }
@@ -112,9 +112,9 @@ public class ChangeScene : MonoBehaviour
     //nivel boss
     public void BossNivel()
     {
-
-        GameManager.Instance.setActualLevelScene(BOSS_LEVEL_NAME);
+        GameManager.Instance.SetInitialRespawnPoint(THIRD_SPAWNPOINT);
         GameManager.Instance.SetRespawnPoint(THIRD_SPAWNPOINT);
+        GameManager.Instance.setActualLevelScene(BOSS_LEVEL_NAME);
         GameManager.Instance.ChangeScene("Nivel3Boss");
 
     }
@@ -139,27 +139,27 @@ public class ChangeScene : MonoBehaviour
     {
         level = GameManager.Instance.getActualLevel();
 
-
-
-        //esto es para que si has completado el juego
-        //al darle a jugar te vuelva a llevar al primer nivel
-        //y resetamos tmb el spawnpoint
-        if (level == LAST_SCENE_NAME)
+        if (level == FIRST_LEVEL_NAME)
         {
-            level = FIRST_LEVEL_NAME;
-            GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT);
             GameManager.Instance.SetInitialRespawnPoint(FIRST_SPAWNPOINT);
-            
+            GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT);
         }
 
-        if(level == SECOND_LEVEL_NAME)
+        if (level == SECOND_LEVEL_NAME)
         {
             GameManager.Instance.SetInitialRespawnPoint(SECOND_SPAWNPOINT);
+            GameManager.Instance.SetRespawnPoint(SECOND_SPAWNPOINT);
         }
 
-        GameManager.Instance.setActualLevelScene(level);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(level);
-        //GameManager.Instance.ChangeScene(level);
+        if (level == BOSS_LEVEL_NAME)
+        {
+            GameManager.Instance.SetInitialRespawnPoint(THIRD_SPAWNPOINT);
+            GameManager.Instance.SetRespawnPoint(THIRD_SPAWNPOINT);
+        }
+
+
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(level);
+        GameManager.Instance.ChangeScene(level);
     }
 
     #endregion

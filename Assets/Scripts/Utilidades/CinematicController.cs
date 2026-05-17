@@ -31,6 +31,8 @@ public class CinematicController : MonoBehaviour
     private const float INIT_VOLUME = 0f;
     private const float FINAL_VOLUME = 0.5f;
 
+    private Vector3 FIRST_SPAWNPOINT = new Vector3(-124f, 0f, 0f);
+
     private void Start()
     {
         GameManager.Instance.setMusicVolume(INIT_VOLUME);
@@ -61,6 +63,10 @@ public class CinematicController : MonoBehaviour
     //Carga la escena del primer nivel
     private void LoadFirstLevelScene()
     {
+
+        GameManager.Instance.SetInitialRespawnPoint(FIRST_SPAWNPOINT);
+        GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT);
+
         GameManager.Instance.setMusicVolume(FINAL_VOLUME);
 
         GameManager.Instance.ChangeScene(FIRST_SCENE_NAME);

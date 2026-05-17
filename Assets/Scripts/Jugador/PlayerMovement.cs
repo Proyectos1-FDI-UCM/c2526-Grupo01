@@ -8,6 +8,7 @@
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Script principal encargado de controlar el movimiento del jugador.
@@ -165,6 +166,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+
+
+
         //asignamos el rigidbody del jugador
         rb = GetComponent<Rigidbody2D>();
 
@@ -183,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
 
         //asigno el audioSource
         audioSource = GetComponent<AudioSource>();
+
 
     }
 
@@ -376,6 +381,9 @@ public class PlayerMovement : MonoBehaviour
     //cambiamos a la escena de muerte
     public void DeadZone()
     {
+        //le digo al GameManager en el nivel en el que me encuentro
+        GameManager.Instance.setActualLevelScene(SceneManager.GetActiveScene().name);    
+
         System.GC.Collect();
         UnityEngine.SceneManagement.SceneManager.LoadScene(DEAD_SCENE_NAME);
         System.GC.Collect();
