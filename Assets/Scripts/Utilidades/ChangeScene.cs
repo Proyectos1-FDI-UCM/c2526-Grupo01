@@ -138,27 +138,6 @@ public class ChangeScene : MonoBehaviour
     public void DeadRespawn()
     {
         level = GameManager.Instance.getActualLevel();
-
-        if (level == FIRST_LEVEL_NAME)
-        {
-            GameManager.Instance.SetInitialRespawnPoint(FIRST_SPAWNPOINT);
-            GameManager.Instance.SetRespawnPoint(FIRST_SPAWNPOINT);
-        }
-
-        if (level == SECOND_LEVEL_NAME)
-        {
-            GameManager.Instance.SetInitialRespawnPoint(SECOND_SPAWNPOINT);
-            GameManager.Instance.SetRespawnPoint(SECOND_SPAWNPOINT);
-        }
-
-        if (level == BOSS_LEVEL_NAME)
-        {
-            GameManager.Instance.SetInitialRespawnPoint(THIRD_SPAWNPOINT);
-            GameManager.Instance.SetRespawnPoint(THIRD_SPAWNPOINT);
-        }
-
-
-        //UnityEngine.SceneManagement.SceneManager.LoadScene(level);
         GameManager.Instance.ChangeScene(level);
     }
 
